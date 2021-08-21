@@ -130,7 +130,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,6 +167,147 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/06/21/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B2%BE%E7%AE%80%E7%89%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/06/21/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B2%BE%E7%AE%80%E7%89%88/" class="post-title-link" itemprop="url">网络编程精简版</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-06-21 17:27:55" itemprop="dateCreated datePublished" datetime="2018-06-21T17:27:55+08:00">2018-06-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="网络编程精简版"><a href="#网络编程精简版" class="headerlink" title="网络编程精简版"></a>网络编程精简版</h1><h2 id="一-osi七层，tcp-ip-5层"><a href="#一-osi七层，tcp-ip-5层" class="headerlink" title="一.osi七层，tcp/ip 5层"></a>一.osi七层，tcp/ip 5层</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> cs架构和bs架构</span><br><span class="line"><span class="number">2</span> 互联网</span><br><span class="line"><span class="number">3</span> osi七层、<span class="number">5</span>层（<span class="number">5</span>层名字记住：重点）</span><br><span class="line">	-物理层</span><br><span class="line">    	-网线，光纤</span><br><span class="line">    -数据链路层</span><br><span class="line">    	-网卡</span><br><span class="line">    -网络层</span><br><span class="line">    	-路由器</span><br><span class="line">    -传输层（运输层）</span><br><span class="line">    	-四层路由器</span><br><span class="line">    -应用层(会话层，表示层，应用层)</span><br><span class="line">    	-http协议，ftp协议，websocket协议。。。</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1每一层功能"><a href="#1-1每一层功能" class="headerlink" title="1.1每一层功能"></a>1.1每一层功能</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 物理层</span><br><span class="line">	-网线----》01010101电信号---》从网线中传输电信号</span><br><span class="line">    -<span class="number">8</span>个比特位是一个字节</span><br><span class="line"><span class="number">2</span> 数据链路层</span><br><span class="line">	-数据帧：一组电信号是一个数据帧，有头和数据部分</span><br><span class="line">	-网卡---》mac地址---》全球唯一---》网卡出厂--》烧在了网卡上</span><br><span class="line">    -<span class="number">48</span>位二进制---》看到的都是<span class="number">16</span>进制表示</span><br><span class="line">    -广播：</span><br><span class="line">   		-局域网内通信，所有人都会接受到，通过mac地址确定给谁的数据报，如果不是自己的就不处理</span><br><span class="line">    -广播风暴</span><br><span class="line"> <span class="number">3</span> 网络层</span><br><span class="line">	-跨局域网通信，需要经过网络层</span><br><span class="line">    -IP地址：<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>-<span class="number">255.255</span><span class="number">.255</span><span class="number">.255</span></span><br><span class="line">    -子网掩码：</span><br><span class="line">    -<span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span>  <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span></span><br><span class="line">    -<span class="number">192.168</span><span class="number">.2</span><span class="number">.1</span>  <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span></span><br><span class="line">    -ARP：ip和mac的对照表</span><br><span class="line">    </span><br><span class="line"> <span class="number">4</span> 传输层：</span><br><span class="line">	-端口：<span class="number">0</span>--<span class="number">65535</span>，一个应用程序可以监听多个端口，但是一个端口只能属于一个应用程序</span><br><span class="line">    -TCP协议：可靠传输（可靠传输如何保证？三次握手，四次挥手）</span><br><span class="line">    -UDP协议：不可靠传输</span><br><span class="line"><span class="number">5</span> 应用层</span><br><span class="line">	-htpp，ftp，websocket....</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-2常用端口号"><a href="#1-2常用端口号" class="headerlink" title="1.2常用端口号"></a>1.2常用端口号</h3><table>
+<thead>
+<tr>
+<th>应用程序</th>
+<th>FTP</th>
+<th>TFTP</th>
+<th>TELNET</th>
+<th>SMTP</th>
+<th>DNS</th>
+<th>HTTP</th>
+<th>SSH</th>
+<th>MYSQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>熟知端口</td>
+<td>21,20</td>
+<td>69</td>
+<td>23</td>
+<td>25</td>
+<td>53</td>
+<td>80</td>
+<td>22</td>
+<td>3306</td>
+</tr>
+<tr>
+<td>传输层协议</td>
+<td>TCP</td>
+<td>UDP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td>UDP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td><strong>TCP</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>DNS:把网址转换成ip地址</p>
+<p>从浏览器发送出去的数据，都是http协议，默认是80端口</p>
+</blockquote>
+<h3 id="1-3Tcp三次握手四次挥手（面试题）"><a href="#1-3Tcp三次握手四次挥手（面试题）" class="headerlink" title="1.3Tcp三次握手四次挥手（面试题）"></a>1.3Tcp三次握手四次挥手（面试题）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> tcp可靠传输：三次握手，四次挥手保证数据可靠</span><br><span class="line"><span class="number">2</span> 三次握手</span><br><span class="line">	-客户端向服务端发送链接请求  </span><br><span class="line">    -服务端回复可以建立，并且带着跟客户端建立链接的数据报  </span><br><span class="line">    -客户端收到后，链接建好了    </span><br><span class="line">    </span><br><span class="line"><span class="number">3</span> 这个过程后就可以可靠传输数据</span><br><span class="line"></span><br><span class="line"><span class="number">4</span> 断开链接（<span class="number">4</span>四挥手）</span><br><span class="line">	-客户端告诉服务端，要断开   </span><br><span class="line">    -服务端收到，回复ok        </span><br><span class="line">    -服务端可能还有数据在传递，暂时还没断开---等数据传完</span><br><span class="line">    -服务端告诉客户端，我要断了  </span><br><span class="line">    -客户端收到，回复ok        </span><br></pre></td></tr></table></figure>
+
+<h2 id="二-Socket层"><a href="#二-Socket层" class="headerlink" title="二.Socket层"></a>二.Socket层</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> Socket抽象层,从osi七层抽象出来的，抽象了网络层和传输层，跟语言无关，任何语言都会有socket的封装</span><br><span class="line"><span class="number">2</span> 专门给开发人员用的</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="三-基于Tcp的socket套接字-重点"><a href="#三-基于Tcp的socket套接字-重点" class="headerlink" title="三.基于Tcp的socket套接字(重点)"></a>三.基于Tcp的socket套接字(重点)</h2><h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入socket模块</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 第一个socket是模块名，第二个socket是类名</span></span><br><span class="line"><span class="comment">#类实例化得到对象，得到一个socket对象</span></span><br><span class="line"><span class="comment"># server=socket.socket(family=socket.AF_INET,type=socket.SOCK_STREAM)</span></span><br><span class="line"><span class="comment">#不写默认就是他</span></span><br><span class="line">server=socket.socket()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定地址跟端口  ,传一个元组，监听的地址，监听的端口</span></span><br><span class="line">server.bind((<span class="string">&#x27;192.168.11.28&#x27;</span>,<span class="number">8008</span>))</span><br><span class="line"><span class="comment">#监听</span></span><br><span class="line"><span class="comment"># 半连接池是5，可以缓冲5个</span></span><br><span class="line">server.listen(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#等待用户连接(看源码，有两个返回结果)</span></span><br><span class="line"><span class="comment"># sock是连接对象，以后这个服务端和客户端交互，使用这个对象交互</span></span><br><span class="line"><span class="comment"># addr是客户端地址（ip和端口）</span></span><br><span class="line">sock,addr=server.accept()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收客户端发给我的消息</span></span><br><span class="line">data=sock.recv(<span class="number">1024</span>)</span><br><span class="line"><span class="comment"># 打印</span></span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"></span><br><span class="line"><span class="comment">#服务端给客户端发送消息（必须是byte格式）</span></span><br><span class="line">sock.send(<span class="string">b&#x27;helloworld&#x27;</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 关闭连接对象</span></span><br><span class="line">sock.close()</span><br><span class="line"></span><br><span class="line"><span class="comment">#关闭服务</span></span><br><span class="line">server.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建socket对象</span></span><br><span class="line">client=socket.socket()</span><br><span class="line"><span class="comment"># 连接服务端</span></span><br><span class="line">client.connect((<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">8008</span>))</span><br><span class="line"><span class="comment">#给服务端发了一个sb</span></span><br><span class="line">client.send(<span class="string">b&#x27;sb&#x27;</span>)</span><br><span class="line"><span class="comment"># 收到了服务端给我的</span></span><br><span class="line">data=client.recv(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">client.close()</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1加入链接循环的套接字服务端"><a href="#2-1加入链接循环的套接字服务端" class="headerlink" title="2.1加入链接循环的套接字服务端"></a>2.1加入链接循环的套接字服务端</h3><h4 id="服务端-1"><a href="#服务端-1" class="headerlink" title="服务端"></a>服务端</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">2.1 基于文件类型的套接字家族</span></span><br><span class="line"><span class="string">套接字家族的名字：AF_UNIX</span></span><br><span class="line"><span class="string">unix一切皆文件，基于文件的套接字调用的就是底层的文件系统来取数据，两个套接字进程运行在同一机器，可以通过访问同一个文件系统间接完成通信</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2.2 基于网络类型的套接字家族</span></span><br><span class="line"><span class="string">套接字家族的名字：AF_INET</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">(还有AF_INET6被用于ipv6，还有一些其他的地址家族，不过，他们要么是只用于某个平台，要么就是已经被废弃，或者是很少被使用，或者是根本没有实现，所有地址家族中，AF_INET是使用最广泛的一个，python支持很多种地址家族，但是由于我们只关心网络编程，所以大部分时候我么只使用AF_INET)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="comment">#实例化得到一个对象</span></span><br><span class="line"><span class="comment">#type=socket.SOCK_STREAM   TCP服务端</span></span><br><span class="line"><span class="comment">#type=socket.SOCK_DGRAM   UDP服务端</span></span><br><span class="line">server=socket.socket(family=socket.AF_INET, <span class="built_in">type</span>=socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定地址和端口</span></span><br><span class="line">server.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">80</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># listen:监听</span></span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待用户连接</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;开始等待客户端连接了&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    sock,addr=server.accept()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(sock)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;客户端的地址是：&#x27;</span>,addr)</span><br><span class="line"></span><br><span class="line">    data=sock.recv(<span class="number">1024</span>)</span><br><span class="line">    <span class="built_in">print</span>(data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这不是字符串的upper</span></span><br><span class="line">    sock.send(data.upper())</span><br><span class="line"></span><br><span class="line">    sock.close()</span><br><span class="line">server.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端-1"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">client=socket.socket()</span><br><span class="line">client.connect((<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">80</span>))</span><br><span class="line"></span><br><span class="line">client.send(<span class="string">&#x27;sb&#x27;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line">data=client.recv(<span class="number">1024</span>)</span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"></span><br><span class="line">client.close()</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2加入通信循环的套接字服务端"><a href="#2-2加入通信循环的套接字服务端" class="headerlink" title="2.2加入通信循环的套接字服务端"></a>2.2加入通信循环的套接字服务端</h3><h4 id="服务端-2"><a href="#服务端-2" class="headerlink" title="服务端"></a>服务端</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">server=socket.socket(family=socket.AF_INET, <span class="built_in">type</span>=socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line">server.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">81</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;开始等待客户端连接了&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"></span><br><span class="line">    sock,addr=server.accept()</span><br><span class="line">    <span class="built_in">print</span>(sock)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;客户端的地址是：&#x27;</span>,addr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待客户端发送过来的数据，如果客户端没有发送数据，会一直等着</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data=sock.recv(<span class="number">1024</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(data)==<span class="number">0</span>: <span class="comment"># 这个表示客户端正常断开了，结束通信循环</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="built_in">print</span>(data.decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">            sock.send(data.upper())</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(e) <span class="comment">#客户端非正常断开，需要异常捕获</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    sock.close()</span><br><span class="line">server.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端-2"><a href="#客户端-2" class="headerlink" title="客户端"></a>客户端</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">client=socket.socket()</span><br><span class="line">client.connect((<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">81</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"></span><br><span class="line">    input_data=<span class="built_in">input</span>(<span class="string">&#x27;请输入发送给客户端的内容（输入q退出）：&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> input_data==<span class="string">&#x27;q&#x27;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    client.send(input_data.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    data=client.recv(<span class="number">1024</span>)</span><br><span class="line">    <span class="built_in">print</span>(data.decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line">client.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-基于UDP的套接字客户端和服务端"><a href="#四-基于UDP的套接字客户端和服务端" class="headerlink" title="四.基于UDP的套接字客户端和服务端"></a>四.基于UDP的套接字客户端和服务端</h2><h4 id="服务端-3"><a href="#服务端-3" class="headerlink" title="服务端"></a>服务端</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># udp的服务端</span></span><br><span class="line">server = socket.socket(<span class="built_in">type</span>=socket.SOCK_DGRAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 监听地址和端口</span></span><br><span class="line">server.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">82</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不需要listen，直接建立链接</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;等待客户端发送数据：&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"><span class="comment">#recvfrom会返回数据和客户端的地址</span></span><br><span class="line">    data,addr = server.recvfrom(<span class="number">1024</span>)</span><br><span class="line">    <span class="built_in">print</span>(data)</span><br><span class="line">    <span class="built_in">print</span>(addr)</span><br><span class="line">    server.sendto(data.upper(), addr)</span><br><span class="line"></span><br><span class="line">server.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端-3"><a href="#客户端-3" class="headerlink" title="客户端"></a>客户端</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">client=socket.socket(<span class="built_in">type</span>=socket.SOCK_DGRAM)</span><br><span class="line">client.sendto(<span class="string">b&#x27;sb&#x27;</span>,(<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">82</span>))</span><br><span class="line"><span class="comment"># data,addr=client.recvfrom(1024)</span></span><br><span class="line"><span class="comment"># data,_=client.recvfrom(1024)</span></span><br><span class="line">data=client.recv(<span class="number">1024</span>)</span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"><span class="comment"># print(addr)</span></span><br><span class="line"></span><br><span class="line">client.close()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1465,97 +1606,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySQL</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,ip,port</span>):</span></span><br><span class="line">        self.conn=connect(ip,port) <span class="comment"># 伪代码，发起网络连接，需要占用系统资源</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__del__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.conn.close() <span class="comment"># 关闭网络连接，回收系统资源</span></span><br><span class="line"></span><br><span class="line">obj=MySQL(<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">3306</span>) <span class="comment"># 在对象obj被删除时，自动触发obj.__del__()</span></span><br></pre></td></tr></table></figure>
 
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/19/%E5%A4%9A%E6%80%81%E6%80%A7%E4%B8%8E%E9%B8%AD%E5%AD%90%E7%B1%BB%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="左大大">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左大大的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/05/19/%E5%A4%9A%E6%80%81%E6%80%A7%E4%B8%8E%E9%B8%AD%E5%AD%90%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">多态性与鸭子类型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-05-19 17:27:55" itemprop="dateCreated datePublished" datetime="2018-05-19T17:27:55+08:00">2018-05-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="多态性与鸭子类型"><a href="#多态性与鸭子类型" class="headerlink" title="多态性与鸭子类型"></a>多态性与鸭子类型</h1><h3 id="一-多态与多态性"><a href="#一-多态与多态性" class="headerlink" title="一.多态与多态性"></a>一.多态与多态性</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.什么是多态?</span><br><span class="line">	同一种事物有多种形态</span><br><span class="line">2.什么是多态性?</span><br><span class="line">	我们可以在不用知道对象具体类型的前提下，而直接使用对象</span><br><span class="line">3.多态性好处:</span><br><span class="line">	增强了程序的灵活性和可扩展性</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span>:</span> <span class="comment">#同一类事物:动物</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span>(<span class="params">Animal</span>):</span> <span class="comment">#动物的形态之一:猫</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;喵喵喵&#x27;</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>(<span class="params">Animal</span>):</span> <span class="comment">#动物的形态之二:狗</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;汪汪汪&#x27;</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pig</span>(<span class="params">Animal</span>):</span> <span class="comment">#动物的形态之三:猪</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;哼哼哼&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#实例化得到三个对象</span></span><br><span class="line">cat=Cat()</span><br><span class="line">dog=Dog()</span><br><span class="line">pig=Pig()</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat.talk()</span><br><span class="line">==&gt; 喵喵喵</span><br><span class="line">dog.talk()</span><br><span class="line">==&gt; 汪汪汪</span><br><span class="line">pig.talk()</span><br><span class="line">==&gt; 哼哼哼</span><br></pre></td></tr></table></figure>
-
-<p>更进一步,我们可以定义一个统一的接口来使用</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Talk</span>(<span class="params">animal</span>):</span></span><br><span class="line">     animal.talk()</span><br><span class="line"> </span><br><span class="line">Talk(cat)</span><br><span class="line">==&gt; 喵喵喵</span><br><span class="line">Talk(dog)</span><br><span class="line">==&gt; 汪汪汪</span><br><span class="line">Talk(pig)</span><br><span class="line">==&gt; 哼哼哼</span><br></pre></td></tr></table></figure>
-
-<p>Python中一切皆对象，本身就支持多态性</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我们可以在不考虑三者类型的情况下直接使用统计三个对象的长度</span></span><br><span class="line">s.__len__()</span><br><span class="line">l.__len__()</span><br><span class="line">t.__len__()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Python内置了一个统一的接口</span></span><br><span class="line"><span class="built_in">len</span>(s)</span><br><span class="line"><span class="built_in">len</span>(l)</span><br><span class="line"><span class="built_in">len</span>(t)</span><br></pre></td></tr></table></figure>
-
-<p>多态性的好处在于增强了程序的灵活性和可扩展性，比如通过继承Animal类创建了一个新的类，实例化得到的对象obj，可以使用相同的方式使用obj.talk()</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wolf</span>(<span class="params">Animal</span>):</span> <span class="comment">#动物的另外一种形态：狼</span></span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">         <span class="built_in">print</span>(<span class="string">&#x27;嗷...&#x27;</span>)</span><br><span class="line"> </span><br><span class="line">wolf=Wolf() <span class="comment"># 实例出一头狼</span></span><br><span class="line">wolf.talk() <span class="comment"># 使用者根本无需关心wolf是什么类型而调用talk</span></span><br><span class="line">==&gt; 嗷...</span><br></pre></td></tr></table></figure>
-
-<p>综上我们得知，多态性的本质在于不同的类中定义有相同的方法名，这样我们就可以不考虑类而统一用一种方式去使用对象，可以通过在父类引入抽象类的概念来硬性限制子类必须有某些方法名</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> abc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定metaclass属性将类设置为抽象类，抽象类本身只是用来约束子类的，不能被实例化</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span>(<span class="params">metaclass=abc.ABCMeta</span>):</span></span><br><span class="line"><span class="meta">    @abc.abstractmethod </span><span class="comment"># 该装饰器限制子类必须定义有一个名为talk的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span> <span class="comment"># 抽象方法中无需实现具体的功能</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span>(<span class="params">Animal</span>):</span> <span class="comment"># 但凡继承Animal的子类都必须遵循Animal规定的标准</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">cat=Cat() <span class="comment"># 若子类中没有一个名为talk的方法则会抛出异常TypeError，无法实例化</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="二-鸭子类型"><a href="#二-鸭子类型" class="headerlink" title="二.鸭子类型"></a>二.鸭子类型</h3><p>但其实我们完全可以不依赖于继承，只需要制造出外观和行为相同对象，同样可以实现不考虑对象类型而使用对象，这正是Python崇尚的“鸭子类型”（duck typing）：“如果看起来像、叫声像而且走起路来像鸭子，那么它就是鸭子”。比起继承的方式，鸭子类型在某种程度上实现了程序的松耦合度，如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#二者看起来都像文件,因而就可以当文件一样去用，然而它们并没有直接的关系</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Txt</span>:</span> <span class="comment">#Txt类有两个与文件类型同名的方法，即read和write</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Disk</span>:</span> <span class="comment">#Disk类也有两个与文件类型同名的方法：read和write</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
       
     </div>
 

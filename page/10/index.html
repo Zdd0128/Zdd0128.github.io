@@ -130,7 +130,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,6 +167,97 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/19/%E5%A4%9A%E6%80%81%E6%80%A7%E4%B8%8E%E9%B8%AD%E5%AD%90%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/05/19/%E5%A4%9A%E6%80%81%E6%80%A7%E4%B8%8E%E9%B8%AD%E5%AD%90%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">多态性与鸭子类型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-05-19 17:27:55" itemprop="dateCreated datePublished" datetime="2018-05-19T17:27:55+08:00">2018-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="多态性与鸭子类型"><a href="#多态性与鸭子类型" class="headerlink" title="多态性与鸭子类型"></a>多态性与鸭子类型</h1><h3 id="一-多态与多态性"><a href="#一-多态与多态性" class="headerlink" title="一.多态与多态性"></a>一.多态与多态性</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.什么是多态?</span><br><span class="line">	同一种事物有多种形态</span><br><span class="line">2.什么是多态性?</span><br><span class="line">	我们可以在不用知道对象具体类型的前提下，而直接使用对象</span><br><span class="line">3.多态性好处:</span><br><span class="line">	增强了程序的灵活性和可扩展性</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span>:</span> <span class="comment">#同一类事物:动物</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span>(<span class="params">Animal</span>):</span> <span class="comment">#动物的形态之一:猫</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;喵喵喵&#x27;</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>(<span class="params">Animal</span>):</span> <span class="comment">#动物的形态之二:狗</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;汪汪汪&#x27;</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pig</span>(<span class="params">Animal</span>):</span> <span class="comment">#动物的形态之三:猪</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;哼哼哼&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#实例化得到三个对象</span></span><br><span class="line">cat=Cat()</span><br><span class="line">dog=Dog()</span><br><span class="line">pig=Pig()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat.talk()</span><br><span class="line">==&gt; 喵喵喵</span><br><span class="line">dog.talk()</span><br><span class="line">==&gt; 汪汪汪</span><br><span class="line">pig.talk()</span><br><span class="line">==&gt; 哼哼哼</span><br></pre></td></tr></table></figure>
+
+<p>更进一步,我们可以定义一个统一的接口来使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Talk</span>(<span class="params">animal</span>):</span></span><br><span class="line">     animal.talk()</span><br><span class="line"> </span><br><span class="line">Talk(cat)</span><br><span class="line">==&gt; 喵喵喵</span><br><span class="line">Talk(dog)</span><br><span class="line">==&gt; 汪汪汪</span><br><span class="line">Talk(pig)</span><br><span class="line">==&gt; 哼哼哼</span><br></pre></td></tr></table></figure>
+
+<p>Python中一切皆对象，本身就支持多态性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我们可以在不考虑三者类型的情况下直接使用统计三个对象的长度</span></span><br><span class="line">s.__len__()</span><br><span class="line">l.__len__()</span><br><span class="line">t.__len__()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Python内置了一个统一的接口</span></span><br><span class="line"><span class="built_in">len</span>(s)</span><br><span class="line"><span class="built_in">len</span>(l)</span><br><span class="line"><span class="built_in">len</span>(t)</span><br></pre></td></tr></table></figure>
+
+<p>多态性的好处在于增强了程序的灵活性和可扩展性，比如通过继承Animal类创建了一个新的类，实例化得到的对象obj，可以使用相同的方式使用obj.talk()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wolf</span>(<span class="params">Animal</span>):</span> <span class="comment">#动物的另外一种形态：狼</span></span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">         <span class="built_in">print</span>(<span class="string">&#x27;嗷...&#x27;</span>)</span><br><span class="line"> </span><br><span class="line">wolf=Wolf() <span class="comment"># 实例出一头狼</span></span><br><span class="line">wolf.talk() <span class="comment"># 使用者根本无需关心wolf是什么类型而调用talk</span></span><br><span class="line">==&gt; 嗷...</span><br></pre></td></tr></table></figure>
+
+<p>综上我们得知，多态性的本质在于不同的类中定义有相同的方法名，这样我们就可以不考虑类而统一用一种方式去使用对象，可以通过在父类引入抽象类的概念来硬性限制子类必须有某些方法名</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> abc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定metaclass属性将类设置为抽象类，抽象类本身只是用来约束子类的，不能被实例化</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span>(<span class="params">metaclass=abc.ABCMeta</span>):</span></span><br><span class="line"><span class="meta">    @abc.abstractmethod </span><span class="comment"># 该装饰器限制子类必须定义有一个名为talk的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span> <span class="comment"># 抽象方法中无需实现具体的功能</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span>(<span class="params">Animal</span>):</span> <span class="comment"># 但凡继承Animal的子类都必须遵循Animal规定的标准</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">cat=Cat() <span class="comment"># 若子类中没有一个名为talk的方法则会抛出异常TypeError，无法实例化</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="二-鸭子类型"><a href="#二-鸭子类型" class="headerlink" title="二.鸭子类型"></a>二.鸭子类型</h3><p>但其实我们完全可以不依赖于继承，只需要制造出外观和行为相同对象，同样可以实现不考虑对象类型而使用对象，这正是Python崇尚的“鸭子类型”（duck typing）：“如果看起来像、叫声像而且走起路来像鸭子，那么它就是鸭子”。比起继承的方式，鸭子类型在某种程度上实现了程序的松耦合度，如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#二者看起来都像文件,因而就可以当文件一样去用，然而它们并没有直接的关系</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Txt</span>:</span> <span class="comment">#Txt类有两个与文件类型同名的方法，即read和write</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Disk</span>:</span> <span class="comment">#Disk类也有两个与文件类型同名的方法：read和write</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1350,86 +1441,6 @@
 <p><img src="https://pic2.zhimg.com/80/v2-4240913539ce0352a89c4044c2a418e9_720w.jpg" alt="img"></p>
 <h3 id="三-垃圾回收机制原理分析"><a href="#三-垃圾回收机制原理分析" class="headerlink" title="三.垃圾回收机制原理分析"></a>三.垃圾回收机制原理分析</h3><h4 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h4><p>​            Python的GC模块主要运用了“引用计数”（reference counting）来跟踪和回收垃圾。在引用计数的基础上，还可以通过“标记-清除”（mark and sweep）解决容器对象可能产生的循环引用的问题，并且通过“分代回收”（generation collection）以空间换取时间的方式来进一步提高垃圾回收的效率。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>GC机制之引用计数:</span><br><span class="line">    引用计数就是：变量值被变量名关联的次数,如果变量值的引用计数为<span class="number">0</span>,其就会被GC机制回收</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>GC机制之引用计数:</span><br><span class="line">    标记/清除算法的核心：</span><br><span class="line">		<span class="number">1.</span>如果一个值没有关联任何一条以直接引用作为出发点的引用，那么该值就会被标记并清除</span><br><span class="line">		<span class="number">2.</span>如果一个变量值不存在任何以栈区为出发点的引用，那么标记/清除算法就认为它是垃圾</span><br><span class="line">  </span><br><span class="line"><span class="number">3.</span>GC机制之分代回收:</span><br><span class="line">    分代回收的核心思想：</span><br><span class="line">    	在历经多次扫描的情况下,都没有被回收的变量,GC机制就会认为该变量是常用变量，GC对其扫描的	      频率会降低</span><br><span class="line">    ps:分代回收采用的是用“空间换时间”的策略。</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>小整数池:</span><br><span class="line">    <span class="number">1.</span>小整数池作用：</span><br><span class="line">    	节省内存，提高执行效率</span><br><span class="line">    <span class="number">2.</span>为什么要有小整数池?</span><br><span class="line">    	为了避免因创建相同的值而重复申请内存空间所带来的效率问题</span><br><span class="line">  </span><br><span class="line">综上:</span><br><span class="line">    垃圾回收机制是在清理垃圾&amp;释放内存的大背景下，允许分代回收以极小部分垃圾不会被及时释放为代价，以此换取引用计数整体扫描频率的降低，从而提升其性能，这是一种以空间换时间的解决方案目录    </span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/11/Python%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="左大大">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左大大的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/05/11/Python%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">Python语法入门之基本数据类型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-05-11 19:20:25" itemprop="dateCreated datePublished" datetime="2018-05-11T19:20:25+08:00">2018-05-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Python语法入门之基本数据类型"><a href="#Python语法入门之基本数据类型" class="headerlink" title="Python语法入门之基本数据类型"></a>Python语法入门之基本数据类型</h1><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="built_in">int</span>整型</span><br><span class="line">	<span class="number">1.1</span>作用:</span><br><span class="line">		用来记录人的年龄，出生年份，学生人数等整数相关的状态</span><br><span class="line">	<span class="number">1.2</span>定义:</span><br><span class="line">   	 	age=<span class="number">18</span></span><br><span class="line">    	birthday=<span class="number">1990</span></span><br><span class="line">    	student_count=<span class="number">48</span></span><br><span class="line">        </span><br><span class="line"><span class="number">2.</span><span class="built_in">float</span>浮点型</span><br><span class="line">	<span class="number">2.1</span>作用:</span><br><span class="line">		用来记录人的身高，体重，薪资等小数相关的状态</span><br><span class="line">	<span class="number">2.2</span>定义:</span><br><span class="line">        height=<span class="number">172.3</span></span><br><span class="line">        weight=<span class="number">103.5</span></span><br><span class="line">        salary=<span class="number">15000.89</span></span><br><span class="line">        </span><br><span class="line"><span class="number">3.</span><span class="built_in">str</span>字符串类型</span><br><span class="line">	<span class="number">3.1</span> 作用</span><br><span class="line">		用来记录人的名字，家庭住址，性别等描述性质的状态</span><br><span class="line">	<span class="number">3.2</span> 定义</span><br><span class="line">		name = <span class="string">&#x27;Tony&#x27;</span></span><br><span class="line">		address = <span class="string">&#x27;上海市浦东新区&#x27;</span></span><br><span class="line">		sex = <span class="string">&#x27;男&#x27;</span></span><br><span class="line">    <span class="number">3.3</span> 使用</span><br><span class="line">		数字可以进行加减乘除等运算，字符串呢？也可以，但只能进行<span class="string">&quot;相加&quot;</span>和<span class="string">&quot;相乘&quot;</span>运算。</span><br><span class="line">			name = <span class="string">&#x27;tony&#x27;</span></span><br><span class="line">			age = <span class="string">&#x27;18&#x27;</span></span><br><span class="line">			name + age <span class="comment">#相加其实就是简单的字符串拼接</span></span><br><span class="line">			===&gt;<span class="string">&#x27;tony18&#x27;</span></span><br><span class="line">            </span><br><span class="line">			name * <span class="number">5</span> <span class="comment">#相乘就相当于将字符串相加了5次</span></span><br><span class="line">			===&gt;<span class="string">&#x27;tonytonytonytonytony&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="number">4.</span><span class="built_in">list</span>列表</span><br><span class="line">	<span class="number">4.1</span>作用:</span><br><span class="line">		按照位置存放多个值，可以用索引取指定位置的值</span><br><span class="line">    <span class="number">4.2</span>定义:</span><br><span class="line">		stu_names=[<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;王五&#x27;</span>]</span><br><span class="line">    <span class="number">4.3</span>使用:</span><br><span class="line">        <span class="number">1.</span>列表类型是用索引来对应值，索引代表的是数据的位置，从<span class="number">0</span>开始计数</span><br><span class="line">            stu_names=[<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;王五&#x27;</span>]</span><br><span class="line">            stu_names[<span class="number">0</span>] </span><br><span class="line">            ==&gt;<span class="string">&#x27;张三&#x27;</span></span><br><span class="line">            stu_names[<span class="number">1</span>]</span><br><span class="line">            ==&gt;<span class="string">&#x27;李四&#x27;</span></span><br><span class="line">            stu_names[<span class="number">2</span>]</span><br><span class="line">            ==&gt;<span class="string">&#x27;王五&#x27;</span></span><br><span class="line">        <span class="number">2.</span>列表可以嵌套，嵌套取值如下</span><br><span class="line">            students_info=[[<span class="string">&#x27;tony&#x27;</span>,<span class="number">18</span>,[<span class="string">&#x27;jack&#x27;</span>,]],[<span class="string">&#x27;jason&#x27;</span>,<span class="number">18</span>,[<span class="string">&#x27;play&#x27;</span>,<span class="string">&#x27;sleep&#x27;</span>]]]</span><br><span class="line">            students_info[<span class="number">0</span>][<span class="number">2</span>][<span class="number">0</span>] <span class="comment">#取出第一个学生的第一个爱好</span></span><br><span class="line">            ==&gt;<span class="string">&#x27;play&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="number">5.</span><span class="built_in">dict</span>字典</span><br><span class="line">	<span class="number">5.1</span>作用:</span><br><span class="line">		按照key:value的形式存放多个值，其中value可以是任意类型，而key通常是<span class="built_in">str</span>类型</span><br><span class="line">	<span class="number">5.2</span> 定义</span><br><span class="line">		person_info=&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;tony&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:<span class="number">18</span>,<span class="string">&#x27;height&#x27;</span>:<span class="number">185.3</span>&#125;</span><br><span class="line">    <span class="number">5.3</span>使用:</span><br><span class="line">        <span class="number">5.3</span> 使用</span><br><span class="line">            <span class="number">1.</span>字典类型是用key来对应值，key可以对值有描述性的功能，通常为字符串类型</span><br><span class="line">                person_info=&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;tony&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:<span class="number">18</span>,<span class="string">&#x27;height&#x27;</span>:<span class="number">185.3</span>&#125;</span><br><span class="line">                person_info[<span class="string">&#x27;name&#x27;</span>]</span><br><span class="line">                ==&gt;<span class="string">&#x27;tony&#x27;</span></span><br><span class="line"></span><br><span class="line">            <span class="number">2.</span>字典可以嵌套，嵌套取值如下</span><br><span class="line">                students=[</span><br><span class="line">                &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;tony&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:<span class="number">38</span>,<span class="string">&#x27;hobbies&#x27;</span>:[<span class="string">&#x27;play&#x27;</span>,<span class="string">&#x27;sleep&#x27;</span>]&#125;,</span><br><span class="line">                &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;jack&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:<span class="number">18</span>,<span class="string">&#x27;hobbies&#x27;</span>:[<span class="string">&#x27;read&#x27;</span>,<span class="string">&#x27;sleep&#x27;</span>]&#125;,</span><br><span class="line">                &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;rose&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:<span class="number">58</span>,<span class="string">&#x27;hobbies&#x27;</span>:[<span class="string">&#x27;music&#x27;</span>,<span class="string">&#x27;read&#x27;</span>,<span class="string">&#x27;sleep&#x27;</span>]&#125;,</span><br><span class="line">                ]</span><br><span class="line">                students[<span class="number">1</span>][<span class="string">&#x27;hobbies&#x27;</span>][<span class="number">1</span>] <span class="comment">#取第二个学生的第二个爱好</span></span><br><span class="line">                ==&gt;<span class="string">&#x27;sleep&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="number">6.</span><span class="built_in">bool</span>布尔</span><br><span class="line">	<span class="number">6.1</span>作用:</span><br><span class="line">		用来记录真假这两种状态</span><br><span class="line">	<span class="number">6.2</span>定义:</span><br><span class="line">		is_ok = <span class="literal">True</span></span><br><span class="line">		is_ok = <span class="literal">False</span></span><br><span class="line">	<span class="number">6.3</span>使用:</span><br><span class="line">		通常用来当作判断的条件，我们将在<span class="keyword">if</span>判断中用到它</span><br><span class="line">    <span class="number">6.4</span>分类:</span><br><span class="line">        <span class="number">1.</span>显式的布尔值：</span><br><span class="line">            x = <span class="literal">True</span></span><br><span class="line">			y = <span class="literal">False</span></span><br><span class="line">        <span class="number">2.</span>隐式的布尔值: </span><br><span class="line">            <span class="number">0</span>、<span class="literal">None</span>、空的布尔值为<span class="literal">False</span>，其余均为真</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="Dict字典"><a href="#Dict字典" class="headerlink" title="Dict字典"></a>Dict字典</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">字典类型和keys连用，是只遍历key值的意思</span><br><span class="line">字典类型和values连用，是只遍历value值的意思</span><br><span class="line">字典类型和items连用，是遍历key和value值的意思，即遍历键值对，用元组盛放返回</span><br><span class="line">get是用来根据key值获取其对应的value值，有返回值，key不存在返回None，字典取值推荐使用此方法</span><br><span class="line">pop是用来删除字典指定key对应的键值，返回值是被删除的键值</span><br><span class="line">popitem是用来随机删除字典内的一组键值对，并将删除的键值对放入元组内返回</span><br><span class="line">update是用新字典更新旧字典，有则修改，无则添加</span><br><span class="line">fromkeys是用来快速生成一个新的字典，可以自定义key对应的value值</span><br><span class="line">setdefault是用来获取字典的信息，若key不存在，就加上括号内的键值对项目,存在则字典保持不变</span><br></pre></td></tr></table></figure>
-
-<h3 id="Str字符串"><a href="#Str字符串" class="headerlink" title="Str字符串"></a>Str字符串</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">strip用来去除字符串中的其他内容，默认是去除空格，去除其他符号需要括号内表明</span><br><span class="line"></span><br><span class="line">lower用来小写字符串中的所有字符</span><br><span class="line">upper用来大写字符串中的所有字符</span><br><span class="line"></span><br><span class="line">startswith用来判断字符串中首写字符</span><br><span class="line">endswith用来判断字符串中末尾的字符</span><br><span class="line"></span><br><span class="line">format用来自定义字符串中的字符，用花括号占位</span><br><span class="line">replace用来替换字符串中的不想要内容，需重新赋值定义，可指定个数</span><br><span class="line"></span><br><span class="line">split用来将长字符串切割，切割位置取决于括号内字符，默认空格，从左往右，可指定切割次数</span><br><span class="line">rsplit用来将长字符串切割，切割位置取决于括号内字符，默认空格，从右往左，可指定切割次数</span><br><span class="line"></span><br><span class="line">join从可迭代对象中取出多个字符串，然后按照指定的分隔符进行拼接</span><br><span class="line">isdigit判断字符串是否是纯数字组成</span><br><span class="line"></span><br><span class="line">总结：存一个值，有序，不可变类型</span><br><span class="line"></span><br><span class="line">了解：</span><br><span class="line">captalize#首字母大写</span><br><span class="line">swapcase			# 大小写翻转</span><br><span class="line">title				# 每个单词的首字母大写</span><br><span class="line">isalpha()  			# 字符串中只包含字母</span><br><span class="line">isalnum()  			# 字符串中既可以包含数字也可以包含字母</span><br><span class="line">isspace() 			# 字符串是否全是空格</span><br><span class="line">count:				# 统计字符串在大字符串中出现的次数</span><br></pre></td></tr></table></figure>
-
-<h3 id="List列表"><a href="#List列表" class="headerlink" title="List列表"></a>List列表</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">增：</span><br><span class="line">insert用来向列表内添加新的值，根据列表索引添加新值，新值会被加到指定索引位置</span><br><span class="line">append用来向列表内添加新的值，新值会加到列表最后</span><br><span class="line">extend用来将被添加到新列表中所有元素拆分开来一一加入新的列表</span><br><span class="line">删：</span><br><span class="line">del用来删除列表里索引对应的值，是单纯的删除，没有返回值</span><br><span class="line">pop用来取走列表中的某个值，按照索引取走，默认取走最后一个值，返回值就是那个被取走的值</span><br><span class="line">remove用来删除列表里指定的值，无返回值</span><br><span class="line">clear用来清空列表中所有元素</span><br><span class="line">排：</span><br><span class="line">reverse用来将列表倒置，顺序颠倒过来</span><br><span class="line">sort用来将列表中元素排序，默认从小到大排，括号里跟reverse=True实现从大到小排序</span><br><span class="line">查：</span><br><span class="line">index用来根据值查找值对应列表中的索引，值后面可指定索引范围来查找</span><br><span class="line">count用来查询列表中某个值出现的次数</span><br><span class="line"></span><br><span class="line">copy用来将列表复制一份，可定义给其他列表</span><br><span class="line"></span><br><span class="line">总结：存多个值，有序，可变类型</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
       
