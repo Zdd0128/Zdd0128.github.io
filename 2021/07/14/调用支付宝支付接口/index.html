@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="调用支付宝支付接口1.支付宝支付介绍123456789101112131415161718192021222324252627282930# 支付功能	-支付宝    -微信    -自有支付系统    # 支付流程：	如下图        # 申请支付宝支付	-必须以企业申请（需要营业执照）    -沙箱环境（测试环境）    	-沙箱app            -买家        买家账号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="调用支付宝支付接口">
+<meta property="og:url" content="http://example.com/2021/07/14/%E8%B0%83%E7%94%A8%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="调用支付宝支付接口1.支付宝支付介绍123456789101112131415161718192021222324252627282930# 支付功能	-支付宝    -微信    -自有支付系统    # 支付流程：	如下图        # 申请支付宝支付	-必须以企业申请（需要营业执照）    -沙箱环境（测试环境）    	-沙箱app            -买家        买家账号">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/Admin/AppData/Roaming/Typora/typora-user-images/image-20210802195915091.png">
+<meta property="article:published_time" content="2021-07-14T09:27:55.000Z">
+<meta property="article:modified_time" content="2021-07-14T09:27:55.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/Admin/AppData/Roaming/Typora/typora-user-images/image-20210802195915091.png">
+
+
+<link rel="canonical" href="http://example.com/2021/07/14/%E8%B0%83%E7%94%A8%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/07/14/%E8%B0%83%E7%94%A8%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/","path":"2021/07/14/调用支付宝支付接口/","title":"调用支付宝支付接口"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>调用支付宝支付接口 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">调用支付宝支付接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">1.支付宝支付介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%B0%83%E7%94%A8%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.2.</span> <span class="nav-text">2.调用支付宝支付接口步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#settings-py%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">settings.py文件配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pem%E6%96%87%E4%BB%B6%E5%A4%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">pem文件夹配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pay-py%E6%A0%B8%E5%BF%83%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">pay.py核心文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/14/%E8%B0%83%E7%94%A8%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          调用支付宝支付接口
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-14 17:27:55" itemprop="dateCreated datePublished" datetime="2021-07-14T17:27:55+08:00">2021-07-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%85%B6%E4%BB%96%E5%88%86%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">其他分类</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="调用支付宝支付接口"><a href="#调用支付宝支付接口" class="headerlink" title="调用支付宝支付接口"></a>调用支付宝支付接口</h1><h2 id="1-支付宝支付介绍"><a href="#1-支付宝支付介绍" class="headerlink" title="1.支付宝支付介绍"></a>1.支付宝支付介绍</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支付功能</span></span><br><span class="line">	-支付宝</span><br><span class="line">    -微信</span><br><span class="line">    -自有支付系统</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 支付流程：</span></span><br><span class="line">	如下图</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment"># 申请支付宝支付</span></span><br><span class="line">	-必须以企业申请（需要营业执照）</span><br><span class="line">    -沙箱环境（测试环境）</span><br><span class="line">    	-沙箱app</span><br><span class="line">        </span><br><span class="line">    -买家</span><br><span class="line">        买家账号bfxtlv8393@sandbox.com</span><br><span class="line">        登录密码<span class="number">111111</span></span><br><span class="line">        支付密码<span class="number">111111</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment"># 使用第三方sdk实现支付</span></span><br><span class="line">	-生成公钥私钥（非对称加密）</span><br><span class="line">		-非对称加密：加密和解密使用不同秘钥，加密使用公钥，解密使用私钥</span><br><span class="line">        -对称加密：加密解密使用同一个秘钥</span><br><span class="line">        </span><br><span class="line">    -生成公钥私钥</span><br><span class="line">    	-https://opendocs.alipay.com/<span class="built_in">open</span>/<span class="number">291</span>/introduce</span><br><span class="line"><span class="comment"># 使用第三方sdk</span></span><br><span class="line">	-pip install python-alipay-sdk</span><br><span class="line">    -pip install pyOpenSsl</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Admin\AppData\Roaming\Typora\typora-user-images\image-20210802195915091.png" alt="image-20210802195915091"></p>
+<h2 id="2-调用支付宝支付接口步骤"><a href="#2-调用支付宝支付接口步骤" class="headerlink" title="2.调用支付宝支付接口步骤"></a>2.调用支付宝支付接口步骤</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用前提:</span></span><br><span class="line">	调用支付宝支付接口使用的是第三方sdk,需要安装以下模块实现支持:</span><br><span class="line">        pip install python-alipay-sdk</span><br><span class="line">    	pip install pyOpenSsl</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.官网:</span></span><br><span class="line">	https://opendocs.alipay.com/<span class="built_in">open</span>/<span class="number">200</span>/<span class="number">105311</span>	</span><br><span class="line">	进入沙箱环境 --&gt; 登录 --&gt; 沙箱应用</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.先生成我们自己的公钥私钥:</span></span><br><span class="line">	网址:https://opendocs.alipay.com/<span class="built_in">open</span>/<span class="number">291</span>/<span class="number">105971</span> --&gt; Web 在线加密 --&gt; 生成密钥</span><br><span class="line">	拿到我们自己的公钥和私钥</span><br><span class="line">	</span><br><span class="line"><span class="comment"># 3.拿着我们自己的公钥去沙箱应用内生成支付宝公钥</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.项目目录下libs文件夹内新建包alipay</span></span><br><span class="line">	包目录结构如下:</span><br><span class="line">		alipay</span><br><span class="line">            __init__.py  <span class="comment"># 包</span></span><br><span class="line">            settings.py   <span class="comment"># 配置文件</span></span><br><span class="line">            pay.py        <span class="comment"># 核心文件</span></span><br><span class="line">            pem           <span class="comment"># 秘钥</span></span><br><span class="line">                alipay_public_key.pem  <span class="comment"># 存放支付宝公钥（从支付宝网站获得）</span></span><br><span class="line">                app_private_key.pem    <span class="comment"># 存放应用私钥(第二步生成的私钥)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="settings-py文件配置"><a href="#settings-py文件配置" class="headerlink" title="settings.py文件配置"></a>settings.py文件配置</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># settings.py文件夹配置如下:</span></span><br><span class="line">	<span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 应用私钥</span></span><br><span class="line">    APP_PRIVATE_KEY_STRING = <span class="built_in">open</span>(</span><br><span class="line">        os.path.join(os.path.dirname(os.path.abspath(__file__)), <span class="string">&#x27;pem&#x27;</span>, <span class="string">&#x27;app_private_key.pem&#x27;</span>)).read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 支付宝公钥</span></span><br><span class="line">    ALIPAY_PUBLIC_KEY_STRING = <span class="built_in">open</span>(</span><br><span class="line">        os.path.join(os.path.dirname(os.path.abspath(__file__)), <span class="string">&#x27;pem&#x27;</span>, <span class="string">&#x27;alipay_public_key.pem&#x27;</span>)).read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 应用ID(沙箱应用中APPID)</span></span><br><span class="line">    APP_ID = <span class="string">&#x27;2021000117697872&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 加密方式</span></span><br><span class="line">    SIGN = <span class="string">&#x27;RSA2&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 是否是支付宝测试环境(沙箱环境)，如果采用真是支付宝环境，配置False</span></span><br><span class="line">    DEBUG = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 支付网关</span></span><br><span class="line">    GATEWAY = <span class="string">&#x27;https://openapi.alipaydev.com/gateway.do?&#x27;</span> <span class="keyword">if</span> DEBUG <span class="keyword">else</span> <span class="string">&#x27;https://openapi.alipay.com/gateway.do?&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 上线后必须换成公网地址</span></span><br><span class="line">    <span class="comment"># 后台基URL</span></span><br><span class="line">    BASE_URL = <span class="string">&#x27;http://127.0.0.1:8000&#x27;</span></span><br><span class="line">    <span class="comment"># 前台基URL</span></span><br><span class="line">    LUFFY_URL = <span class="string">&#x27;http://127.0.0.1:8080/&#x27;</span></span><br><span class="line">    <span class="comment"># 支付宝同步异步回调接口配置</span></span><br><span class="line">    <span class="comment"># 后台异步回调接口</span></span><br><span class="line">    NOTIFY_URL = BASE_URL + <span class="string">&quot;/order/success/&quot;</span></span><br><span class="line">    <span class="comment"># 前台同步回调接口，没有 / 结尾</span></span><br><span class="line">    RETURN_URL = LUFFY_URL + <span class="string">&quot;/pay/success&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="pem文件夹配置"><a href="#pem文件夹配置" class="headerlink" title="pem文件夹配置"></a>pem文件夹配置</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># alipay_public_key.pem    	# 存放支付宝公钥的文件</span></span><br><span class="line">	-----BEGIN PUBLIC KEY-----</span><br><span class="line">	支付宝公钥(第三步生成的)</span><br><span class="line">	-----END PUBLIC KEY-----</span><br><span class="line">    </span><br><span class="line"><span class="comment"># app_private_key.pem		# 存放我们应用私钥的地方</span></span><br><span class="line">	-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">	自己的应用私钥(第二步生成的私钥)</span><br><span class="line">	-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+
+<h4 id="pay-py核心文件"><a href="#pay-py核心文件" class="headerlink" title="pay.py核心文件"></a>pay.py核心文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> alipay <span class="keyword">import</span> AliPay</span><br><span class="line"><span class="keyword">from</span> libs.alipay <span class="keyword">import</span> settings</span><br><span class="line"></span><br><span class="line"><span class="comment"># 支付对象</span></span><br><span class="line">alipay = AliPay(</span><br><span class="line">    appid=settings.APP_ID,		<span class="comment"># 沙箱应用的APPID</span></span><br><span class="line">    app_notify_url=<span class="literal">None</span>,</span><br><span class="line">    app_private_key_string=settings.APP_PRIVATE_KEY_STRING,			<span class="comment"># y私钥</span></span><br><span class="line">    alipay_public_key_string=settings.ALIPAY_PUBLIC_KEY_STRING,		<span class="comment"># 支付宝公钥</span></span><br><span class="line">    sign_type=settings.SIGN,		<span class="comment"># 加密方式 RSA2 或 RSA</span></span><br><span class="line">    debug=settings.DEBUG			<span class="comment"># 默认True,上线改成False</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 支付网关</span></span><br><span class="line">gateway = settings.GATEWAY</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入支付对象和支付网关</span></span><br><span class="line"><span class="keyword">from</span> libs.alipay <span class="keyword">import</span> alipay, gateway</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用支付对象api_alipay_trade_page_pay方法并传参</span></span><br><span class="line">res = alipay.api_alipay_trade_page_pay(</span><br><span class="line">    out_trade_no=<span class="string">&#x27;123123123123&#x27;</span>,	<span class="comment"># 商品订单号(uuid生成)</span></span><br><span class="line">    total_amount=<span class="built_in">float</span>(<span class="number">88</span>),  		<span class="comment"># 商品价格 	</span></span><br><span class="line">    subject=<span class="string">&#x27;女士内衣&#x27;</span>,				 <span class="comment"># 商品名称</span></span><br><span class="line">	return_url=settings.RETURN_URL,  	<span class="comment"># 前端回调地址</span></span><br><span class="line">    notify_url=settings.NOTIFY_URL  	<span class="comment"># 后端回调地址(公网ip生效)</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回链接拼上网关,复制粘贴访问即可</span></span><br><span class="line"><span class="built_in">print</span>(gateway + res)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 买家账号:bqpjmb5822@sandbox.com</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/10/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" rel="prev" title="跨域问题详解">
+                  <i class="fa fa-chevron-left"></i> 跨域问题详解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/20/Nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%85%8D%E7%BD%AE/" rel="next" title="Nginx负载均衡配置">
+                  Nginx负载均衡配置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
