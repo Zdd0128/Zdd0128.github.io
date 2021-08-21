@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="权限管理-文件权限1.1基本权限介绍123456789101112131415161718192021222324252627基本权限类型:	r:可读   --&gt; 4	w:可写   --&gt; 2	x:可执行 --&gt; 1	权限的归属:	属主:  u	属组:  g	其他人: oeg:	[root@aliyun ~]# ls -l a.txt-rw-r--r-- 1 root root">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux权限管理-文件权限">
+<meta property="og:url" content="http://example.com/2020/07/10/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="权限管理-文件权限1.1基本权限介绍123456789101112131415161718192021222324252627基本权限类型:	r:可读   --&gt; 4	w:可写   --&gt; 2	x:可执行 --&gt; 1	权限的归属:	属主:  u	属组:  g	其他人: oeg:	[root@aliyun ~]# ls -l a.txt-rw-r--r-- 1 root root">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-10T10:20:25.000Z">
+<meta property="article:modified_time" content="2020-07-10T10:20:25.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/07/10/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/07/10/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/","path":"2020/07/10/权限管理-文件权限/","title":"Linux权限管理-文件权限"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux权限管理-文件权限 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="nav-number">1.</span> <span class="nav-text">权限管理-文件权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E5%9F%BA%E6%9C%AC%E6%9D%83%E9%99%90%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.1基本权限介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90"><span class="nav-number">1.0.2.</span> <span class="nav-text">1.2设置权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86"><span class="nav-number">1.0.3.</span> <span class="nav-text">用户组管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E7%AE%A1%E7%90%86"><span class="nav-number">1.0.4.</span> <span class="nav-text">组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E6%88%90%E5%91%98%E7%AE%A1%E7%90%86"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">组成员管理</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/10/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux权限管理-文件权限
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-10 18:20:25" itemprop="dateCreated datePublished" datetime="2020-07-10T18:20:25+08:00">2020-07-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="权限管理-文件权限"><a href="#权限管理-文件权限" class="headerlink" title="权限管理-文件权限"></a>权限管理-文件权限</h1><h3 id="1-1基本权限介绍"><a href="#1-1基本权限介绍" class="headerlink" title="1.1基本权限介绍"></a>1.1基本权限介绍</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">基本权限类型:</span><br><span class="line">	r:可读   --&gt; 4</span><br><span class="line">	w:可写   --&gt; 2</span><br><span class="line">	x:可执行 --&gt; 1</span><br><span class="line">	</span><br><span class="line">权限的归属:</span><br><span class="line">	属主:  u</span><br><span class="line">	属组:  g</span><br><span class="line">	其他人: o</span><br><span class="line">eg:</span><br><span class="line">	[root@aliyun ~]# ls -l a.txt</span><br><span class="line">-rw-r--r-- 1 root root 1146 Jul 16 18:42 a.txt</span><br><span class="line">⽂件类型：</span><br><span class="line">	-：⽂本⽂档</span><br><span class="line">     d：⽬录</span><br><span class="line">     b：设备block</span><br><span class="line">     c：字符设备</span><br><span class="line">     s：套接字⽂件</span><br><span class="line">     l：软链接</span><br><span class="line">权限</span><br><span class="line"> </span><br><span class="line">硬链接个数</span><br><span class="line">属主</span><br><span class="line">属组</span><br><span class="line">⽂件所占⽤的空间(以字节为单位)</span><br><span class="line">⽂件（⽬录）最近访问（修改）时间</span><br><span class="line">⽂件名</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2设置权限"><a href="#1-2设置权限" class="headerlink" title="1.2设置权限"></a>1.2设置权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">1.修改属主,属组(chown)</span><br><span class="line">	[root@aliyun ~]<span class="comment"># chown alice.hr file1 # 改属主、属组</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># chown alice file1 # 只改属主</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># chown .hr file1 # 只改属组</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># chown -R /test # 递归修改</span></span><br><span class="line"></span><br><span class="line">2.修改u、g、o对应的权限</span><br><span class="line">	<span class="comment"># 加减法</span></span><br><span class="line">    chmod u+x,g-w,o+r a.txt</span><br><span class="line">    <span class="comment"># 赋值</span></span><br><span class="line">    chmod a=rwx a.txt</span><br><span class="line">    chmod a=- a.txt</span><br><span class="line">    chmod ug=rw,o=r file1</span><br><span class="line">    <span class="comment"># 数字</span></span><br><span class="line">    chmod 644 file1</span><br><span class="line">    chmod -R 777 xxx/</span><br><span class="line"></span><br><span class="line">ps:把某⼀个⾮属主⽤户添加到⽂件的属组⾥，他就拥有了该组的权限，⽽不再是其他⼈</span><br><span class="line"></span><br><span class="line"><span class="comment">#eg1:要想在⽬录下创建\删除内容：对⽬录的x权限+对⽬录的w权限</span></span><br><span class="line">	<span class="comment"># 1、设置权限</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># mkdir -p /a/b/c</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># chmod -R o=x /a # 其他⼈o对当前⽬录及其⼦⽬录都有x权限</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># chmod o+w /a/b/c # 其他⼈o对/a/b/c⽬录有w权限</span></span><br><span class="line">	<span class="comment"># 2、查看权限</span></span><br><span class="line">	[root@aliyun ~]<span class="comment"># ls -dl /a</span></span><br><span class="line">    drwxr-x--x 3 root root 4096 Aug 11 16:24 /a [root@aliyun ~]<span class="comment"># ls -dl /a/b</span></span><br><span class="line">    drwxr-x--x 3 root root 4096 Aug 11 16:24 /a/b [root@aliyun ~]<span class="comment"># ls -dl /a/b/c</span></span><br><span class="line">    drwxr-x-wx 2 root root 4096 Aug 11 16:25 /a/b/c</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3、验证</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># [root@aliyun ~]# su - gg</span></span><br><span class="line">    Last login: Tue Aug 11 16:17:28 CST 2020 on pts/2 [gg@aliyun ~]$ touch /a/b/c/1.txt</span><br><span class="line">    [gg@aliyun ~]$ <span class="built_in">exit</span></span><br><span class="line">    <span class="built_in">logout</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># ls /a/b//c/</span></span><br><span class="line">    1.txt</span><br><span class="line">    </span><br><span class="line"><span class="comment">#eg2:要浏览⽬录下内容：对⽬录的x权限+对⽬录的r权限</span></span><br><span class="line"> 	[root@aliyun ~]<span class="comment"># mkdir -p /a/b/c</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># chmod -R o=x /a</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># chmod o+r /a/b/c</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># [root@aliyun ~]# touch /a/b/c/&#123;1..3&#125;.txt</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># [root@aliyun ~]# su - gg</span></span><br><span class="line">    Last login: Tue Aug 11 16:27:33 CST 2020 on pts/2 [gg@aliyun ~]$ ls /a/b/c</span><br><span class="line">    1.txt 2.txt 3.txt</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment">#eg3:要执⾏⽬录下程序：对⽬录的x权限+对⽂件的x权限，如果⽂件是解释型语⾔的脚本程序，还需要对⽂件有r权限</span></span><br><span class="line">	[root@aliyun ~]<span class="comment"># mkdir -p /a/b/c</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># chmod -R o=x /a/b/c</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># cp /bin/echo /a/b/c</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># chmod o=x /a/b/c/echo</span></span><br><span class="line">    [root@aliyun ~]<span class="comment"># [root@aliyun ~]# su - gg</span></span><br><span class="line">    Last login: Tue Aug 11 16:30:17 CST 2020 on pts/2 </span><br><span class="line">    [gg@aliyun ~]$ /a/b/c/<span class="built_in">echo</span> <span class="string">&quot;hello egon&quot;</span></span><br><span class="line">    hello egon</span><br></pre></td></tr></table></figure>
+
+<h3 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">RBAC 权限管理</span><br><span class="line">RBAC的优缺点</span><br><span class="line">优点：</span><br><span class="line">	简化了用户和权限的关系</span><br><span class="line">	易扩展、易维护</span><br><span class="line">缺点：</span><br><span class="line">	RBAC模型没有提供操作顺序的控制机制，这一缺陷使得RBAC模型很难适应哪些对操作次序有严格要求的系统</span><br><span class="line">	id 获取当前用户的信息</span><br><span class="line">whoami 获取当前用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用户uid小于1000的是系统用户</span><br><span class="line">用户uid大于等于1000s的是普通用户</span><br><span class="line"></span><br><span class="line">创建用户：useradd</span><br><span class="line">删除用户：userdel</span><br><span class="line">修改用户：usermod</span><br><span class="line">修改密码：passwd</span><br><span class="line">创建组：groupadd</span><br><span class="line">修改组：groupmod</span><br><span class="line">删除组：groupdel</span><br><span class="line"></span><br><span class="line">/etc/passwd		用户配置文件</span><br><span class="line">/etc/shadow		用户的密码文件</span><br><span class="line">/etc/group</span><br><span class="line">/etc/gshadow</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 自己创建用户</span><br><span class="line">1、创建用户组：/etc/group</span><br><span class="line">2、创建用户组密码文件：/etc/gshadow</span><br><span class="line">3、创建用户：/etc/passwd</span><br><span class="line">4、创建用户密码：/etc/shadow</span><br><span class="line">5、创建家目录</span><br><span class="line">6、修改权限，复制隐藏文件</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">1.创建用户:</span><br><span class="line">	[root@localhost ~]# useradd user1 1</span><br><span class="line">	</span><br><span class="line">2.查看用户:</span><br><span class="line">	[root@localhost ~]# id user1</span><br><span class="line">    uid=1002(user1) gid=1003(user1) 组=1003(user1) [root@localhost ~]# who # 查看所有登录的⽤户信息</span><br><span class="line">    [root@localhost ~]# whoami # 查看当前登录的⽤户名</span><br><span class="line">注:</span><br><span class="line">	当创建⼀个⽤户时，如果没有指定⽤户的主组，将会创建⼀个同名的组作为⽤户的主组</span><br><span class="line"></span><br><span class="line">3.删除用户:</span><br><span class="line">	[root@localhost ~]# userdel user1 # 删除⽤户user1，但不删除⽤户家⽬录和mail</span><br><span class="line">	[root@localhost ~]# userdel -r user1 # 要想删彻底,加-r选项</span><br><span class="line">	</span><br><span class="line">4.useradd命令详解:创建用户的同时指定选项</span><br><span class="line">	#怎样在Linux系统中添加⼀个新的⽤户账户</span><br><span class="line">    1) 掌握useradd命令的功能：新增⼀个⽤户。</span><br><span class="line">    2) 了解useradd命令的常⽤选项：</span><br><span class="line">    3) –u：指定⽤户的UID</span><br><span class="line">    4) –g：指定⽤户所属的主群</span><br><span class="line">     –G：指定⽤户所属的附加群</span><br><span class="line">    5) –d：指定⽤户的家⽬录</span><br><span class="line">    6) –c：指定⽤户的备注信息</span><br><span class="line">    7) –s：指定⽤户所⽤的shell</span><br><span class="line">    8) -e：修改过期时间</span><br><span class="line">    9) -M: 不创建家⽬录</span><br><span class="line">    10) -r: 创建系统账户，uid处于系统⽤户范围内，默认就没有家⽬录</span><br><span class="line">    #灵活应⽤useradd命令的举例：</span><br><span class="line">    a) 例如：在系统中新增⼀个fox（狐狸）⽤户的命令：useradd fox</span><br><span class="line">    b) 例如：在系统中新增⼀个⽤户user01，属组为police以及uid为600的命令：</span><br><span class="line">    useradd –u 600 –g police user01</span><br><span class="line">    # 其他练习</span><br><span class="line">    [root@root ~]# useradd user01 </span><br><span class="line">    [root@root ~]# useradd user02 -u 503 # 创建⽤户usr02，指定uid</span><br><span class="line">    [root@root ~]# useradd user03 -d /aaa # 创建⽤户user03 指定家⽬录</span><br><span class="line">    [root@root ~]# useradd user04 -M # 创建⽤户user04，不创建家⽬录</span><br><span class="line">    [root@root ~]# useradd user05 -s /sbin/nologin # 创建⽤户并指定shell</span><br><span class="line">    [root@root ~]# useradd user06 -g hr # 创建⽤户，指定主组</span><br><span class="line">    [root@root ~]# useradd user07 -G sale # 创建⽤户，指定附加组</span><br><span class="line">    [root@root ~]# useradd user08 -e 2014-04-01 # 指定过期时间</span><br><span class="line">    [root@root ~]# useradd user10 -u 4000 -s /sbin/nologin</span><br><span class="line">    [root@aliyum ~]# useradd xxx -M -s /sbin/nologin # 创建普通⽤户，但是没有家⽬录，不能登录系统</span><br><span class="line">    [root@aliyum ~]# useradd -r yyy -s /sbin/nologin # yyy属于系统⽤户，uid处于系统⽤户uid范围内</span><br><span class="line">    </span><br><span class="line">5.usermod命令</span><br><span class="line">	同useradd参数基⼀致，只不过useradd是添加，usermod是修改</span><br><span class="line">	-u #指定要修改⽤户的UID</span><br><span class="line">    -g #指定要修改⽤户基本组</span><br><span class="line">    -a #将⽤户添加到补充组。仅与-G选项⼀起使⽤</span><br><span class="line">    -G #指定要修改⽤户附加组，使⽤逗号隔开多个附加组, 覆盖原有的附加组</span><br><span class="line">    -d #指定要修改⽤户家⽬录</span><br><span class="line">    -c #指定要修改⽤户注释信息</span><br><span class="line">    -s #指定要修改⽤户的bash shell</span><br><span class="line">    [root@root ~]# usermod -e 2013-02-11 user1000 # 修改过期时间</span><br><span class="line">    [root@root ~]# usermod -g group1 jj # 修改主组</span><br><span class="line">    [root@root ~]# usermod -a -G group2 jj # 修改附加组，-a添加，不加-a代表覆盖</span><br><span class="line">    其他选项</span><br><span class="line">    -m #将⽤户主⽬录的内容移动到新位置。如果当前主⽬录不存在，则不会创建新的主⽬录</span><br><span class="line">    -l #指定要修改⽤户的登陆名</span><br><span class="line">    -L #指定要锁定的⽤户</span><br><span class="line">    -U #指定要解锁的⽤户</span><br><span class="line">    </span><br><span class="line">6.设定与修改密码</span><br><span class="line">	passwd # 默认给当前⽤户设定密码</span><br><span class="line">    passwd ⽤户名 # root⽤户可以给⾃⼰以及所有其他⽤户设定密码，普通⽤户只能设定⾃⼰的密码</span><br><span class="line">    echo &quot;密码&quot; | passwd --stdin ⽤户名 # ⾮交互式</span><br><span class="line">    # 补充：可以利⽤系统内置变量⽣成随机字符串来充当密码</span><br><span class="line">    [root@aliyum ~]# echo $RANDOM|md5sum|cut -c 1-10</span><br><span class="line">    70ba11a74b</span><br><span class="line">    [root@aliyum ~]#</span><br></pre></td></tr></table></figure>
+
+<h3 id="组管理"><a href="#组管理" class="headerlink" title="组管理"></a>组管理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">groupadd    # 添加组</span><br><span class="line">groupmod	# 修改组</span><br><span class="line">groupdel	# 删除组</span><br><span class="line">gpasswd 	# 设置组密码</span><br><span class="line">newgrp 		# 切换主组</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">1.创建组</span><br><span class="line">	[root@aliyum ~]# groupadd gg1 #创建基本组, 不指定gid</span><br><span class="line">    [root@aliyum ~]# tail -1 /etc/group</span><br><span class="line">    gg1:x:2005: </span><br><span class="line">    [root@aliyum ~]# groupadd -g 5555 gg2 #创建基本组, 指定gid为5555</span><br><span class="line">    [root@aliyum ~]# tail -1 /etc/group</span><br><span class="line">    gg2:x:5555: </span><br><span class="line">    [root@aliyum ~]# groupadd -r gg3 # 创建系统组，gid从201-999</span><br><span class="line">    [root@aliyum ~]# tail -1 /etc/group</span><br><span class="line">    gg3:x:991: </span><br><span class="line">    [root@aliyum ~]#</span><br><span class="line"> </span><br><span class="line">2.修改组</span><br><span class="line">	[root@aliyum ~]# groupmod -g 1111 gg3</span><br><span class="line">    [root@aliyum ~]# tail -1 /etc/group</span><br><span class="line">    gg3:x:1111: </span><br><span class="line">    [root@aliyum ~]# </span><br><span class="line">    [root@aliyum ~]# groupmod -n new_gg3 gg3 # -n 修改组名称</span><br><span class="line">    [root@aliyum ~]# tail -1 /etc/group</span><br><span class="line">    new_gg3:x:1111: </span><br><span class="line">    [root@aliyum ~]#</span><br><span class="line">    </span><br><span class="line">3.删除组</span><br><span class="line">	如果⼀个组是⼀个⽤户的主组，那么该组不能被删除，删掉⽤户会默认⼀起删掉他的主组</span><br><span class="line">    [root@aliyum ~]# useradd egon1</span><br><span class="line">    [root@aliyum ~]# groupadd devops</span><br><span class="line">    [root@aliyum ~]# usermod -G devops egon1</span><br><span class="line">    [root@aliyum ~]# id egon1</span><br><span class="line">    uid=2004(egon1) gid=2004(egon1) groups=2004(egon1),5556(devops)</span><br><span class="line">    [root@aliyum ~]# [root@aliyum ~]# groupdel devops # 附加组可以删除</span><br><span class="line">    [root@aliyum ~]# id egon1 # 查看⽤户，发现他的附加组没有了</span><br><span class="line">    uid=2004(egon1) gid=2004(egon1) groups=2004(egon1) </span><br><span class="line">    [root@aliyum ~]# groupdel egon1 # ⽆法删除组egon1，因为组egon1属于egon1⽤户的主组</span><br><span class="line">    groupdel: cannot remove the primary group of user &#x27;egon1&#x27;</span><br><span class="line">    [root@aliyum ~]#</span><br></pre></td></tr></table></figure>
+
+<h4 id="组成员管理"><a href="#组成员管理" class="headerlink" title="组成员管理"></a><strong>组成员管理</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">对于⽤户来说，组是分类的 </span><br><span class="line">1、⼀类是基本组或称主组,⽤户只能有⼀个基本组，创建时可通过-g指定，如未指定则创建⼀个默认的组(与⽤户同名) </span><br><span class="line"></span><br><span class="line">2、附加组,基本组不能满⾜授权要求，创建附加组，将⽤户加⼊该组，⽤户可以属于多个附加组，加⼊⼀个组后</span><br><span class="line">就拥有了该组的权限</span><br><span class="line">	注意：gpasswd将⽤户添加到组或从组中删除，只针对已存在的⽤户</span><br><span class="line">    [root@root ~]# gpasswd -a user07 it # 将某个⽤户加⼊到某个组</span><br><span class="line">    [root@root ~]# gpasswd -M user02,user03,user04 it # 将多个⽤户加⼊到it组 </span><br><span class="line">    [root@root ~]# gpasswd -A lhf it # 指定lhf为组it的组⻓，除了root⽤户外lhf⽤户也可以采⽤第⼀</span><br><span class="line">    条命令往it组⾥添加成员</span><br><span class="line">    [root@root ~]# grep &#x27;it&#x27; /etc/group # 查看it组中的成员</span><br><span class="line">    it:x:505:user02,user03,user04</span><br><span class="line">    [root@root ~]# gpasswd -d user07 it # 删除⽤户usr07从it组</span><br><span class="line">    </span><br><span class="line">我们可以为组设置密码，然后让⼀些⾮组成员的⽤户通过命令”newgrp 组”临时切换到组内并输⼊密码的⽅式获取</span><br><span class="line">⽤户组的权限和特性，如下</span><br><span class="line">	[root@localhost ~]# groupadd group1</span><br><span class="line">    [root@localhost ~]# gpasswd group1</span><br><span class="line">    正在修改 group1 组的密码</span><br><span class="line">    新密码：</span><br><span class="line">    请重新输⼊新密码：</span><br><span class="line">    [root@localhost ~]# touch /tmp/a.txt</span><br><span class="line">    [root@localhost ~]# ll /tmp/a.txt</span><br><span class="line">    -rw-r--r-- 1 root root 0 8⽉ 10 21:01 /tmp/a.txt</span><br><span class="line">    [root@localhost ~]# chown .group1 /tmp/a.txt</span><br><span class="line">    [root@localhost ~]# !ll</span><br><span class="line">    ll /tmp/a.txt</span><br><span class="line">    -rw-r--r-- 1 root group1 0 8⽉ 10 21:01 /tmp/a.txt</span><br><span class="line">    [root@localhost ~]# chmod g+w /tmp/a.txt</span><br><span class="line">    [root@localhost ~]# gpasswd group1</span><br><span class="line">    [root@localhost ~]# su - egon</span><br><span class="line">    上⼀次登录：⼀ 8⽉ 10 21:01:46 CST 2020pts/0 上 </span><br><span class="line">    [egon@localhost ~]$ echo 123 &gt;&gt; /tmp/a.txt # 此时没有权限</span><br><span class="line">    -bash: /tmp/a.txt: 权限不够</span><br><span class="line">    [egon@localhost ~]$ newgrp group1 # 临时切换到组group1下，拥有其权限</span><br><span class="line">    密码：</span><br><span class="line">    [egon@localhost ~]$ echo 123 &gt;&gt; /tmp/a.txt</span><br><span class="line">    [egon@localhost ~]$ cat /tmp/a.txt</span><br><span class="line">    123</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/06/%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96/" rel="prev" title="Linux系统优化">
+                  <i class="fa fa-chevron-left"></i> Linux系统优化
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/07/14/Linux%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" rel="next" title="Linux文件处理">
+                  Linux文件处理 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

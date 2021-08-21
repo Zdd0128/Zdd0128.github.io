@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Vue-CLI 搭建vue项目1.单文件组件1# 官方文档:https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;single-file-components.html#ad  2.Vue-CLI 项目搭建2.1环境搭建1234567891011# 1.安装node.js	官网下载安装包，傻瓜式安装：https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F;# 2.安装cnpm(换源)	npm in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-CLI 搭建vue项目">
+<meta property="og:url" content="http://example.com/2021/03/18/Vue-CLI%20%E6%90%AD%E5%BB%BAvue%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="Vue-CLI 搭建vue项目1.单文件组件1# 官方文档:https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;guide&#x2F;single-file-components.html#ad  2.Vue-CLI 项目搭建2.1环境搭建1234567891011# 1.安装node.js	官网下载安装包，傻瓜式安装：https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F;# 2.安装cnpm(换源)	npm in">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-18T10:20:25.000Z">
+<meta property="article:modified_time" content="2021-03-18T10:20:25.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/03/18/Vue-CLI%20%E6%90%AD%E5%BB%BAvue%E9%A1%B9%E7%9B%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/03/18/Vue-CLI%20%E6%90%AD%E5%BB%BAvue%E9%A1%B9%E7%9B%AE/","path":"2021/03/18/Vue-CLI 搭建vue项目/","title":"Vue-CLI 搭建vue项目"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Vue-CLI 搭建vue项目 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-CLI-%E6%90%AD%E5%BB%BAvue%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">Vue-CLI 搭建vue项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">1.单文件组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Vue-CLI-%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA"><span class="nav-number">1.2.</span> <span class="nav-text">2.Vue-CLI 项目搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2项目的创建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-vue%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.3.</span> <span class="nav-text">3.vue项目目录介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-vue%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.4.</span> <span class="nav-text">4.vue组件介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-vue-router%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.</span> <span class="nav-text">5.vue-router的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%96%B0%E5%BB%BA%E7%BB%84%E4%BB%B6%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">1.6.</span> <span class="nav-text">6.项目中新建组件和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85"><span class="nav-number">1.6.1.</span> <span class="nav-text">项目中使用其他第三方包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%90%86"><span class="nav-number">1.6.2.</span> <span class="nav-text">前端代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bootstrap%E5%92%8CJq%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.6.3.</span> <span class="nav-text">Bootstrap和Jq的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elementui%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.6.4.</span> <span class="nav-text">Elementui的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E8%AF%AD%E6%B3%95%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="nav-number">1.6.5.</span> <span class="nav-text">js导入导出语法（了解）</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/18/Vue-CLI%20%E6%90%AD%E5%BB%BAvue%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue-CLI 搭建vue项目
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-18 18:20:25" itemprop="dateCreated datePublished" datetime="2021-03-18T18:20:25+08:00">2021-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Vue-CLI-搭建vue项目"><a href="#Vue-CLI-搭建vue项目" class="headerlink" title="Vue-CLI 搭建vue项目"></a>Vue-CLI 搭建vue项目</h1><h2 id="1-单文件组件"><a href="#1-单文件组件" class="headerlink" title="1.单文件组件"></a>1.单文件组件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 官方文档:https://cn.vuejs.org/v2/guide/single-file-components.html#ad</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Vue-CLI-项目搭建"><a href="#2-Vue-CLI-项目搭建" class="headerlink" title="2.Vue-CLI 项目搭建"></a>2.Vue-CLI 项目搭建</h2><h3 id="2-1环境搭建"><a href="#2-1环境搭建" class="headerlink" title="2.1环境搭建"></a>2.1环境搭建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.安装node.js</span></span><br><span class="line">	官网下载安装包，傻瓜式安装：https://nodejs.org/zh-cn/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.安装cnpm(换源)</span></span><br><span class="line">	npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.安装脚手架</span></span><br><span class="line">	cnpm install -g @vue/cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.清空缓存处理</span></span><br><span class="line">	npm cache clean --force</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2项目的创建"><a href="#2-2项目的创建" class="headerlink" title="2.2项目的创建"></a>2.2项目的创建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CMD内创建vue项目</span></span><br><span class="line">	vue create 项目名</span><br><span class="line">    </span><br><span class="line">CMD创建注意事项:</span><br><span class="line">	要提前进入目标目录(项目应该创建在哪个目录下)</span><br><span class="line">	选择自定义方式创建项目，选取Router, Vuex插件</span><br><span class="line">	标准eslint，自动修复（ESlint+Standard config--》lint on save+Lint <span class="keyword">and</span> fix on commit）</span><br><span class="line"></span><br><span class="line"><span class="comment"># 图形界面创建vue项目</span></span><br><span class="line">	vue ui </span><br><span class="line">    </span><br><span class="line"><span class="comment"># 项目开发:</span></span><br><span class="line">	pycharm打开项目,安装vue插件</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 运行项目:</span></span><br><span class="line">	terminal中：npm run serve</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-vue项目目录介绍"><a href="#3-vue项目目录介绍" class="headerlink" title="3.vue项目目录介绍"></a>3.vue项目目录介绍</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">book_system  			<span class="comment"># 项目名</span></span><br><span class="line">	-node_modules 		<span class="comment"># 该项目所有的依赖，如果要把项目给别人，这个文件夹要删掉（很大）</span></span><br><span class="line">    -public 			<span class="comment"># 文件夹</span></span><br><span class="line">        -favicon.ico 	<span class="comment"># 小图标</span></span><br><span class="line">        -index.html  	<span class="comment"># 整个vue项目的index.html,单页面开发</span></span><br><span class="line">        </span><br><span class="line">    -src    			<span class="comment"># 核心</span></span><br><span class="line">        -store 			<span class="comment"># 如果装了vuex，就会有这个文件夹</span></span><br><span class="line">        -router 		<span class="comment"># 如果装了vue router ，就会有这个文件夹</span></span><br><span class="line">        -assets 		<span class="comment"># 存放资源文件（js，css，img）</span></span><br><span class="line">        -components 	<span class="comment"># 小组件（在这写小组件）</span></span><br><span class="line">        -views      	<span class="comment"># 页面组件（在这写页面组件）</span></span><br><span class="line">        main.js     	<span class="comment"># 整个项目的入口，核心配置</span></span><br><span class="line">        App.vue     	<span class="comment"># 根组件</span></span><br><span class="line">       </span><br><span class="line">   -package.json 		<span class="comment"># 项目的依赖，不能删</span></span><br><span class="line">   -README.md    		<span class="comment"># 介绍  </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-vue组件介绍"><a href="#4-vue组件介绍" class="headerlink" title="4.vue组件介绍"></a>4.vue组件介绍</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">每个组件有三部分组成</span><br><span class="line">	template：	<span class="comment"># 写html</span></span><br><span class="line">    script：		<span class="comment"># 写js</span></span><br><span class="line">    style：		<span class="comment"># 写css</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span>   </span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;about&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>写html<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">书写js代码</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">书写css代码</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-vue-router的使用"><a href="#5-vue-router的使用" class="headerlink" title="5.vue-router的使用"></a>5.vue-router的使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>新建一个页面组件,写三部分</span><br><span class="line"><span class="number">2.</span>在router下的index.js内配置一下</span><br><span class="line">    const routes = [</span><br><span class="line">        &#123;  // <span class="string">&#x27;/&#x27;</span>路径,显示Home这个页面组件</span><br><span class="line">            path: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">            name: <span class="string">&#x27;Home&#x27;</span>,</span><br><span class="line">            component: Home</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">&#x27;/order&#x27;</span>,</span><br><span class="line">            name: <span class="string">&#x27;Order&#x27;</span>,</span><br><span class="line">            component: Order</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">&#x27;/about&#x27;</span>,</span><br><span class="line">            name: <span class="string">&#x27;About&#x27;</span>,</span><br><span class="line">            // component: () =&gt; <span class="keyword">import</span>(<span class="string">&#x27;../views/About.vue&#x27;</span>)</span><br><span class="line">            component: About,</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>在根vue中写</span><br><span class="line">     &lt;div <span class="built_in">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">        &lt;router-view/&gt;</span><br><span class="line">     &lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>以后要跳转到某个页面</span><br><span class="line">    &lt;router-link to=<span class="string">&quot;/路径&quot;</span>&gt;</span><br><span class="line">         &lt;button&gt;点我跳转到order&lt;/button&gt;</span><br><span class="line">    &lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-项目中新建组件和使用"><a href="#6-项目中新建组件和使用" class="headerlink" title="6.项目中新建组件和使用"></a>6.项目中新建组件和使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>在components文件夹创建一个 xx.vue</span><br><span class="line"><span class="number">2.</span>在其他组件中使用</span><br><span class="line">	<span class="comment"># 在scripts中导入使用</span></span><br><span class="line">    	<span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">&#x27;../components/HelloWorld.vue&#x27;</span></span><br><span class="line">    <span class="comment"># 先导出才可以供外部使用</span></span><br><span class="line">        export default &#123;</span><br><span class="line">          name: <span class="string">&#x27;Home&#x27;</span>,</span><br><span class="line">          components: &#123;</span><br><span class="line">            HelloWorld</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line"><span class="number">3.</span>在html中直接使用</span><br><span class="line">	&lt;HelloWorld/&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目中使用其他第三方包"><a href="#项目中使用其他第三方包" class="headerlink" title="项目中使用其他第三方包"></a>项目中使用其他第三方包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">terminal中:cnpm install 包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># eg:</span></span><br><span class="line">	<span class="number">1.</span>安装axios:</span><br><span class="line">        cnpm install axios</span><br><span class="line">    <span class="number">2.</span>导入使用:</span><br><span class="line">        <span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line">  		axios.get(<span class="string">&#x27;api/index/&#x27;</span>).then(res =&gt; &#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="前端代理"><a href="#前端代理" class="headerlink" title="前端代理"></a>前端代理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.vue.config.js中配置:</span></span><br><span class="line">    <span class="comment"># 当请求地址中携带api时,自动填充target在请求地址前面</span></span><br><span class="line">    module.exports = &#123;</span><br><span class="line">      devServer: &#123;</span><br><span class="line">        proxy: &#123;</span><br><span class="line">          <span class="string">&#x27;/api&#x27;</span>: &#123;</span><br><span class="line">            target: <span class="string">&#x27;http://127.0.0.1:8000&#x27;</span>,</span><br><span class="line">            changeOrigin: true</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.使用axios发送请求</span></span><br><span class="line">      mounted() &#123;</span><br><span class="line">            axios.get(<span class="string">&#x27;api/index/&#x27;</span>).then(res =&gt; &#123;</span><br><span class="line">                console.log(res.data)</span><br><span class="line">                this.data_list = res.data.data.films</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Bootstrap和Jq的使用"><a href="#Bootstrap和Jq的使用" class="headerlink" title="Bootstrap和Jq的使用"></a>Bootstrap和Jq的使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.安装:</span></span><br><span class="line">    cnpm install jquery -S</span><br><span class="line">    cnpm install bootstrap@<span class="number">3</span> -S</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.vue.config.js中写入以下配置:</span></span><br><span class="line">    const webpack = require(<span class="string">&quot;webpack&quot;</span>);</span><br><span class="line">    module.exports = &#123;</span><br><span class="line">        configureWebpack: &#123;</span><br><span class="line">            plugins: [</span><br><span class="line">                new webpack.ProvidePlugin(&#123;</span><br><span class="line">                    $: <span class="string">&quot;jquery&quot;</span>,</span><br><span class="line">                    jQuery: <span class="string">&quot;jquery&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;window.jQuery&quot;</span>: <span class="string">&quot;jquery&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;window.$&quot;</span>: <span class="string">&quot;jquery&quot;</span>,</span><br><span class="line">                    Popper: [<span class="string">&quot;popper.js&quot;</span>, <span class="string">&quot;default&quot;</span>]</span><br><span class="line">                &#125;)</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.main.js中配置</span></span><br><span class="line">    <span class="keyword">import</span> <span class="string">&#x27;bootstrap&#x27;</span></span><br><span class="line">    <span class="keyword">import</span> <span class="string">&#x27;bootstrap/dist/css/bootstrap.min.css&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Elementui的使用"><a href="#Elementui的使用" class="headerlink" title="Elementui的使用"></a>Elementui的使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.安装</span></span><br><span class="line">	cnpm install element-ui -S</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 2.main.js中配置</span></span><br><span class="line">    <span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">&#x27;element-ui&#x27;</span>;</span><br><span class="line">    <span class="keyword">import</span> <span class="string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span>;</span><br><span class="line">    Vue.use(ElementUI);</span><br></pre></td></tr></table></figure>
+
+<h3 id="js导入导出语法（了解）"><a href="#js导入导出语法（了解）" class="headerlink" title="js导入导出语法（了解）"></a>js导入导出语法（了解）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>有一些变量，函数，想在其他地方都用，可以写成一个包</span><br><span class="line"><span class="comment"># eg:</span></span><br><span class="line">    新建一个文件夹，在文件夹中写index.js,在内部写函数，写变量，最后一定要导出</span><br><span class="line">        var name=<span class="string">&#x27;lqz&#x27;</span></span><br><span class="line">        function add(a,b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a+b</span><br><span class="line">        &#125;</span><br><span class="line">        export default &#123;</span><br><span class="line">            name,</span><br><span class="line">            add</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"><span class="number">2.</span>在想用的位置，导入使用即可</span><br><span class="line">    <span class="keyword">import</span> xx <span class="keyword">from</span> <span class="string">&#x27;../lqz&#x27;</span></span><br><span class="line">    console.log(xx.add(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">├── luffycity</span><br><span class="line"> ├── public/             # 项目共有资源</span><br><span class="line">  ├── favicon.ico    # 站点图标</span><br><span class="line">  └── index.html    # 主页</span><br><span class="line">    ├── src/           # 项目主应用，开发时的代码保存</span><br><span class="line">     ├── assets/         # 前台静态资源总目录</span><br><span class="line">      ├── css/    # 自定义css样式</span><br><span class="line">       └── global.css  # 自定义全局样式</span><br><span class="line">      ├── js/     # 自定义js样式</span><br><span class="line">    └── settings.js  # 自定义配置文件</span><br><span class="line">   └── img/    # 前台图片资源</span><br><span class="line">  ├── components/       # 小组件目录</span><br><span class="line">  ├── views/      # 页面组件目录</span><br><span class="line">  ├── App.vue        # 根组件</span><br><span class="line">  ├── main.js        # 入口脚本文件</span><br><span class="line">  ├── router      </span><br><span class="line">   └── index.js   # 路由脚本文件</span><br><span class="line">  store       </span><br><span class="line">   └── index.js   # 仓库脚本文件</span><br><span class="line">    ├── vue.config.js       # 项目配置文件</span><br><span class="line">    └── *.*       # 其他配置文件</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/10/%E5%89%8D%E7%AB%AFVue/" rel="prev" title="Vue框架">
+                  <i class="fa fa-chevron-left"></i> Vue框架
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/22/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="next" title="Vue生命周期">
+                  Vue生命周期 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

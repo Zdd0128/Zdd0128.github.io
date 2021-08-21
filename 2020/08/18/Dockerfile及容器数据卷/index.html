@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="数据卷容器1.什么是容器数据卷?docker的理念回顾 将应用和环境打包成一个镜像!数据?如果数据都在容器种,那么我们容器删除,数据就会丢失! 需求:数据可以持久化 MySQL,容器删了,删库跑路!需求:MySQL数据可以存储在本地 容器之间可以有一个数据共享的技术,Docker容器中产生的数据,同步到本地! 这就是卷技术!目录的挂载,将我们容器内的目录,挂载到Linux上面!  总结:容器的持久">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker数据卷容器">
+<meta property="og:url" content="http://example.com/2020/08/18/Dockerfile%E5%8F%8A%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="数据卷容器1.什么是容器数据卷?docker的理念回顾 将应用和环境打包成一个镜像!数据?如果数据都在容器种,那么我们容器删除,数据就会丢失! 需求:数据可以持久化 MySQL,容器删了,删库跑路!需求:MySQL数据可以存储在本地 容器之间可以有一个数据共享的技术,Docker容器中产生的数据,同步到本地! 这就是卷技术!目录的挂载,将我们容器内的目录,挂载到Linux上面!  总结:容器的持久">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623211008399.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623211509819.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623202240010.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623202608911.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623203026359.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623203247634.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623204009280.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623204106885.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623204639277.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623222016775.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623222337132.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623222726463.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623205631302.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210625215142189.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210625215302203.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623225049216.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623225637275.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623231025969.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623234234979.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623234539171.png">
+<meta property="og:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210625230604263.png">
+<meta property="article:published_time" content="2020-08-18T10:20:25.000Z">
+<meta property="article:modified_time" content="2020-08-18T10:20:25.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/左旗伟/AppData/Roaming/Typora/typora-user-images/image-20210623211008399.png">
+
+
+<link rel="canonical" href="http://example.com/2020/08/18/Dockerfile%E5%8F%8A%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/08/18/Dockerfile%E5%8F%8A%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/","path":"2020/08/18/Dockerfile及容器数据卷/","title":"Docker数据卷容器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Docker数据卷容器 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%AE%B9%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">数据卷容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.什么是容器数据卷?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.使用数据卷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-MySQL%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.MySQL数据同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%85%B7%E5%90%8D%E5%92%8C%E5%8C%BF%E5%90%8D%E6%8C%82%E8%BD%BD"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.具名和匿名挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%88%9D%E8%AF%86Dockerfile"><span class="nav-number">1.0.5.</span> <span class="nav-text">5.初识Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9E%E6%88%98"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">1.实战</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AAmysql%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">1.0.5.1.1.</span> <span class="nav-text">两个或多个mysql同步数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.0.5.1.2.</span> <span class="nav-text">结论:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-DockerFile"><span class="nav-number">1.0.5.2.</span> <span class="nav-text">2.DockerFile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-DockerFile%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="nav-number">1.0.5.3.</span> <span class="nav-text">3.DockerFile构建过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-DockerFile%E6%8C%87%E4%BB%A4"><span class="nav-number">1.0.5.4.</span> <span class="nav-text">4.DockerFile指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AE%9E%E6%88%98%E6%B5%8B%E8%AF%95"><span class="nav-number">1.0.5.5.</span> <span class="nav-text">5.实战测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84centos"><span class="nav-number">1.0.5.5.1.</span> <span class="nav-text">创建一个自己的centos</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-CMD%E5%92%8CENTRYPOINT%E5%8C%BA%E5%88%AB"><span class="nav-number">1.0.5.6.</span> <span class="nav-text">6.CMD和ENTRYPOINT区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95CMD"><span class="nav-number">1.0.5.6.1.</span> <span class="nav-text">测试CMD</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95ENTRYPOINT"><span class="nav-number">1.0.5.6.2.</span> <span class="nav-text">测试ENTRYPOINT</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%AE%9E%E6%88%98-BBS%E9%A1%B9%E7%9B%AE%E9%95%9C%E5%83%8F"><span class="nav-number">1.0.5.7.</span> <span class="nav-text">7.实战:BBS项目镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="nav-number">1.0.5.7.1.</span> <span class="nav-text">构建过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E9%95%9C%E5%83%8F%E8%87%B3DockerHub"><span class="nav-number">1.0.5.7.2.</span> <span class="nav-text">提交镜像至DockerHub</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E9%95%9C%E5%83%8F%E8%87%B3%E9%98%BF%E9%87%8C%E4%BA%91%E4%BB%93%E5%BA%93"><span class="nav-number">1.0.5.7.3.</span> <span class="nav-text">提交镜像至阿里云仓库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.0.5.7.4.</span> <span class="nav-text">小结:</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/18/Dockerfile%E5%8F%8A%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker数据卷容器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-18 18:20:25" itemprop="dateCreated datePublished" datetime="2020-08-18T18:20:25+08:00">2020-08-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h1><h3 id="1-什么是容器数据卷"><a href="#1-什么是容器数据卷" class="headerlink" title="1.什么是容器数据卷?"></a>1.什么是容器数据卷?</h3><p><strong>docker的理念回顾</strong></p>
+<p>将应用和环境打包成一个镜像!<br>数据?如果数据都在容器种,那么我们容器删除,数据就会丢失! <strong>需求:数据可以持久化</strong></p>
+<p>MySQL,容器删了,删库跑路!<strong>需求:MySQL数据可以存储在本地</strong></p>
+<p>容器之间可以有一个数据共享的技术,Docker容器中产生的数据,同步到本地!</p>
+<p>这就是卷技术!目录的挂载,将我们容器内的目录,挂载到Linux上面!</p>
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623211008399.png" alt="image-20210623211008399"></p>
+<p><strong>总结:容器的持久化和同步操作!容器间也是可以数据共享的!</strong></p>
+<h3 id="2-使用数据卷"><a href="#2-使用数据卷" class="headerlink" title="2.使用数据卷"></a>2.使用数据卷</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 方式一:</span></span><br><span class="line">	直接用命令来挂载 -v</span><br><span class="line">	</span><br><span class="line">docker run -it -v 主机目录:容器内目录</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试</span></span><br><span class="line">[root@localhost ~]# docker run -it -v /home/ceshi:/home centos /bin/bash</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动起来的时候可以通过docker inspect 容器id 查看详情</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623211509819.png" alt="image-20210623211509819"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 测试文件同步? 同步</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再来测试</span></span><br><span class="line">	1.停止容器</span><br><span class="line">	2.宿主机上修改文件</span><br><span class="line">	3.启动容器</span><br><span class="line">	4.容器内的数据依旧是同步的!</span><br><span class="line"><span class="meta">	</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 好处:</span></span><br><span class="line">	以后修改只需要在本地修改即可,容器内会自动同步</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-MySQL数据同步"><a href="#3-MySQL数据同步" class="headerlink" title="3.MySQL数据同步"></a>3.MySQL数据同步</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 获取镜像</span></span><br><span class="line">[root@locahost ~]# docker pull mysql:5.7</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 运行容器,需要做数据挂载</span>  </span><br><span class="line"><span class="meta">#</span><span class="bash"> 注意:安装启动mysql,要配置密码</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 官方测试:docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=密码 -d mysql:版本号</span></span><br><span class="line">			--name 		some-mysql --&gt; 容器名称 j</span><br><span class="line">			-e 			MYSQL_ROOT_PASSWORD --&gt; 设置环境变量,登录使用的密码</span><br><span class="line">			</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动mysql</span></span><br><span class="line">[root@locahost ~]# docker run -d -p 3306:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=000128 --name mysql01 mysql:5.7.</span><br><span class="line"></span><br><span class="line">-d 后台运行</span><br><span class="line">-p 端口映射</span><br><span class="line">-v 卷挂载</span><br><span class="line">-e 环境配置</span><br><span class="line">--name 容器名字</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动成功之后,在本地使用navicat测试链接</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> navicat-连接到服务器的3310 --- 3310 和容器内的 3306映射,这个时候我们就可以连接上了</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在本地测试创建一个数据库,查看映射的路径是否同步</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 假如我们将容器删除,我们挂载到本地的数据卷依旧没有丢失,这就实现了容器数据持久化功能</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-具名和匿名挂载"><a href="#4-具名和匿名挂载" class="headerlink" title="4.具名和匿名挂载"></a>4.具名和匿名挂载</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 匿名挂载</span></span><br><span class="line">	-v 容器内路径</span><br><span class="line">	docker run -d -p --name nginx01 -v /etc/nginx nginx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 产看所有的卷的情况</span></span><br><span class="line">[root@localhost ~]# docker volume ls</span><br><span class="line">local     4bd64dd4b13903597be2e8adb9f10b71ac914275b14ce05a7d3cc73ba450e994</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这里发现,这就是匿名挂载,我们在 -v 只写了容器内的路径,没有写容器外的路径</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 具名挂载</span></span><br><span class="line">	-v 卷名:容器内路径</span><br><span class="line">	docker run -d -P --name nginx02 -v jm-nginx:/etc/nginx nginx</span><br><span class="line">	</span><br><span class="line">[root@localhost ~]# docker run -d -P --name nginx02 -v jm-nginx:/etc/nginx nginx</span><br><span class="line">39679975eb534b9e59af561575acceb4609b0dffacdf39b78a13dbe5042085e2</span><br><span class="line">[root@localhost ~]# docker volume ls</span><br><span class="line">local     jm-nginx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 通过 -v 卷名:容器内路径</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看一下这个卷</span></span><br><span class="line">[root@localhost ~]# docker volume inspect jm-nginx </span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;CreatedAt&quot;: &quot;2021-06-23T10:03:13+08:00&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Labels&quot;: null,</span><br><span class="line">        &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/jm-nginx/_data&quot;,</span><br><span class="line">        &quot;Name&quot;: &quot;jm-nginx&quot;,</span><br><span class="line">        &quot;Options&quot;: null,</span><br><span class="line">        &quot;Scope&quot;: &quot;local&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>所有的docker容器内的卷,没有指定目录的情况下都是在 <strong>/var/lib/docker/volumes/xxx/_data</strong><br>通过具名挂载可以方便的找到我们的一个卷,大多数情况使用 <strong>具名挂载</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如何确定是具名挂载还是匿名挂载,亦或是指定路径挂载</span></span><br><span class="line">-v 容器内路径				 # 匿名挂载</span><br><span class="line">-v 卷名:容器内路径		  		# 具名挂载</span><br><span class="line">-v /宿主机路径:/容器内路径      # 指定路径挂载</span><br></pre></td></tr></table></figure>
+
+<p><strong>拓展:</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 通过 -v 容器内路径:ro rw 改变读写权限</span></span><br><span class="line">ro		readonly  	# 只读</span><br><span class="line">rw  	readwrite	# 可读可写</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 一旦设置了这个容器权限,容器对我们挂载出来的内容就有限定了</span></span><br><span class="line">	docker run -d -p --name nginx01 -v jm-nginx:/etc/mginx:ro nginx</span><br><span class="line">	docker run -d -p --name nginx02 -v jm-nginx:/etc/mginx:rw nginx</span><br><span class="line"><span class="meta">	</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ro 只要看到ro就说明这个路径只能通过宿主机来操作,容器内部是无法操作的</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-初识Dockerfile"><a href="#5-初识Dockerfile" class="headerlink" title="5.初识Dockerfile"></a>5.初识Dockerfile</h3><p>Dockerfile就是用来构建docker镜像的构建文件,其实就是命令脚本</p>
+<p>通过这个脚本可以生成镜像,镜像是一层一层的,脚本是一个个的命令,每个命令都是一层</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 构建命令:</span></span><br><span class="line">	[root@localhost docker-test-volume]# docker build -f /home/docker-test-volume/dockerfile01 -t zqw/centos:v2 .</span><br><span class="line"></span><br><span class="line">        -f 脚本绝对路径或相对路径</span><br><span class="line">        -t 构建的镜像名称:版本</span><br><span class="line">        注意:末尾有个点</span><br><span class="line"><span class="meta">	</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建一个dockerfile文件 名字可以随机 建议 Dockerfile</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 文件中书写以下内容 指令(大写) 参数</span></span><br><span class="line">	FROM centos</span><br><span class="line"></span><br><span class="line">    VOLUME [&quot;/volume01&quot;,&quot;/volume02&quot;]</span><br><span class="line">    CMD echo &quot;---end---&quot;</span><br><span class="line">    CMD /bin/bash</span><br><span class="line">    </span><br><span class="line"><span class="meta">#</span><span class="bash"> 这里每个命令 就是镜像的一层</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623202240010.png" alt="image-20210623202240010"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 启动自己写的构建的容器</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623202608911.png" alt="image-20210623202608911"></p>
+<p>这个目录卷外部一定有一个同步的目录!</p>
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623203026359.png" alt="image-20210623203026359"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看当前自己构建的容器详情</span></span><br><span class="line">[root@localhost docker-test-volume]# docker inspect ded446dc764b</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623203247634.png" alt="image-20210623203247634"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建一个文件测试是否同步? 同步</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623204009280.png" alt="image-20210623204009280"></p>
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623204106885.png" alt="image-20210623204106885"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这种方式未来使用非常多 因为我们通常会构建自己的镜像</span><br><span class="line">假设构建镜像时没有挂载卷 要手动镜像挂载 -v 卷名:容器内路径</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-实战"><a href="#1-实战" class="headerlink" title="1.实战"></a>1.实战</h4><h5 id="两个或多个mysql同步数据"><a href="#两个或多个mysql同步数据" class="headerlink" title="两个或多个mysql同步数据"></a>两个或多个mysql同步数据</h5><p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623204639277.png" alt="image-20210623204639277"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 启动三个容器 通过自己写的镜像启动</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623222016775.png" alt="image-20210623222016775"></p>
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623222337132.png" alt="image-20210623222337132"></p>
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623222726463.png" alt="image-20210623222726463"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 测试:删除mysql01,查看mysql02和mysql03是否还可以访问这个文件? 可以</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623205631302.png" alt="image-20210623205631302"></p>
+<p>多个mysql实现数据共享</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@locahost ~]# docker run -d -p 3306:3306 -v /etc/mysql/conf.d -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD=000128 --name mysql01 mysql:5.7</span><br><span class="line"></span><br><span class="line">[root@locahost ~]# docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=000128 --name mysql02 --volume-from mysql01 mysql:5.7</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这个时候,可以实现两个数据库容器数据同步</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="结论"><a href="#结论" class="headerlink" title="结论:"></a><strong>结论:</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">容器之间配置信息的传递,数据卷容器的生命周期一直持续到没有容器使用为止</span><br><span class="line">但是一旦你持久化到了本地,这时候本地的数据是不会删除的!</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-DockerFile"><a href="#2-DockerFile" class="headerlink" title="2.DockerFile"></a>2.DockerFile</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Dockerfile</span></span><br><span class="line">	是用来构建docker镜像的文件,命令参数脚本</span><br><span class="line"><span class="meta">#</span><span class="bash"> 构建步骤:</span></span><br><span class="line">	1.编写一个dockerfile文件</span><br><span class="line">	2.docker build构建成为一个镜像</span><br><span class="line">	3.docker run运行镜像</span><br><span class="line">	4.docker push发布镜像(DockerHub,阿里云镜像仓库)</span><br><span class="line"><span class="meta">	</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 很多官方镜像都是基础包,很多功能都没有,通常会自己搭建自己的镜像</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210625215142189.png" alt="image-20210625215142189"></p>
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210625215302203.png" alt="image-20210625215302203"></p>
+<h4 id="3-DockerFile构建过程"><a href="#3-DockerFile构建过程" class="headerlink" title="3.DockerFile构建过程"></a>3.DockerFile构建过程</h4><p><strong>基础知识:</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 很多指令</span>   </span><br><span class="line">    1.每个保留关键字(指令)都必须是大写字母</span><br><span class="line">    2.执行从上到下顺序执行</span><br><span class="line">    3.# 表示注释</span><br><span class="line">    4.每个指令都会创建提交一个新的镜像层,并提交</span><br></pre></td></tr></table></figure>
+
+<p><strong><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623225049216.png" alt="image-20210623225049216"></strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">步骤:开发,部署,运维...缺一不可</span><br><span class="line">    DockerFile:构建文件,定义了一切步骤,源代码</span><br><span class="line">    Dockerimages:通过DockerFile构建生成的镜像,最终发布和运行的产品</span><br><span class="line">    Docker容器:容器就是镜像运行起来提供服务的</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-DockerFile指令"><a href="#4-DockerFile指令" class="headerlink" title="4.DockerFile指令"></a>4.DockerFile指令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM                # 基础镜像,一切从这里开始构建	centos</span><br><span class="line">MAINTAINER			# 镜像是谁写的,姓名+邮箱</span><br><span class="line">RUN					# 镜像构建的时候需要运行的命令</span><br><span class="line">ADD 				# 步骤:mysql镜像,这个mysql压缩包!添加内容</span><br><span class="line">WORKDIR				# 镜像的工作目录</span><br><span class="line">VOLUME				# 挂载的目录</span><br><span class="line">EXPOSE				# 暴露端口配置</span><br><span class="line">CMD 				# 指定这个容器启动的时候要运行的命令,只有一个会生效,可被替代</span><br><span class="line">ENTRYPOINT			# 指定这个容器启动的时候要运行的命令,可以追加命令</span><br><span class="line">ONBUILD				# 当构建一个被继承 DockerFile 这个时候就会运行 ONBUILD 的指令 触发指令</span><br><span class="line">COPY				# 类似ADD,将我们文件拷贝到镜像中</span><br><span class="line">ENV					# 构建的时候设置环境变量!</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623225637275.png" alt="image-20210623225637275"></p>
+<h4 id="5-实战测试"><a href="#5-实战测试" class="headerlink" title="5.实战测试"></a>5.实战测试</h4><p>DockerHub 中99%镜像都是从这个基础镜像过来的 FROM scratch,然后配置需要的软件和配置来进行构建的</p>
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623231025969.png" alt="image-20210623231025969"></p>
+<h5 id="创建一个自己的centos"><a href="#创建一个自己的centos" class="headerlink" title="创建一个自己的centos"></a>创建一个自己的centos</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1.编写DockerFile的文件</span></span><br><span class="line">    FROM centos</span><br><span class="line">    MAINTAINER zqw&lt;1912419375@qq.com&gt;</span><br><span class="line"></span><br><span class="line">    ENV MYPATH /usr/local</span><br><span class="line">    WORKDIR $MYPATH</span><br><span class="line"></span><br><span class="line">    RUN yum install vim -y</span><br><span class="line">    RUN yum install net-tools -y</span><br><span class="line"></span><br><span class="line">    EXPOSE 8080</span><br><span class="line"></span><br><span class="line">    CMD echo $MYPATH</span><br><span class="line">    CMD echo &quot;---end---&quot;</span><br><span class="line">    CMD /bin/bash</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2.通过文件构建镜像</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 命令: docker build -f DockerFile文件名 -t 镜像名:版本 .</span></span><br><span class="line">Successfully built c27f723a3ebd</span><br><span class="line">Successfully tagged mycentos:v1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 3.测试运行</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>增强之后的镜像</strong></p>
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623234234979.png" alt="image-20210623234234979"></p>
+<p>我们可以列出本地镜像的变更历史—-&gt;<strong>docker  history  镜像id</strong></p>
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210623234539171.png" alt="image-20210623234539171"></p>
+<h4 id="6-CMD和ENTRYPOINT区别"><a href="#6-CMD和ENTRYPOINT区别" class="headerlink" title="6.CMD和ENTRYPOINT区别"></a>6.CMD和ENTRYPOINT区别</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CMD 				# 指定这个容器启动的时候要运行的命令,只有一个会生效,可被替代</span><br><span class="line">ENTRYPOINT			# 指定这个容器启动的时候要运行的命令,可以追加命令</span><br></pre></td></tr></table></figure>
+
+<h5 id="测试CMD"><a href="#测试CMD" class="headerlink" title="测试CMD"></a>测试CMD</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 编写 dockerfile 文件</span></span><br><span class="line">[root@localhost DockerFile]# vim cmdceshi</span><br><span class="line">	FROM centos</span><br><span class="line">	CMD [&quot;ls&quot;,&quot;-a&quot;]</span><br><span class="line"><span class="meta">	</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 构建镜像</span></span><br><span class="line">[root@localhost DockerFile]# docker build -f cmdceshi -t cmdceshi:v1 .</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> run运行,ls -a 命令生效</span></span><br><span class="line">[root@localhost DockerFile]# docker run cmdceshi:v1 </span><br><span class="line">.</span><br><span class="line">..</span><br><span class="line">.dockerenv</span><br><span class="line">bin</span><br><span class="line">dev</span><br><span class="line">etc</span><br><span class="line">home</span><br><span class="line">lib</span><br><span class="line">...</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 想追加一个命令 -l   ls -al</span></span><br><span class="line">[root@localhost DockerFile]# docker run cmdceshi:v1 -l</span><br><span class="line">docker: Error response from daemon: OCI runtime create failed: container_linux.go:380: starting container process caused: exec: &quot;-l&quot;: executable file not found in $PATH: unknown.</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> cmd的情况下 -l 替换了CMD [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-a&quot;</span>]命令,-l 不是命令所以报错</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="测试ENTRYPOINT"><a href="#测试ENTRYPOINT" class="headerlink" title="测试ENTRYPOINT"></a>测试ENTRYPOINT</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost DockerFile]# vim entrypointceshi</span><br><span class="line">	FROM centos</span><br><span class="line">	ENTRTPOINT [&quot;ls&quot;,&quot;-a&quot;]</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">[root@localhost DockerFile]# docker build -f entrypointceshi -t entrypointceshi:v1 .</span><br><span class="line">Sending build context to Docker daemon  4.608kB</span><br><span class="line">Step 1/2 : FROM centos</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> 300e315adb2f</span></span><br><span class="line">Step 2/2 : ENTRYPOINT [&quot;ls&quot;,&quot;-a&quot;]</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> Running <span class="keyword">in</span> 673b7e68516b</span></span><br><span class="line">Removing intermediate container 673b7e68516b</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> f38defef2395</span></span><br><span class="line">Successfully built f38defef2395</span><br><span class="line">Successfully tagged entrypointceshi:v1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost DockerFile]# docker run entrypointceshi:v1</span><br><span class="line">.</span><br><span class="line">..</span><br><span class="line">.dockerenv</span><br><span class="line">bin</span><br><span class="line">dev</span><br><span class="line">...</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 追加命令是直接拼接在 ENTRTPOINT 命令的后面---&gt;ls -al</span></span><br><span class="line">[root@localhost DockerFile]# docker run entrypointceshi:v1 -l</span><br><span class="line">total 0</span><br><span class="line">drwxr-xr-x.   1 root root   6 Jun 24 00:30 .</span><br><span class="line">drwxr-xr-x.   1 root root   6 Jun 24 00:30 ..</span><br><span class="line">-rwxr-xr-x.   1 root root   0 Jun 24 00:30 .dockerenv</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">ps: DockerFile中很多命令都十分相似,最好的学习就是对比测试</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="7-实战-BBS项目镜像"><a href="#7-实战-BBS项目镜像" class="headerlink" title="7.实战:BBS项目镜像"></a>7.实战:BBS项目镜像</h4><h5 id="构建过程"><a href="#构建过程" class="headerlink" title="构建过程"></a>构建过程</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 首先创建一个文件夹,在该文件夹下创建一个名为Dockerfile的文件</span></span><br><span class="line"></span><br><span class="line">1.准备好项目,编写Dockerfile文件(官方命名Dockerfile,build自动寻找该文件,就不用-f指定)</span><br><span class="line">	FROM centos</span><br><span class="line">    MAINTAINER zqw&lt;1912419375@qq.com&gt;</span><br><span class="line"></span><br><span class="line">    RUN yum install python3 -y</span><br><span class="line">    RUN pip3 install django==1.11.11 bs4 pymysql pillow</span><br><span class="line"></span><br><span class="line">    ADD BBS05 /root/BBS05/</span><br><span class="line">    WORKDIR /root/BBS05</span><br><span class="line"></span><br><span class="line">    EXPOSE 8000</span><br><span class="line">    ENTRYPOINT python3 manage.py runserver 0.0.0.0:8000</span><br><span class="line">   </span><br><span class="line">2.构建镜像</span><br><span class="line">	[root@localhost BBS02]# docker build -t django:v3</span><br><span class="line"></span><br><span class="line">3.启动并本地测试</span><br><span class="line">	[root@localhost BBS02]# docker run -d -P --name django django:v1 </span><br><span class="line">		977307a52bb3daf0d924ebdcc602b6c9c8c1c3deff1a32aacbfdcee51b10a343</span><br><span class="line">	[root@localhost BBS02]# docker ps</span><br><span class="line">	CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS         PORTS                                         NAMES</span><br><span class="line">	977307a52bb3   django:v1   &quot;/bin/sh -c &#x27;python3…&quot;   3 seconds ago   Up 2 	 seconds   0.0.0.0:49167-&gt;8000/tcp, :::49167-&gt;8000/tcp   django</span><br><span class="line">	浏览器访问随机生成的端口49167</span><br></pre></td></tr></table></figure>
+
+<h5 id="提交镜像至DockerHub"><a href="#提交镜像至DockerHub" class="headerlink" title="提交镜像至DockerHub"></a>提交镜像至DockerHub</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 镜像提交至DockerHub的过程</span></span><br><span class="line">    1.地址hub.docker.com 注册自己的账号!</span><br><span class="line">    2.确定这个账号可以登录</span><br><span class="line">    3.在服务器上提交自己的镜像</span><br><span class="line">    </span><br><span class="line">1.登录dockerhub</span><br><span class="line">	[root@localhost ~]# docker login</span><br><span class="line"></span><br><span class="line">2.提交镜像,docker push</span><br><span class="line"><span class="meta">#</span><span class="bash"> 注意:首先应该将镜像名称改成仓库路径(zdd0128/python3)跟上版本</span></span><br><span class="line">	[root@localhost ~]# docker tag 镜像id zdd0128/python3:v1</span><br><span class="line">	[root@localhost ~]# docker push zdd0128/python3:v1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 为容器添加一个版本</span></span><br><span class="line">	docker tag [id] 镜像名称:镜像版本 </span><br><span class="line"><span class="meta">  </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看帮助</span> </span><br><span class="line">[root@CZP ~]# docker login --help</span><br><span class="line">Usage:	docker login [OPTIONS] [SERVER]</span><br><span class="line"></span><br><span class="line">Log in to a Docker registry.</span><br><span class="line">If no server is specified, the default is defined by the daemon.</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -p, --password string   Password</span><br><span class="line">      --password-stdin    Take the password from stdin</span><br><span class="line">  -u, --username string   Username</span><br></pre></td></tr></table></figure>
+
+<h5 id="提交镜像至阿里云仓库"><a href="#提交镜像至阿里云仓库" class="headerlink" title="提交镜像至阿里云仓库"></a>提交镜像至阿里云仓库</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 镜像提交至阿里云仓库的过程</span></span><br><span class="line">	1.登陆阿里云</span><br><span class="line">	2.找到容器镜服务</span><br><span class="line">	3.创建名称空间和仓库</span><br><span class="line">	</span><br><span class="line">1.登录阿里云</span><br><span class="line">	[root@localhost ~]# docker login registry.cn-hangzhou.aliyuncs.com</span><br><span class="line"></span><br><span class="line">2.提交镜像,docker push</span><br><span class="line"><span class="meta">#</span><span class="bash"> 注意:首先应该将镜像名称改成仓库路径并跟上版本</span></span><br><span class="line">	docker tag 镜像id registry.cn hangzhou.aliyuncs.com/zdd0128/project_bbs:djangov1</span><br><span class="line">	docker push registry.cn-hangzhou.aliyuncs.com/zdd0128/project_bbs:djangov1</span><br></pre></td></tr></table></figure>
+
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结:"></a>小结:</h5><p>镜像构建提交流程图</p>
+<p><img src="C:\Users\左旗伟\AppData\Roaming\Typora\typora-user-images\image-20210625230604263.png" alt="image-20210625230604263"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/12/Docker%E7%BD%91%E7%BB%9C/" rel="prev" title="Docker网络">
+                  <i class="fa fa-chevron-left"></i> Docker网络
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/10/05/Docker-compose/" rel="next" title="Docker-Compose">
+                  Docker-Compose <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1.什么是Docker?123451.个人见解：	Docker就是一个高性能的VM，并且不会浪费资源，主要用于Linux环境的虚拟化，类似VBox这种虚拟机，不同的是Docker专门为了服务器虚拟化，并支持镜像分享等功能。	Docker 是一个开源项目,诞生于2013年初,最初是dotCloud公司内部的一个业余项目。它基于Google公司推出的 Go语言实现。项目后来加入了Linux基金会，遵从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker精简版">
+<meta property="og:url" content="http://example.com/2020/08/04/Docker/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="1.什么是Docker?123451.个人见解：	Docker就是一个高性能的VM，并且不会浪费资源，主要用于Linux环境的虚拟化，类似VBox这种虚拟机，不同的是Docker专门为了服务器虚拟化，并支持镜像分享等功能。	Docker 是一个开源项目,诞生于2013年初,最初是dotCloud公司内部的一个业余项目。它基于Google公司推出的 Go语言实现。项目后来加入了Linux基金会，遵从">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-04T10:20:25.000Z">
+<meta property="article:modified_time" content="2020-08-04T10:20:25.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/08/04/Docker/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/08/04/Docker/","path":"2020/08/04/Docker/","title":"Docker精简版"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Docker精简版 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFDocker"><span class="nav-number">1.</span> <span class="nav-text">1.什么是Docker?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Docker%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2.Docker作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Docker%E8%99%9A%E6%8B%9F%E5%8C%96%E7%89%B9%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">3.Docker虚拟化特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Docker%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">4.Docker概念和使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Docker%E5%AE%89%E8%A3%85"><span class="nav-number">5.</span> <span class="nav-text">5.Docker安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Docker%E9%95%9C%E5%83%8F"><span class="nav-number">6.</span> <span class="nav-text">6.Docker镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E5%90%AF%E5%8A%A8mysql"><span class="nav-number">6.1.</span> <span class="nav-text">Docker启动mysql</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Docker%E5%AE%B9%E5%99%A8"><span class="nav-number">7.</span> <span class="nav-text">7.Docker容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="nav-number">7.1.</span> <span class="nav-text">容器基本命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%92%8C%E9%95%9C%E5%83%8F%E7%9A%84%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA"><span class="nav-number">7.2.</span> <span class="nav-text">容器和镜像的导入导出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">7.2.1.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-linux%E7%BD%91%E7%BB%9C"><span class="nav-number">8.</span> <span class="nav-text">8.linux网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Docker%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">9.</span> <span class="nav-text">9.Docker网络模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Docker-network"><span class="nav-number">10.</span> <span class="nav-text">10.Docker network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-Docker-compose"><span class="nav-number">11.</span> <span class="nav-text">11.Docker-compose</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">11.1.</span> <span class="nav-text">安装:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-compose-yaml%E6%96%87%E4%BB%B6"><span class="nav-number">11.2.</span> <span class="nav-text">Docker-compose.yaml文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-compose%E6%8C%87%E4%BB%A4"><span class="nav-number">11.3.</span> <span class="nav-text">Docker-compose指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-compose%E5%8F%82%E6%95%B0"><span class="nav-number">11.4.</span> <span class="nav-text">Docker-compose参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="nav-number">11.5.</span> <span class="nav-text">可视化工具</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/04/Docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker精简版
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-04 18:20:25" itemprop="dateCreated datePublished" datetime="2020-08-04T18:20:25+08:00">2020-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="1-什么是Docker"><a href="#1-什么是Docker" class="headerlink" title="1.什么是Docker?"></a>1.什么是Docker?</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.个人见解：</span><br><span class="line">	Docker就是一个高性能的VM，并且不会浪费资源，主要用于Linux环境的虚拟化，类似VBox这种虚拟机，不同的是Docker专门为了服务器虚拟化，并支持镜像分享等功能。</span><br><span class="line"></span><br><span class="line">	Docker 是一个开源项目,诞生于2013年初,最初是dotCloud公司内部的一个业余项目。它基于Google公司推出的 Go语言实现。项目后来加入了Linux基金会，遵从了Apache2.0协议,项目代码在 GitHub上进行维护。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Docker作用"><a href="#2-Docker作用" class="headerlink" title="2.Docker作用"></a>2.Docker作用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Docker的主要目标：</span><br><span class="line">	通过对应用组件的封装、分发、部署、运行等生命周期的管理，达到应用级别的一次封装，到处运行。</span><br><span class="line">	小贴士：这里的应用组件，可以是WEB应用，也可以是一套数据库服务，甚至可以是一个操作系统编译器。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Docker虚拟化特点"><a href="#3-Docker虚拟化特点" class="headerlink" title="3.Docker虚拟化特点"></a>3.Docker虚拟化特点</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">虚拟化特点:</span><br><span class="line">	1. 环境隔离</span><br><span class="line">	2.更快的交付和部署</span><br><span class="line">	3.更高效的利用资源</span><br><span class="line">	4.更轻松的迁移和扩展</span><br><span class="line">	5.更轻松的管理和更新</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Docker概念和使用"><a href="#4-Docker概念和使用" class="headerlink" title="4.Docker概念和使用"></a>4.Docker概念和使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.Docker三大核心概念</span><br><span class="line">	1.镜像(Image):</span><br><span class="line">		Docker镜像就相当于是一个root文件系统。比如官方镜像ubuntu:16.04就包含了完整的一套 Ubuntu16.04最小系统的root文件系统。</span><br><span class="line">	2.容器(Container)</span><br><span class="line">		镜像和容器的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等</span><br><span class="line">	3. 仓库(Repository)</span><br><span class="line">		用来保存镜像的仓库。当我们构建好自己的镜像之后，需要存放在仓库中，当我们需要启动一个镜像时，可以在仓库中下载下来。</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-Docker安装"><a href="#5-Docker安装" class="headerlink" title="5.Docker安装"></a>5.Docker安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27;</span></span><br><span class="line"><span class="string">若之前安装过老版本的Docker,则要清理残留</span></span><br><span class="line"><span class="string">[root@python ~]# yum remove docker \</span></span><br><span class="line"><span class="string">    docker-client \</span></span><br><span class="line"><span class="string">    docker-client-latest \</span></span><br><span class="line"><span class="string">    docker-common \</span></span><br><span class="line"><span class="string">    docker-latest \</span></span><br><span class="line"><span class="string">    docker-latest-logrotate \</span></span><br><span class="line"><span class="string">    docker-logrotate \</span></span><br><span class="line"><span class="string">    docker-engine</span></span><br><span class="line"><span class="string">&#x27;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">1.更换系统yum源</span><br><span class="line">	<span class="comment"># 先备份原来的yum源</span></span><br><span class="line">	[root@python ~]<span class="comment"># cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak</span></span><br><span class="line">	<span class="comment"># 更换yum源</span></span><br><span class="line">	[root@python ~]<span class="comment"># curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo</span></span><br><span class="line"></span><br><span class="line">2. 建立yum源缓存</span><br><span class="line">	[root@python ~]<span class="comment"># yum makecache</span></span><br><span class="line">	</span><br><span class="line">3.更新操作系统</span><br><span class="line">	[root@python ~]<span class="comment"># yum update -y --exclud=kernel*</span></span><br><span class="line"></span><br><span class="line">4.安装基础软件</span><br><span class="line">	[root@localhost ~]<span class="comment"># yum install -y yum-utils device-mapper-persistent-data lvm2</span></span><br><span class="line">	</span><br><span class="line">5.安装Docker yum源</span><br><span class="line">	[root@localhost ~]<span class="comment"># yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span></span><br><span class="line"></span><br><span class="line">6.安装Docker</span><br><span class="line">	<span class="comment"># 建立元数据缓存</span></span><br><span class="line">	[root@localhost ~]<span class="comment"># yum makecache fast</span></span><br><span class="line">	<span class="comment"># 安装Docker</span></span><br><span class="line">	[root@localhost ~]<span class="comment"># yum -y install docker-ce</span></span><br><span class="line"></span><br><span class="line">7.启动Docker</span><br><span class="line">	[root@localhost ~]<span class="comment"># systemctl start docker</span></span><br><span class="line">	</span><br><span class="line">8.验证Docker启动</span><br><span class="line">	[root@localhost ~]<span class="comment"># docker run -p 8080:80 -d nginx</span></span><br><span class="line">    ps：测试能够通过8080访问我们的服务器就算成功</span><br><span class="line">   </span><br><span class="line">设置开机启动:</span><br><span class="line">	[root@alvin-test-os ~]<span class="comment"># systemctl enable --now docker</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-Docker镜像"><a href="#6-Docker镜像" class="headerlink" title="6.Docker镜像"></a>6.Docker镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker镜像启动容器的模板，镜像一般情况下定义的是容器启动的服务。</span></span><br><span class="line"></span><br><span class="line">获取镜像</span><br><span class="line">	docker pull nginx(官方镜像名称)</span><br><span class="line">	docker pull registry.cn-hangzhou.aliyuncs.com/alvinos/docsfiy:v2(其他镜像路径)</span><br><span class="line">	</span><br><span class="line">1、公共的仓库(dockerHub[官方]、阿里云镜像仓库、华为云镜像仓库、腾讯云镜像仓库)</span><br><span class="line">    registry.cn-hangzhou.aliyuncs.com/alvinos/docsfiy:v2</span><br><span class="line"></span><br><span class="line">		镜像仓库URL：registry.cn-hangzhou.aliyuncs.com(默认：docker.io)</span><br><span class="line">		命名空间：alvinos(默认：library)</span><br><span class="line">		仓库名称：docsfiy</span><br><span class="line">		版本号：v2（默认：latest）</span><br><span class="line"></span><br><span class="line">2、私有的仓库（Harbor）</span><br><span class="line">	登录仓库：</span><br><span class="line">		docker login 仓库url(默认：docker.io)</span><br><span class="line">		</span><br><span class="line">3、获取镜像</span><br><span class="line">	docker pull [镜像名称or镜像路径]</span><br><span class="line">	</span><br><span class="line">4、镜像名称修改（tag）</span><br><span class="line">	docker tag [原来的tag] [新的tag]</span><br><span class="line">	一般将镜像名称改成被提交仓库路径(registry.cn-hangzhou.aliyuncs.com/zdd0128/nginx)</span><br><span class="line">	eg:</span><br><span class="line">		docker tag [镜像名称]:[镜像版本] [新的镜像名称]:[新的镜像版本]</span><br><span class="line">		docker tag [镜像id] [新的镜像名称]:[新的镜像版本]</span><br><span class="line">		docker tag d1a364dc548d(镜像id) registry.cn-hangzhou.aliyuncs.com/zdd0128/nginx:v1</span><br><span class="line">				</span><br><span class="line">5、获取当前系统上所有的docker镜像</span><br><span class="line">	docker image ls 或 docker images</span><br><span class="line">		-a : 列出系统中所有的临时镜像</span><br><span class="line">		--digests=<span class="literal">true</span> ： 列出系统中所有镜像的数字摘要值</span><br><span class="line">		-q : 仅显示镜像ID</span><br><span class="line">		</span><br><span class="line">6、上传镜像</span><br><span class="line">	1、创建阿里云仓库</span><br><span class="line">		产品--&gt;容器镜像--&gt;个人--&gt;添加仓库--&gt;添加名称空间</span><br><span class="line">	2、登录阿里云仓库</span><br><span class="line">		docker login --username=zdd1912419375 registry.cn-hangzhou.aliyuncs.com</span><br><span class="line">	3、修改镜像名称</span><br><span class="line">		docker tag [ImageId] registry.cn-hangzhou.aliyuncs.com/zdd0128/nginx:[镜像版本号]</span><br><span class="line">	4、上传镜像</span><br><span class="line">		docker push registry.cn-hangzhou.aliyuncs.com/zdd0128/nginx:[镜像版本号]</span><br><span class="line">		</span><br><span class="line">7、查看镜像详细信息</span><br><span class="line">	docker inspect [镜像名称|ID]</span><br><span class="line">		-f : 获取镜像部分详细信息</span><br><span class="line">８、删除镜像</span><br><span class="line">	docker rmi [镜像ID或镜像名称]</span><br><span class="line">		-f : 强制删除镜像</span><br><span class="line">	清空机器上所有的镜像</span><br><span class="line">	docker rmi $(docker images -q)</span><br><span class="line"></span><br><span class="line">案例:部署Django项目</span><br><span class="line">	1、拉取镜像</span><br><span class="line">		docker pull alvinos/django:v3</span><br><span class="line">	2、启动</span><br><span class="line">		docker run -d -p 8080:80 alvinos/django:v3</span><br><span class="line">	3、关闭服务</span><br><span class="line">		docker stop [容器名称]</span><br></pre></td></tr></table></figure>
+
+<h4 id="Docker启动mysql"><a href="#Docker启动mysql" class="headerlink" title="Docker启动mysql"></a>Docker启动mysql</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">启动mysql容器</span><br><span class="line">	docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=密码 -d mysql:版本号</span><br><span class="line">		--name 		some-mysql --&gt; 容器名称 j</span><br><span class="line">		-e 			MYSQL_ROOT_PASSWORD --&gt; 设置环境变量,登录使用的密码</span><br><span class="line">进入该容器</span><br><span class="line">	docker exec -it some-mysql /bin/bash</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">添加数据库用户</span><br><span class="line"><span class="meta">	#</span><span class="bash"> 创建用户并授权</span></span><br><span class="line">		GRANT ALL PRIVILEGES ON *.* TO &#x27;root&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;000128&#x27; WITH GRANT OPTION;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 刷新权限</span></span><br><span class="line">		FLUSH PRIVILEGES;</span><br><span class="line">&#x27;&#x27;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-Docker容器"><a href="#7-Docker容器" class="headerlink" title="7.Docker容器"></a>7.Docker容器</h3><h4 id="容器基本命令"><a href="#容器基本命令" class="headerlink" title="容器基本命令"></a>容器基本命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">容器(container)</span><br><span class="line">	对外提供服务的实例，容器的本质是进程。</span><br><span class="line"></span><br><span class="line">1、运行一个容器</span><br><span class="line">	格式：</span><br><span class="line">		docker run [参数] [镜像名称|ID] [启动容器执行的命令]</span><br><span class="line">		</span><br><span class="line">		启动命令：不指定则执行默认的启动命令，指定则执行指定的命令。</span><br><span class="line">		镜像名称|ID：可以使用镜像名称，也可以使用镜像ID</span><br><span class="line">		参数：使用什么参数在添加什么参数。</span><br><span class="line">		</span><br><span class="line">		docker create + docker start = docker run</span><br><span class="line">	</span><br><span class="line">	前提：</span><br><span class="line">		docker容器启动的前提：至少有一个应用进程运行在前台。</span><br><span class="line">	</span><br><span class="line">	启动流程：</span><br><span class="line">        1、检查本地是否存在需要被使用的镜像，如果存在则直接使用，如果不存在则去公网下载。</span><br><span class="line">        2、根据镜像创建容器</span><br><span class="line"></span><br><span class="line">    参数：</span><br><span class="line">   		-d : 以守护进程方式运行</span><br><span class="line">   		-p : （固定）端口映射</span><br><span class="line">   		-P : （随机）端口映射</span><br><span class="line">   		-i : 打开标准输出</span><br><span class="line">   		-t : 创建一个终端</span><br><span class="line">   		-v : 将宿主主机上的目录映射到容器中</span><br><span class="line">   		--rm : 当容器的生命周期结束时立即删除容器</span><br><span class="line">   		--name : 将容器自定义一个容器名称， 将容器的名称加入DNS解析</span><br><span class="line">   		-e : 设置容器内部的环境变量</span><br><span class="line">   		-h : 设置容器内部的主机名</span><br><span class="line"></span><br><span class="line">127.0.0.1 回环网络</span><br><span class="line">172.16.1.100 </span><br><span class="line"></span><br><span class="line">2、展示docker容器列表</span><br><span class="line">	docker ps 默认情况下展示当前系统上所有的正在运行的容器</span><br><span class="line">	格式：</span><br><span class="line">		docker ps</span><br><span class="line">	解释：</span><br><span class="line">		CONTAINER ID：容器ID</span><br><span class="line">		IMAGE		：镜像ID|镜像名称</span><br><span class="line">		COMMAND		：容器启动执行的命令</span><br><span class="line">		CREATED		：创建距离现在的时间</span><br><span class="line">		STATUS		：状态</span><br><span class="line">		PORTS		：端口信息</span><br><span class="line">		NAMES		：容器的名称</span><br><span class="line">	</span><br><span class="line">	参数：</span><br><span class="line">		-a : 展示所有的容器</span><br><span class="line">		-q : 仅仅展示容器的ID</span><br><span class="line"></span><br><span class="line">3、删除容器</span><br><span class="line">	格式：</span><br><span class="line">		docker rm [容器的名称|ID]</span><br><span class="line">	</span><br><span class="line">	参数：</span><br><span class="line">		-f : 强制删除</span><br><span class="line">		</span><br><span class="line">	docker rm -f $(docker ps -a -q)</span><br><span class="line"></span><br><span class="line">4、创建容器</span><br><span class="line">	格式：</span><br><span class="line">		docker create </span><br><span class="line"></span><br><span class="line">5、启动容器</span><br><span class="line">	格式：</span><br><span class="line">		docker start </span><br><span class="line"></span><br><span class="line">6、进入容器</span><br><span class="line">	1、attach</span><br><span class="line">		解释：建立一个宿主主机到容器中pid为1的进程上的一个管道，但是一旦attach断开连接，docker容器随即退出。</span><br><span class="line">	2、exec（推荐）</span><br><span class="line">		解释：使用其可以在宿主主机上执行一个容器内部的命令。</span><br><span class="line">		docker exec -it relaxed_bhabha bash</span><br><span class="line">	3、nsenter</span><br><span class="line">		解释：建立一个宿主主机和容器之间的一个管道。</span><br><span class="line">		nsenter --target $( docker inspect -f &#123;&#123;.State.Pid&#125;&#125; elegant_margulis ) --mount --uts --ipc --net --pid</span><br><span class="line">		</span><br><span class="line">	4、ssh</span><br></pre></td></tr></table></figure>
+
+<h4 id="容器和镜像的导入导出"><a href="#容器和镜像的导入导出" class="headerlink" title="容器和镜像的导入导出"></a>容器和镜像的导入导出</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1、export和import</span><br><span class="line">	解释：针对的点是容器</span><br><span class="line">	</span><br><span class="line">	格式：</span><br><span class="line">		docker export -o [打包的文件名] [容器ID或名称]</span><br><span class="line">		docker export -o django.tar elegant_margulis</span><br><span class="line">		</span><br><span class="line">		docker import [文件名] [镜像名及版本号]</span><br><span class="line">		docker import django.tar django:v1</span><br><span class="line"></span><br><span class="line">2、save和load</span><br><span class="line">	解释：针对的点的镜像</span><br><span class="line">	</span><br><span class="line">	格式：</span><br><span class="line">		docker save -o [打包的文件名]  镜像名称及版本号</span><br><span class="line">		docker save -o python.tar python:3.6.8 alvinos/django:v3</span><br><span class="line">		</span><br><span class="line">		docker load &lt; [打包的文件名]</span><br><span class="line">		docker load &lt; python.tar</span><br><span class="line"></span><br><span class="line">3、import及export 和 save及load之间的区别</span><br><span class="line">	1、import可以自定义镜像名称，load则不行</span><br><span class="line">	2、save可以同时保存多个镜像，export则不能一次保存多个容器</span><br><span class="line">	3、save保存的镜像体积要大于export保存的镜像体积</span><br><span class="line">	4、两者之间互不能导入</span><br></pre></td></tr></table></figure>
+
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">1、什么是容器，什么是docker？</span><br><span class="line">    通过镜像运行起来的对外可以提供服务的一个进程实例。</span><br><span class="line">    docker是使用容器的一个软件。</span><br><span class="line"></span><br><span class="line">2、安装</span><br><span class="line">    windows</span><br><span class="line">    linux</span><br><span class="line">    1、配置yum源</span><br><span class="line">    2、安装需要依赖的软件</span><br><span class="line">    3、yum install docker-ce</span><br><span class="line">    4、启动 systemctl start docker</span><br><span class="line">    5、测试 docker run -d -p 8080:80 nginx</span><br><span class="line"></span><br><span class="line">3、镜像</span><br><span class="line">    启动容器的模板。</span><br><span class="line">	1、下载镜像</span><br><span class="line">		docker pull [仓库URL]/[命名空间名]/[仓库名]:[版本号]</span><br><span class="line">	2、镜像列表</span><br><span class="line">		docker images 或 docker image ls</span><br><span class="line">	3、增加镜像名称</span><br><span class="line">		docker tag [原名称] [新名词]</span><br><span class="line">	4、登录镜像仓库</span><br><span class="line">		docker login [仓库URL]</span><br><span class="line">	5、上传镜像</span><br><span class="line">		docker push [仓库URL]/[命名空间名]/[仓库名]:[版本号]</span><br><span class="line">	6、删除镜像</span><br><span class="line">		docker rmi [镜像名称]</span><br><span class="line">	7、查看镜像详细信息</span><br><span class="line">		docker inspect [镜像名称或ID]</span><br><span class="line">	</span><br><span class="line">		7.1、获取某一项信息</span><br><span class="line">			docker inspect -f &quot;&#123;&#123; .Id &#125;&#125;&quot; [镜像名称或ID]</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-linux网络"><a href="#8-linux网络" class="headerlink" title="8.linux网络"></a>8.linux网络</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 创建一个命名空间</span><br><span class="line">	ip netns add test01</span><br><span class="line"># 查看创建过的命名空间</span><br><span class="line">	ip netns list</span><br><span class="line"></span><br><span class="line"># 创建Veth设备对</span><br><span class="line">	ip link add veth type veth peer name veth001</span><br><span class="line"></span><br><span class="line"># 将Veth设备对分发至test01命名空间</span><br><span class="line">	ip link set veth001 netns test01</span><br><span class="line"></span><br><span class="line"># 将test01中veth001分配IP</span><br><span class="line">	ip netns exec test01 ip addr add 172.16.0.111/20 dev veth001</span><br><span class="line">	ip addr add 172.16.0.112/20 dev veth</span><br><span class="line">				</span><br><span class="line"># 重启veth设备对</span><br><span class="line">	ip netns exec test01 ip link set dev veth001 up/down</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-Docker网络模式"><a href="#9-Docker网络模式" class="headerlink" title="9.Docker网络模式"></a>9.Docker网络模式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">1、HOST模式</span><br><span class="line">	使用宿主主机的网卡</span><br><span class="line">	docker run --network host [镜像名称|ID]</span><br><span class="line"></span><br><span class="line">2、container模式</span><br><span class="line">	共享一个容器的网络</span><br><span class="line">	docker run -d --network &quot;container:[共享容器名称]&quot; nginx</span><br><span class="line">	</span><br><span class="line">3、none模式</span><br><span class="line">	不为容器提供任何网络。</span><br><span class="line">	docker run -d --network none centos</span><br><span class="line">	</span><br><span class="line">4、网桥</span><br><span class="line">	将多个容器使用docker网桥进行地址转换的方式实现网路互通</span><br><span class="line"></span><br><span class="line">	1、创建网桥</span><br><span class="line">	docker network create chenyang</span><br><span class="line">	</span><br><span class="line">	2、查看网桥</span><br><span class="line">	docker network ls</span><br><span class="line">	</span><br><span class="line">	3、使用网桥</span><br><span class="line">	docker run -d --network chenyang nginx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="10-Docker-network"><a href="#10-Docker-network" class="headerlink" title="10.Docker network"></a>10.Docker network</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1、展示当前主机上网桥列表</span><br><span class="line">	docker network ls</span><br><span class="line"></span><br><span class="line">2、创建网桥</span><br><span class="line">	docker network create</span><br><span class="line">    </span><br><span class="line">    参数：</span><br><span class="line">    	-d : 指定网桥的类型</span><br><span class="line">    	--gateway : 指定网关</span><br><span class="line">    	--subnet : 指定子网</span><br><span class="line"></span><br><span class="line">3、查看网桥的详细信息</span><br><span class="line">	docker network inspect [网桥名称|id]</span><br><span class="line"></span><br><span class="line">4、删除网桥</span><br><span class="line">	docker network rm </span><br><span class="line"></span><br><span class="line">5、清空空闲的并且是自创的网桥</span><br><span class="line">	docker network prune -f</span><br><span class="line"></span><br><span class="line">6、连接上一个网桥</span><br><span class="line">	docker network connect [参数] [网桥名称] [容器名称]</span><br><span class="line"></span><br><span class="line">7、断开链接</span><br><span class="line">	docker network disconnect [参数] [网桥名称] [容器名称]</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-Docker-compose"><a href="#11-Docker-compose" class="headerlink" title="11.Docker-compose"></a>11.Docker-compose</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">docker-compose是容器编排工具，需要注意的是，docker-compose只是单机的容器编排工具。</span><br><span class="line"></span><br><span class="line">1、docker-compose 默认的配置文件为：docker-compose.yaml</span><br><span class="line"></span><br><span class="line">2、安装docker-compose</span><br><span class="line">	1、下载</span><br><span class="line">		sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</span><br><span class="line">		</span><br><span class="line">		curl -L https://get.daocloud.io/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose</span><br><span class="line">		</span><br><span class="line">	2、chmod +x docker-compose-Linux-x86_64</span><br><span class="line">	3、mv docker-compose-Linux-x86_64 /usr/local/bin/</span><br><span class="line">	4、ln -s /usr/local/bin/docker-compose-Linux-x86_64 /usr/local/bin/docker-compose</span><br><span class="line">	5、curl -L https://raw.githubusercontent.com/docker/compose/1.25.5/contrib/completion/bash/docker-compose &gt; /etc/bash_completion.d/docker-compose</span><br></pre></td></tr></table></figure>
+
+<h4 id="Docker-compose-yaml文件"><a href="#Docker-compose-yaml文件" class="headerlink" title="Docker-compose.yaml文件"></a>Docker-compose.yaml文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3.0&quot;</span><br><span class="line">services:</span><br><span class="line">  django:</span><br><span class="line">    image: django:v3</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8000:8000&quot;</span><br><span class="line">    container_name: django</span><br><span class="line">    networks:</span><br><span class="line">      - django</span><br><span class="line">    depends_on:</span><br><span class="line">      - mysql</span><br><span class="line"></span><br><span class="line">  mysql:</span><br><span class="line">    image: mysql:5.7</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_ROOT_PASSWORD: root</span><br><span class="line">    container_name: mysql</span><br><span class="line">    volumes:</span><br><span class="line">    - &quot;/root/docker-compose/mysql/data:/var/lib/mysql&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - django</span><br><span class="line">    depends_on:</span><br><span class="line">      - redis</span><br><span class="line"></span><br><span class="line">  redis:</span><br><span class="line">    image: redis:latest</span><br><span class="line">    container_name: redis</span><br><span class="line">    networks:</span><br><span class="line">      - django</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  django:</span><br></pre></td></tr></table></figure>
+
+<h4 id="Docker-compose指令"><a href="#Docker-compose指令" class="headerlink" title="Docker-compose指令"></a>Docker-compose指令</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># build</span></span><br><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">django:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./django</span></span><br><span class="line"></span><br><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">django:</span></span><br><span class="line">    <span class="attr">build:</span></span><br><span class="line">      <span class="attr">context:</span> <span class="string">./django</span></span><br><span class="line">      <span class="attr">dockerfile:</span> <span class="string">Dockerfile-py</span></span><br><span class="line">      <span class="attr">args:</span></span><br><span class="line">        <span class="attr">NAME:</span> <span class="string">py17</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># command</span></span><br><span class="line"><span class="string">设置容器启动命令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># depends_on ： 指定在某容器之后启动</span></span><br><span class="line"><span class="comment"># env_file ： 指定环境变量文件</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Docker-compose参数"><a href="#Docker-compose参数" class="headerlink" title="Docker-compose参数"></a>Docker-compose参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动：docker-compose up</span></span><br><span class="line"><span class="comment"># 删除：docker-compose down</span></span><br><span class="line"><span class="comment"># 停止：docker-compose stop</span></span><br><span class="line"><span class="comment"># 删除容器：docker-compose rm </span></span><br><span class="line"><span class="comment"># 重启：docker-compose restart [容器的名称]</span></span><br><span class="line"><span class="comment"># 进入容器：docker-compose exec [参数] [service] [CMD]</span></span><br><span class="line"><span class="comment"># 容器列表：docker-compose ps</span></span><br><span class="line"><span class="comment"># 查看容器进程：docker-compose top </span></span><br><span class="line"><span class="comment"># 暂停运行：docker-compose pause</span></span><br><span class="line"><span class="comment"># 恢复运行：docker-compose unpause</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="可视化工具"><a href="#可视化工具" class="headerlink" title="可视化工具"></a>可视化工具</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;3.0&#x27;</span><br><span class="line">services:</span><br><span class="line">  portainer:</span><br><span class="line">    image: portainer/portainer-ce</span><br><span class="line">    ports:</span><br><span class="line">    - &quot;8001:8000&quot;</span><br><span class="line">    - &quot;9001:9000&quot;</span><br><span class="line">    container_name: portainer</span><br><span class="line">    networks:</span><br><span class="line">      - &quot;portainer&quot;</span><br><span class="line">    volumes:</span><br><span class="line">    - &quot;/var/run/docker.sock:/var/run/docker.sock&quot;</span><br><span class="line">    - &quot;/root/docker-compose/portainer_data:/data&quot;</span><br><span class="line">    healthcheck:</span><br><span class="line">      test: [&quot;CMD&quot;, &quot;ping&quot;, &quot;-c1&quot;, &quot;-t1&quot;, &quot;portainer&quot;]</span><br><span class="line">      interval: 30s</span><br><span class="line">      timeout: 10s</span><br><span class="line">      retries: 3</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  portainer:</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/16/rpm%E8%BD%AF%E4%BB%B6%E5%8C%85%20/" rel="prev" title="Linuxrpm软件包">
+                  <i class="fa fa-chevron-left"></i> Linuxrpm软件包
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/06/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="next" title="Docker常用命令">
+                  Docker常用命令 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

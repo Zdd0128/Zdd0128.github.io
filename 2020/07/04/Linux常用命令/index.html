@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="LinuxCentOS系统1234567891011121314151617181920212223网路类型:  	1.桥接        跟windows主机共享网络            不足:占用ip    2.NAT        自己用自己虚拟出来的网络            不足:    3.仅主机模式        只允许跟windows主机相连接        系统分区:	1.&#x2F;b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="http://example.com/2020/07/04/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="LinuxCentOS系统1234567891011121314151617181920212223网路类型:  	1.桥接        跟windows主机共享网络            不足:占用ip    2.NAT        自己用自己虚拟出来的网络            不足:    3.仅主机模式        只允许跟windows主机相连接        系统分区:	1.&#x2F;b">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-04T10:20:25.000Z">
+<meta property="article:modified_time" content="2020-07-04T10:20:25.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/07/04/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/07/04/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/","path":"2020/07/04/Linux常用命令/","title":"Linux常用命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux常用命令 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux"><span class="nav-number">1.</span> <span class="nav-text">Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.1.</span> <span class="nav-text">CentOS系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">1.常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%A3%81%E7%9B%98%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">2.磁盘操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MBR%E5%88%86%E5%8C%BA"><span class="nav-number">1.3.1.</span> <span class="nav-text">MBR分区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fdisk%E5%B7%A5%E5%85%B7"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">fdisk工具:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fdisk%E5%88%9B%E5%BB%BA%E5%88%86%E5%8C%BA"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">fdisk创建分区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%8F%8A%E6%8C%82%E8%BD%BD"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">磁盘分区的格式化及挂载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GPT%E5%88%86%E5%8C%BA"><span class="nav-number">1.4.</span> <span class="nav-text">GPT分区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.1.</span> <span class="nav-text">目录结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vi-vim%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-number">1.5.</span> <span class="nav-text">vi&#x2F;vim编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vi%E7%BC%96%E8%BE%91%E5%99%A8%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">vi编辑器常用功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vim%E7%BC%96%E8%BE%91%E5%99%A8%E9%AB%98%E7%BA%A7"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">vim编辑器高级</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/04/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux常用命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-04 18:20:25" itemprop="dateCreated datePublished" datetime="2020-07-04T18:20:25+08:00">2020-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="CentOS系统"><a href="#CentOS系统" class="headerlink" title="CentOS系统"></a>CentOS系统</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">网路类型: </span><br><span class="line"> 	<span class="number">1.</span>桥接</span><br><span class="line">        跟windows主机共享网络</span><br><span class="line">            不足:占用ip</span><br><span class="line">    <span class="number">2.</span>NAT</span><br><span class="line">        自己用自己虚拟出来的网络</span><br><span class="line">            不足:</span><br><span class="line">    <span class="number">3.</span>仅主机模式</span><br><span class="line">        只允许跟windows主机相连接</span><br><span class="line">        </span><br><span class="line">系统分区:</span><br><span class="line">	<span class="number">1.</span>/boot分区 :系统启动文件</span><br><span class="line">	<span class="number">2.</span>/分区 :日常数据存储</span><br><span class="line">	<span class="number">3.</span>swap分区 :当内存不够用的时候,用swap分区硬盘充当内存使用(系统慢)</span><br><span class="line">	<span class="number">4.</span>home分区 :存放普通用户家目录</span><br><span class="line">	<span class="number">5.</span>var分区 :存放系统文件</span><br><span class="line">	<span class="number">6.</span>/tmp :Linux系统的回收站</span><br><span class="line">        </span><br><span class="line">系统优化:</span><br><span class="line">    <span class="number">1.</span>更换系统镜像源</span><br><span class="line">    <span class="number">2.</span>安装常用得系统软件 vim wget</span><br><span class="line">    <span class="number">3.</span>优化系统内核参数</span><br><span class="line">    <span class="number">4.</span>修改主机名</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">	-a : 显示隐藏文件</span><br><span class="line">	-l : 显示文件详细信息</span><br><span class="line">	-h : 格式化文件大小</span><br><span class="line">mkdir</span><br><span class="line">	-p : 递归创建</span><br><span class="line">	-v : 显示创建过程</span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line"><span class="built_in">pwd</span></span><br><span class="line">touch</span><br><span class="line">rm</span><br><span class="line">	-f : 取消删除提示信息</span><br><span class="line">	-r : 递归删除目录</span><br><span class="line">cp</span><br><span class="line">	-r : 递归复制</span><br><span class="line">mv</span><br><span class="line">lsblk	： 查看本地磁盘</span><br><span class="line">fdisk	： 磁盘分区工具</span><br><span class="line">mount	： 挂载目录</span><br><span class="line">umount	： 卸载挂载</span><br><span class="line">df		： 显示挂载信息</span><br><span class="line">	-h : 格式化分区大小</span><br><span class="line"><span class="built_in">echo</span>	： 打印</span><br><span class="line">printenv：打印环境变量</span><br><span class="line">cat		： 查看文件</span><br><span class="line">&gt; 		：覆盖重定向</span><br><span class="line">&gt;&gt;		：追加重定向</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1.常用命令"></a>1.常用命令</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux中最顶级目录是根目录：/</span></span><br><span class="line"><span class="comment"># ~ ：在linux当中指的是当前用户的家目录([用户名@主机名 当前所在的目录])</span></span><br><span class="line">	</span><br><span class="line"><span class="number">1.</span>touch 文件名            <span class="comment"># 创建文件(默认创建在当前用户文件夹下)                 </span></span><br><span class="line">	touch /路径 文件名     	  <span class="comment"># 指定文件夹下创建文件</span></span><br><span class="line"><span class="number">2.</span>ls                     <span class="comment"># 查看文件夹(默认查看当前用户文件夹所有文件)      </span></span><br><span class="line">	ls /文件名            	   <span class="comment"># 查看指定文件夹下文件</span></span><br><span class="line">    ls /					 <span class="comment"># 查看/(根目录)下所有内容</span></span><br><span class="line">    ls -l					 <span class="comment"># 查看文件详细信息(ls -l 等价于 ll)</span></span><br><span class="line"><span class="number">3.</span>mkdir 				 <span class="comment"># 创建文件夹(默认创建在当前用户文件夹下)</span></span><br><span class="line">	mkdir /路径名/文件名     	     <span class="comment"># 指定路径下创建文件夹</span></span><br><span class="line">    mkdir -p  -v /文件名/文件名    <span class="comment"># -p参数 递归创建文件夹  -v参数 显示递归创建过程</span></span><br><span class="line"><span class="number">4.</span>cd  					 <span class="comment"># 绝对路径的方式切换路径（根目录开始） 切换目录默认为家目录</span></span><br><span class="line">	cd .					 <span class="comment"># 在任何目录下都代表当前目录(顶级除外)</span></span><br><span class="line">    cd ..                    <span class="comment"># 在任何目录下都代表上一级目录(顶级除外)</span></span><br><span class="line">	cd /路径名				   <span class="comment"># 切换到指定路径下</span></span><br><span class="line"><span class="number">5.</span>pwd                    <span class="comment"># 查看当前路径    pwd命令查看的所有路径都是从根目录（/）开始的</span></span><br><span class="line"><span class="number">6.</span>hostnamectl <span class="built_in">set</span>-hostname 主机名	 <span class="comment"># 修改主机名(默认localhost 重新进入系统生效)</span></span><br><span class="line"><span class="number">7.</span>exit					 <span class="comment"># 登出</span></span><br><span class="line"><span class="number">8.</span>mv /源路径 /移动后的路径         <span class="comment"># 移动文件及文件夹</span></span><br><span class="line"><span class="number">9.</span>cp [参数] /源路径 /移动后路径    <span class="comment"># 复制文件   </span></span><br><span class="line">	cp -r 目录名 /				      <span class="comment"># 复制目录 -r参数 递归复制</span></span><br><span class="line"><span class="number">10.</span>rm						    <span class="comment"># 删除文件</span></span><br><span class="line">	rm -r 目录名				      <span class="comment"># 删除目录 -r参数 递归删除</span></span><br><span class="line">    rm -r -f 目录名                  <span class="comment"># -f参数 免去删除二次确认</span></span><br><span class="line"><span class="number">11.</span>echo <span class="string">&quot;打印的内容&quot;</span>              <span class="comment"># 打印(类似于print)</span></span><br><span class="line"><span class="number">12.</span>printenv                     <span class="comment"># 打印出当前系统中所有变量</span></span><br><span class="line"><span class="number">13.</span> &gt;							<span class="comment"># 写入内容到文件 覆盖重定向(类似于文件w覆盖写模式)</span></span><br><span class="line">	&gt;&gt;							<span class="comment"># 写入内容到文件 追加重定向(类似于文件a追加写模式)</span></span><br><span class="line"><span class="number">14.</span>cat 文件名                    <span class="comment"># 查看文件内容</span></span><br><span class="line"><span class="number">15.</span><span class="string">&#x27;.&#x27;</span>开头文件					 <span class="comment"># 隐藏文件</span></span><br><span class="line">	ls -a							<span class="comment"># -a参数 查看隐藏文件</span></span><br><span class="line">    ls -h 文件名					  <span class="comment"># -h参数 格式化文件大小便于查看(必须配合-l参数使用)</span></span><br><span class="line"><span class="number">16.</span>reboot						<span class="comment"># 重启系统</span></span><br><span class="line"><span class="number">17.</span>shutdown -h now				<span class="comment"># 立即关机</span></span><br><span class="line">	shutdown -h 时间				   <span class="comment"># 指定时间后关机</span></span><br><span class="line"><span class="number">18.</span>head命令 : 从头查看文件内容</span><br><span class="line">	-n : 设置显示头几行</span><br><span class="line"><span class="number">19.</span>tail命令 : 从尾查看文件内容</span><br><span class="line">	-n : 设置显示末尾几行</span><br><span class="line">	-f : 实时查看文件内容</span><br><span class="line">        </span><br><span class="line"><span class="number">20.</span>alias : 起别名</span><br><span class="line">	alias ll=<span class="string">&#x27;\ls -l -a --color=auto&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="number">20.</span>/dev/zero : 存放无穷无尽的<span class="number">0</span> </span><br><span class="line">   /dev/null : linux系统黑洞</span><br><span class="line">    </span><br><span class="line">lsblk 			<span class="comment"># 查看本地磁盘</span></span><br><span class="line">fdisk			<span class="comment"># 挂载分区工具</span></span><br><span class="line">mount			<span class="comment"># 挂载目录</span></span><br><span class="line">unount			<span class="comment"># 卸载挂载</span></span><br><span class="line">df				<span class="comment"># 显示挂载信息</span></span><br><span class="line">	-h				<span class="comment"># 格式化分区大小</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-磁盘操作"><a href="#2-磁盘操作" class="headerlink" title="2.磁盘操作"></a>2.磁盘操作</h2><h3 id="MBR分区"><a href="#MBR分区" class="headerlink" title="MBR分区"></a>MBR分区</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MBR分区</span><br><span class="line">    1.最多⽀持四个主分区</span><br><span class="line">    2.系统只能安装在主分区</span><br><span class="line">    3.扩展分区要占⼀个主分区</span><br><span class="line">    4.MBR 最⼤只⽀持 2TB，但拥有最好的兼容性</span><br></pre></td></tr></table></figure>
+
+<h4 id="fdisk工具"><a href="#fdisk工具" class="headerlink" title="fdisk工具:"></a>fdisk工具:</h4><pre><code>     适⽤于磁盘⼩于2TB的磁盘，分区类型MBR，主分区4或主分区3+扩展分区（逻辑分区+…），分区后需要保存后才能⽣效
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">lsblk /dev/磁盘名			<span class="comment"># 查看本地磁盘</span></span><br><span class="line">fdisk /dev/磁盘名          <span class="comment"># 磁盘分区工具</span></span><br><span class="line">a toggle a bootable flag 					<span class="comment"># 切换分区启动标记</span></span><br><span class="line">b edit bsd disklabel 						<span class="comment"># 编辑sdb磁盘标签</span></span><br><span class="line">c toggle the dos compatibility flag 		<span class="comment"># 切换dos兼容模式</span></span><br><span class="line">d delete a partition 						<span class="comment"># 删除分区 保存退出要执⾏partprobe刷新分区表</span></span><br><span class="line">l <span class="built_in">list</span> known partition types 				<span class="comment"># 显示分区类型</span></span><br><span class="line">m <span class="built_in">print</span> this menu 							<span class="comment"># 显示帮助菜单</span></span><br><span class="line">n add a new partition 						<span class="comment"># 新建分区</span></span><br><span class="line">o create a new empty DOS partition table 	<span class="comment"># 创建新的空⽩分区表</span></span><br><span class="line">p <span class="built_in">print</span> the partition table 				<span class="comment"># 显示分区表的信息</span></span><br><span class="line">q quit without saving changes 				<span class="comment"># 不保存退出</span></span><br><span class="line">s create a new empty Sun disklabel 			<span class="comment"># 创建新的Sun磁盘标签</span></span><br><span class="line">t change a partitions system <span class="built_in">id</span> 			<span class="comment"># 修改分区ID,可以通过l查看id</span></span><br><span class="line">u change display/entry units 				<span class="comment"># 修改容量单位,磁柱或扇区</span></span><br><span class="line">v verify the partition table 				<span class="comment"># 检验分区表</span></span><br><span class="line">w write table to disk <span class="keyword">and</span> exit 				<span class="comment"># 保存退出</span></span><br><span class="line">x extra functionality (experts only) 		<span class="comment"># 拓展功能</span></span><br><span class="line"></span><br><span class="line">优先掌握</span><br><span class="line">    fdisk创建分区</span><br><span class="line">    m				<span class="comment"># 展示帮助信息</span></span><br><span class="line">    p				<span class="comment"># 显示分区列表</span></span><br><span class="line">    n 				<span class="comment"># 创建分区</span></span><br><span class="line">    d				<span class="comment"># 删除分区</span></span><br><span class="line">    w  				<span class="comment"># 保存退出</span></span><br><span class="line">    x 				<span class="comment"># 拓展功能</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="fdisk创建分区"><a href="#fdisk创建分区" class="headerlink" title="fdisk创建分区"></a>fdisk创建分区</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sdb</span><br><span class="line">    欢迎使⽤ fdisk (util-linux <span class="number">2.23</span><span class="number">.2</span>)。</span><br><span class="line">    更改将停留在内存中，直到您决定将更改写⼊磁盘。</span><br><span class="line">    使⽤写⼊命令前请三思。</span><br><span class="line">    Device does <span class="keyword">not</span> contain a recognized partition table</span><br><span class="line">    使⽤磁盘标识符 <span class="number">0x12c57921</span> 创建新的 DOS 磁盘标签。</span><br><span class="line">命令(输⼊ m 获取帮助)：n</span><br><span class="line">    Partition <span class="built_in">type</span>:</span><br><span class="line">     p primary (<span class="number">0</span> primary, <span class="number">0</span> extended, <span class="number">4</span> free)</span><br><span class="line">     e extended</span><br><span class="line">    Select (default p): p</span><br><span class="line">    分区号 (<span class="number">1</span>-<span class="number">4</span>，默认 <span class="number">1</span>)：</span><br><span class="line">    起始 扇区 (<span class="number">2048</span>-<span class="number">41943039</span>，默认为 <span class="number">2048</span>)：</span><br><span class="line">    将使⽤默认值 <span class="number">2048</span></span><br><span class="line">    Last 扇区, +扇区 <span class="keyword">or</span> +size&#123;K,M,G&#125; (<span class="number">2048</span>-<span class="number">41943039</span>，默认为 <span class="number">41943039</span>)：+1G</span><br><span class="line">    分区 <span class="number">1</span> 已设置为 Linux 类型，⼤⼩设为 <span class="number">1</span> GiB</span><br><span class="line">命令(输⼊ m 获取帮助)：p</span><br><span class="line">    磁盘 /dev/sdb：<span class="number">21.5</span> GB, <span class="number">21474836480</span> 字节，<span class="number">41943040</span> 个扇区</span><br><span class="line">    Units = 扇区 of <span class="number">1</span> * <span class="number">512</span> = <span class="number">512</span> <span class="built_in">bytes</span></span><br><span class="line">    扇区⼤⼩(逻辑/物理)：<span class="number">512</span> 字节 / <span class="number">512</span> 字节</span><br><span class="line">    I/O ⼤⼩(最⼩/最佳)：<span class="number">512</span> 字节 / <span class="number">512</span> 字节</span><br><span class="line">    磁盘标签类型：dos</span><br><span class="line">    磁盘标识符：<span class="number">0x12c57921</span></span><br><span class="line">     设备 Boot Start End Blocks Id System</span><br><span class="line">    /dev/sdb1 <span class="number">2048</span> <span class="number">2099199</span> <span class="number">1048576</span> <span class="number">83</span> Linux</span><br><span class="line">命令(输⼊ m 获取帮助)： w <span class="comment"># 保存</span></span><br><span class="line">[root@chenyang ~]<span class="comment"># lsblk /dev/sdb  # 查看分区信息</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="磁盘分区的格式化及挂载"><a href="#磁盘分区的格式化及挂载" class="headerlink" title="磁盘分区的格式化及挂载"></a>磁盘分区的格式化及挂载</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">mkfs.xfs   : 性能强，功能完善</span><br><span class="line">mkfs.ext   : 性能稍弱</span><br><span class="line">mkfs.btrfs : 性能最强 新出不久</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">磁盘必须格式化制作⽂件系统，然后挂载才能使⽤</span></span><br><span class="line"><span class="string">	针对⼀块硬盘/dev/sdb</span></span><br><span class="line"><span class="string">	可以不分区，直接格式化制作⽂件系统</span></span><br><span class="line"><span class="string">	也可以基于mbr或者gpt分区⽅式分区完毕后，针对某⼀个分区⽐如/dev/sdb1制作⽂件系统</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.创建分区并保存</span></span><br><span class="line">	[root@egon ~]<span class="comment"># fdisk /dev/sdb</span></span><br><span class="line">    ...</span><br><span class="line">    命令(输⼊ m 获取帮助)： w <span class="comment"># 保存</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 2.格式化文件系统</span></span><br><span class="line">	[root@egon ~]<span class="comment"># mkfs.xfs /dev/sdb       # /dev/sdb整体就是⼀个分区</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.挂载分区到文件夹上</span></span><br><span class="line">	[root@egon ~]<span class="comment"># mount /dev/sdb1 /opt/</span></span><br><span class="line">				    命令   分区路径  挂载路径</span><br><span class="line">				    </span><br><span class="line"><span class="comment"># 4.查看挂载详情</span></span><br><span class="line">	[root@python mnt]<span class="comment"># df -h</span></span><br><span class="line">	</span><br><span class="line"><span class="comment"># 5.卸载</span></span><br><span class="line">	umount /dev/sdb1 <span class="comment"># 或者umount /opt</span></span><br><span class="line">    (umount -l /dev/sdb1 <span class="comment"># 或者umount -l /opt 强制卸载)</span></span><br><span class="line">	</span><br><span class="line"><span class="comment"># 错误处理</span></span><br><span class="line">    [root@python mnt]<span class="comment"># umount /mnt </span></span><br><span class="line">    umount: /mnt：目标忙。</span><br><span class="line">            (有些情况下通过 lsof(<span class="number">8</span>) 或 fuser(<span class="number">1</span>) 可以找到有关使用该设备的进程的有用信息)</span><br><span class="line">	解决:</span><br><span class="line">        当前所在目录为挂载目录，切换一个目录即可。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建文件(touch)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># # 在Linux系统中创建test.txt</span></span><br><span class="line">[root@localhost ~]<span class="comment"># touch test.txt</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建文件夹(mkdir)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># # 创建一个文件夹</span></span><br><span class="line">[root@localhost ~]<span class="comment"># mkdir /root/python</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ls /root/</span></span><br><span class="line">anaconda-ks.cfg  python  test.txt</span><br><span class="line">[root@localhost ~]<span class="comment"># mkdir /root/python1</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ls /root/</span></span><br><span class="line">anaconda-ks.cfg  python  python1  test.txt</span><br><span class="line">[root@localhost ~]<span class="comment"># cd /root/python</span></span><br><span class="line">[root@localhost python]<span class="comment"># pwd</span></span><br><span class="line">/root/python</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数：</span></span><br><span class="line">-p : 递归创建目录</span><br><span class="line">[root@localhost python]<span class="comment"># mkdir -p /aa/bb/cc</span></span><br><span class="line">[root@localhost python]<span class="comment"># cd /aa/bb/cc</span></span><br><span class="line">[root@localhost cc]<span class="comment"># pwd</span></span><br><span class="line">/aa/bb/cc</span><br><span class="line"></span><br><span class="line">-v : 显示创建的过程</span><br><span class="line">[root@localhost cc]<span class="comment"># mkdir -p -v /aaa/bbb/ccc</span></span><br><span class="line">mkdir: 已创建目录 <span class="string">&quot;/aaa&quot;</span></span><br><span class="line">mkdir: 已创建目录 <span class="string">&quot;/aaa/bbb&quot;</span></span><br><span class="line">mkdir: 已创建目录 <span class="string">&quot;/aaa/bbb/ccc&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看文件夹下面的文件(ls)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看文件需要跟对应的路径</span></span><br><span class="line"><span class="comment"># Linux中最顶级目录是根目录：/</span></span><br><span class="line">[root@localhost ~]<span class="comment"># # 根目录（最顶级目录）：/</span></span><br><span class="line">[root@localhost ~]<span class="comment"># # 根目录下有哪些内容</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ls / </span></span><br><span class="line">bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看文件的详细信息</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ls -l</span></span><br><span class="line">总用量 4</span><br><span class="line">-rw-------. 1 root root 1766 6月  10 17:15 anaconda-ks.cfg</span><br><span class="line">drwxr-xr-x. 2 root root    6 6月  11 15:19 python</span><br><span class="line">drwxr-xr-x. 2 root root    6 6月  11 15:20 python1</span><br><span class="line">[root@localhost ~]<span class="comment"># ll</span></span><br><span class="line">总用量 4</span><br><span class="line">-rw-------. 1 root root 1766 6月  10 17:15 anaconda-ks.cfg</span><br><span class="line">drwxr-xr-x. 2 root root    6 6月  11 15:19 python</span><br><span class="line">drwxr-xr-x. 2 root root    6 6月  11 15:20 python1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看当前所在路径(pwd)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前所在路径：pwd</span></span><br><span class="line"><span class="comment"># pwd命令查看的所有路径都是从根目录（/）开始的</span></span><br><span class="line">[root@localhost ~]<span class="comment"># pwd</span></span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>切换目录(cd)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换目录：cd </span></span><br><span class="line"><span class="comment"># 以绝对路径的方式切换路径（从根目录开始）</span></span><br><span class="line">[root@localhost ~]<span class="comment"># cd /etc</span></span><br><span class="line">[root@localhost etc]<span class="comment"># pwd</span></span><br><span class="line">/etc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以相对路劲方式切换目录</span></span><br><span class="line"><span class="comment"># . 和 .. </span></span><br><span class="line"><span class="comment"># . : 在任何目录下都代表当前目录</span></span><br><span class="line">[root@localhost etc]<span class="comment"># cd .</span></span><br><span class="line">[root@localhost etc]<span class="comment"># pwd</span></span><br><span class="line">/etc</span><br><span class="line"></span><br><span class="line"><span class="comment"># .. : 在任何目录下都代表上一级目录（顶级目录除外）</span></span><br><span class="line">[root@localhost /]<span class="comment"># cd /etc/sysconfig/network-scripts/</span></span><br><span class="line">[root@localhost network-scripts]<span class="comment"># pwd</span></span><br><span class="line">/etc/sysconfig/network-scripts</span><br><span class="line">[root@localhost network-scripts]<span class="comment"># cd ..</span></span><br><span class="line">[root@localhost sysconfig]<span class="comment"># pwd</span></span><br><span class="line">/etc/sysconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd命令切换的默认目录为家目录（~ ：在linux当中指的是当前用户的家目录）</span></span><br><span class="line">[root@localhost ~]<span class="comment"># </span></span><br><span class="line">[用户名@主机名 当前所在的目录]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改主机名（重新进入系统才会生效）</span></span><br><span class="line">[root@localhost ~]<span class="comment"># hostnamectl set-hostname python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出登录</span></span><br><span class="line">[<span class="built_in">test</span>@python ~]$ <span class="built_in">exit</span></span><br><span class="line">登出</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>移动文件(mv)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 移动文件：mv</span></span><br><span class="line"><span class="comment"># mv 源路径  移动后的路径</span></span><br><span class="line">[root@localhost ~]<span class="comment"># mv /root/test.txt /</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br><span class="line">anaconda-ks.cfg  python  python1</span><br><span class="line">[root@localhost ~]<span class="comment"># ls /</span></span><br><span class="line">a  aa  aaa  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  test.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>复制文件(cp)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cp [参数] 源路径  移动后的路径</span></span><br><span class="line"><span class="comment"># 复制文件</span></span><br><span class="line">[root@localhost ~]<span class="comment"># cp anaconda-ks.cfg /</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归复制参数</span></span><br><span class="line">-r : 递归复制（常用于复制目录）</span><br><span class="line">[root@localhost ~]<span class="comment"># cp -r python /</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除文件(rm)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除文件的命令：rm</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br><span class="line">anaconda-ks.cfg  python  python1</span><br><span class="line">[root@localhost ~]<span class="comment"># rm anaconda-ks.cfg </span></span><br><span class="line">rm：是否删除普通文件 <span class="string">&quot;anaconda-ks.cfg&quot;</span>？n</span><br><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br><span class="line">anaconda-ks.cfg  python  python1</span><br><span class="line">[root@localhost ~]<span class="comment"># rm anaconda-ks.cfg </span></span><br><span class="line">rm：是否删除普通文件 <span class="string">&quot;anaconda-ks.cfg&quot;</span>？y</span><br><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br><span class="line">python  python1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除目录（-r ： 递归删除文件）</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br><span class="line">python  python1</span><br><span class="line">[root@localhost ~]<span class="comment"># rm python1</span></span><br><span class="line">rm: 无法删除<span class="string">&quot;python1&quot;</span>: 是一个目录</span><br><span class="line">[root@localhost ~]<span class="comment"># rm -r python1</span></span><br><span class="line">rm：是否删除目录 <span class="string">&quot;python1&quot;</span>？y</span><br><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br><span class="line">python</span><br><span class="line"></span><br><span class="line"><span class="comment"># -f : 免去删除提示</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br><span class="line">python</span><br><span class="line">[root@localhost ~]<span class="comment"># rm -r -f python/</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打印命令(echo)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;打印的内容&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打印出当前系统中所有的变量</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># printenv </span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重定向符号(&gt;和&gt;&gt;)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &gt; 和 &gt;&gt; </span></span><br><span class="line"><span class="comment"># &gt; : 覆盖重定向(先删除文件内容，后写入内容到文件)</span></span><br><span class="line">[root@localhost ~]<span class="comment"># echo &quot;Hello China&quot; &gt; test.txt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt; : 追加重定向（原来的内容不动，后来的内容从底部插入）</span></span><br><span class="line">[root@localhost ~]<span class="comment"># echo &quot;Hello World&quot; &gt;&gt; test.txt</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看文件内容</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cat test.txt </span></span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>隐藏文件(.文件名)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件名以.开头的就是隐藏文件</span></span><br><span class="line"></span><br><span class="line">-a : 查看隐藏文件</span><br><span class="line">[root@localhost ~]<span class="comment"># ls -a</span></span><br><span class="line">....bash_logout  .bash_profile</span><br><span class="line"></span><br><span class="line">-l : 查看文件详细信息</span><br><span class="line">[root@localhost ~]<span class="comment"># ls -l</span></span><br><span class="line">总用量 4</span><br><span class="line">-rw-r--r--. 1 root root 24 6月  11 16:26 test.txt</span><br><span class="line"> 文件权限       所属用户 所属组  文件的大小  创建时间  文件名称</span><br><span class="line"> </span><br><span class="line">[root@localhost ~]<span class="comment"># # ls -l 等价于 ll</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ll</span></span><br><span class="line">总用量 4</span><br><span class="line">-rw-r--r--. 1 root root 24 6月  11 16:26 test.txt</span><br><span class="line">[root@localhost ~]<span class="comment"># ls -l</span></span><br><span class="line">总用量 4</span><br><span class="line">-rw-r--r--. 1 root root 24 6月  11 16:26 test.txt</span><br><span class="line"></span><br><span class="line">-h : 以方便查看方式查看文件大小（必须配合-l参数）</span><br><span class="line"></span><br><span class="line">reboot : 重启系统</span><br><span class="line">shutdown -h now : 立即关机</span><br><span class="line">shutdown -h 2 : </span><br></pre></td></tr></table></figure>
+
+<h2 id="GPT分区"><a href="#GPT分区" class="headerlink" title="GPT分区"></a>GPT分区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">分区版本:</span><br><span class="line">    beat	: 公测版本</span><br><span class="line">    stable	: 稳定版本</span><br><span class="line">    alpahe	: 内测版本</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1、相较于MBR分区 </span><br><span class="line">	GPT分区可以实现2TB以上的硬盘分区</span><br><span class="line"></span><br><span class="line">2、分区命令(类似于MBR分区)</span><br><span class="line">	安装分区工具:</span><br><span class="line">		yum install gdisk -y</span><br><span class="line">	分区命令:</span><br><span class="line">		gdisk /dev/sdd</span><br><span class="line">	常用命令:</span><br><span class="line">		? : 查看帮助</span><br><span class="line">		n : 新建一个分区</span><br><span class="line">		p : 查看分区列表</span><br><span class="line">		w : 保存并退出</span><br><span class="line">		d : 删除一个分区	</span><br><span class="line">		</span><br><span class="line">eg:</span><br><span class="line">	[root@python ~]# gdisk /dev/sdd</span><br></pre></td></tr></table></figure>
+
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/bin : 系统命令</span><br><span class="line">/boot: linux系统启动文件</span><br><span class="line">/etc : 系统配置目录</span><br><span class="line">/home: 普通用户的家目录</span><br><span class="line">/media: 多媒体目录</span><br><span class="line">/mnt : 挂载一些硬件设备的目录</span><br><span class="line">/opt : 下载文件常用目录</span><br><span class="line">/proc: 关联系统虚拟设备</span><br><span class="line">/srv : 该⽬录存放⼀些服务启动之后需要提取的数据。</span><br><span class="line">/root: 管理员家目录</span><br><span class="line">/run : 存放系统运行临时数据目录</span><br><span class="line">/sbin: 存放系统管理员命令</span><br><span class="line">/tmp : Linux系统的垃圾桶</span><br><span class="line">/usr : 存放系统安装软件的目录</span><br><span class="line">/var : 存放系统日志</span><br></pre></td></tr></table></figure>
+
+<h2 id="vi-vim编辑器"><a href="#vi-vim编辑器" class="headerlink" title="vi/vim编辑器"></a>vi/vim编辑器</h2><h4 id="vi编辑器常用功能"><a href="#vi编辑器常用功能" class="headerlink" title="vi编辑器常用功能"></a>vi编辑器常用功能</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">vim是vi的升级版(用法命令大同)</span><br><span class="line"></span><br><span class="line">写入</span><br><span class="line">	a : 进入插入模式，并在光标之后进行插入</span><br><span class="line">	i : 进入插入模式，并在光标之前进行插入</span><br><span class="line">	o : 进入插入模式，并在光标所在行开启下一行</span><br><span class="line">	</span><br><span class="line">查找</span><br><span class="line">	在命令行模式下按下键盘上的/，然后输入要查询的内容，搜索到内容后光标自动定位并设置颜色</span><br><span class="line"></span><br><span class="line">删除</span><br><span class="line">	1、进入插入模式，像修改文本一样去删除文件。</span><br><span class="line">	2、连续按d键两次，删除一行内容</span><br><span class="line">	3、先按一个数字n，然后按d键两次，向下删除n行</span><br><span class="line"></span><br><span class="line">复制</span><br><span class="line">	1、连续按y键两次，复制当前光标所在行，p键粘贴</span><br><span class="line">	2、先按一个数字n，然后按y键两次从光标所在行向下复制n行，p键粘贴</span><br><span class="line"></span><br><span class="line">保存</span><br><span class="line">	首先进入末行模式</span><br><span class="line">	w ： 保存</span><br><span class="line">	q : 退出（！强制退出，退出之后未保存内容丢失）</span><br><span class="line"></span><br><span class="line">补充：</span><br><span class="line">	x : 删除光标包含的内容</span><br><span class="line">	u : 返回上一步，只在同一次编辑中有效</span><br><span class="line">	U ：还原上一步</span><br><span class="line">	$ : 光标运行到行尾</span><br><span class="line">	0 : 光标运行到行首</span><br><span class="line">	G ：光标移动到行尾</span><br><span class="line">	gg: 光标移动到行首</span><br><span class="line">	H ：运行第一行的行首</span><br><span class="line">	M ：中间行的行首</span><br><span class="line">	L ：最后一行的行首</span><br><span class="line"></span><br><span class="line">可视块：</span><br><span class="line">	ctrl + v: 选择你要修改的内容，</span><br><span class="line">		删除：x</span><br><span class="line">		编辑：<span class="built_in">shift</span> + i（退出可视块编辑模式按ESC键，等一会才会同步修改内容）</span><br></pre></td></tr></table></figure>
+
+<h4 id="vim编辑器高级"><a href="#vim编辑器高级" class="headerlink" title="vim编辑器高级"></a>vim编辑器高级</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 定位到某一行</span><br><span class="line">:n  跳转到n行</span><br><span class="line"></span><br><span class="line"># 内容替换(末行模式)</span><br><span class="line">:开始位置,结束的位置  s/被替换内容/替换的内容</span><br><span class="line"></span><br><span class="line">1、指定位置</span><br><span class="line">	:2,10 s/Hello/nihao 从第2行开始，到第十行结束</span><br><span class="line">	:2,$  s/Hello/nihao 从第二行开始，到最后</span><br><span class="line">	:%    s/Hello/nihao 全文替换</span><br><span class="line"></span><br><span class="line">2、写入文件</span><br><span class="line">	:w 写入文件</span><br><span class="line">	:w /root 写入新的文件</span><br><span class="line">	:1,3 w /root/bcd.txt 指定行写入到新的文件中</span><br><span class="line">	:1,3 w！ /root/bcd.txt 指定行强制写入到新的文件中</span><br><span class="line"></span><br><span class="line">3、同时编辑多个文件</span><br><span class="line">	vim -o 文件名 文件名 : 水平分割</span><br><span class="line">	vim -O 文件名 文件名 : 垂直分割</span><br><span class="line"></span><br><span class="line">4、同时对比编辑两个不同文件</span><br><span class="line">	ctrl + ww : 切换屏幕</span><br><span class="line">	</span><br><span class="line">ps:</span><br><span class="line">	有几个文件则保存几次</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/04/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="prev" title="Linux常用命令">
+                  <i class="fa fa-chevron-left"></i> Linux常用命令
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/07/06/%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96/" rel="next" title="Linux系统优化">
+                  Linux系统优化 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
