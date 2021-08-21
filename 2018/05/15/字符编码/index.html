@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="字符编码引子​        字符串类型、文本文件的内容都是由字符组成的，但凡涉及到字符的存取，都需要考虑字符编码的问题。 一.知识储备12345678910111213141516171.三大核心硬件:    所有软件都是运行硬件之上的，与运行软件相关的三大核心硬件为cpu、内存、硬盘，我们需要明确三点    	1.软件运行前，软件的代码及其相关数据都是存放于硬盘中的        2.任何软件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符编码">
+<meta property="og:url" content="http://example.com/2018/05/15/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="字符编码引子​        字符串类型、文本文件的内容都是由字符组成的，但凡涉及到字符的存取，都需要考虑字符编码的问题。 一.知识储备12345678910111213141516171.三大核心硬件:    所有软件都是运行硬件之上的，与运行软件相关的三大核心硬件为cpu、内存、硬盘，我们需要明确三点    	1.软件运行前，软件的代码及其相关数据都是存放于硬盘中的        2.任何软件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-c4a210efb1a57b869288eb7e89bf6fc9_720w.jpg">
+<meta property="article:published_time" content="2018-05-15T09:27:55.000Z">
+<meta property="article:modified_time" content="2018-05-15T09:27:55.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-c4a210efb1a57b869288eb7e89bf6fc9_720w.jpg">
+
+
+<link rel="canonical" href="http://example.com/2018/05/15/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2018/05/15/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/","path":"2018/05/15/字符编码/","title":"字符编码"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>字符编码 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">字符编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.0.1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87"><span class="nav-number">1.0.2.</span> <span class="nav-text">一.知识储备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.0.3.</span> <span class="nav-text">二.字符编码介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E5%BA%94%E7%94%A8"><span class="nav-number">1.0.4.</span> <span class="nav-text">三.字符编码应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ASCII%E8%A1%A8%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">1.0.5.</span> <span class="nav-text">ASCII表的特点:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBK%E8%A1%A8%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.0.6.</span> <span class="nav-text">GBK表的特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unicode%E4%B8%A4%E5%A4%A7%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.0.7.</span> <span class="nav-text">unicode两大特点：</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/15/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          字符编码
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-05-15 17:27:55" itemprop="dateCreated datePublished" datetime="2018-05-15T17:27:55+08:00">2018-05-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h1><h3 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h3><p>​        字符串类型、文本文件的内容都是由字符组成的，但凡涉及到字符的存取，都需要考虑字符编码的问题。</p>
+<h3 id="一-知识储备"><a href="#一-知识储备" class="headerlink" title="一.知识储备"></a>一.知识储备</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>三大核心硬件:</span><br><span class="line">    所有软件都是运行硬件之上的，与运行软件相关的三大核心硬件为cpu、内存、硬盘，我们需要明确三点</span><br><span class="line">    	<span class="number">1.</span>软件运行前，软件的代码及其相关数据都是存放于硬盘中的</span><br><span class="line">        <span class="number">2.</span>任何软件的启动都是将数据从硬盘中读入内存，然后cpu从内存中取出指令并执行</span><br><span class="line">        <span class="number">3.</span>软件运行过程中产生的数据先都是存放于内存中，若想永久保存软件产生的数据，则要将数据由内存写入硬盘</span><br><span class="line"><span class="number">2.</span>文本编辑器读取文件内容的流程(三个阶段):</span><br><span class="line">    <span class="number">1.</span>启动一个文件编辑器（文本编辑器如nodepad++，pycharm，word）</span><br><span class="line">	<span class="number">2.</span>文件编辑器会将文件内容从硬盘读入内存</span><br><span class="line">	<span class="number">3.</span>文本编辑器会将刚刚读入内存中的内容显示到屏幕上</span><br><span class="line"><span class="number">3.</span>python解释器执行文件的流程(三个阶段):</span><br><span class="line">    <span class="number">1.</span>启动python解释器，此时就相当于启动了一个文本编辑器</span><br><span class="line">    <span class="number">2.</span>python解释器相当于文本编辑器，从硬盘上将py文件的内容读入到内存中</span><br><span class="line">    <span class="number">3.</span>python解释器解释执行刚刚读入的内存的内容，开始识别python语法</span><br><span class="line"><span class="number">4.</span>总结:</span><br><span class="line">    python解释器与文件本编辑的异同如下:</span><br><span class="line">        <span class="number">1.</span>相同点：前两个阶段二者完全一致，都是将硬盘中文件的内容读入内存</span><br><span class="line">		<span class="number">2.</span>不同点：在阶段<span class="number">3</span>时，针对内存中读入的内容处理方式不同</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-字符编码介绍"><a href="#二-字符编码介绍" class="headerlink" title="二.字符编码介绍"></a>二.字符编码介绍</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>什么是字符编码?</span><br><span class="line">	字符编码中的编码指的是翻译或者转换的意思，即将人能理解的字符参照字符编码表翻译成计算机能识别的数字</span><br><span class="line"><span class="number">2.</span> 字符编码表的发展史</span><br><span class="line">	<span class="number">2.1</span> 阶段一:一家独大  ==&gt;  ASCII码表(英文)</span><br><span class="line">    <span class="number">2.2</span> 阶段二：诸侯割据、天下大乱  ==&gt;  GBK表(中文英文),Shift_JIS表(日文英文),Euc-kr表(韩文英文)</span><br><span class="line">    <span class="number">2.3</span> 阶段三：分久必合  ==&gt;  unicode</span><br><span class="line">    	unicode：支持万国字符</span><br><span class="line">        常用的字符:</span><br><span class="line">            <span class="number">1</span>一个字符对应<span class="number">2</span>个字节</span><br><span class="line">        历史使命：</span><br><span class="line">            <span class="number">1</span>、兼容万国字符</span><br><span class="line">            <span class="number">2</span>、兼容老的字符编码表</span><br><span class="line">            </span><br><span class="line">        英文字符可以被ASCII识别</span><br><span class="line">        	英文字符---&gt;unciode格式的数字---&gt;ASCII格式的数字</span><br><span class="line">        中文字符、英文字符可以被GBK识别</span><br><span class="line">        	中文字符、英文字符---&gt;unicode格式的数字---&gt;gbk格式的数字</span><br><span class="line">        日文字符、英文字符可以被shift-JIS识别</span><br><span class="line">        	日文字符、英文字符---&gt;unicode格式的数字---&gt;shift-JIS格式的数字</span><br><span class="line"><span class="number">3.</span>编码与解码:</span><br><span class="line">    <span class="number">3.1</span>由字符转换成内存中的unicode，以及由unicode转换成其他编码的过程，都称为编码encode</span><br><span class="line">    <span class="number">3.2</span>由内存中的unicode转换成字符，以及由其他编码转换成unicode的过程，都称为解码decode</span><br><span class="line"><span class="number">4.</span>utf-<span class="number">8</span>的由来:</span><br><span class="line">    多国字符—√—》内存（unicode格式的二进制）——X—》硬盘（GBK格式的二进制）</span><br><span class="line">    多国字符—√—》内存（unicode格式的二进制）——X—》硬盘（Shift_JIS格式的二进制）</span><br><span class="line">    多国字符—√—》内存（unicode格式的二进制）——√—》硬盘（utf-<span class="number">8</span>格式的二进制）</span><br><span class="line">    </span><br><span class="line">   注:</span><br><span class="line">      utf-<span class="number">8</span>是针对Unicode的可变长度字符编码:一个英文字符占1Bytes,一个中文字符占3Bytes,生僻字用更多的Bytes存储</span><br></pre></td></tr></table></figure>
+
+<h3 id="三-字符编码应用"><a href="#三-字符编码应用" class="headerlink" title="三.字符编码应用"></a>三.字符编码应用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>学习字符编码就是为了存取字符时不发生乱码问题：</span><br><span class="line">    <span class="number">1</span>、内存中固定使用unicode无论输入任何字符都不会发生乱码</span><br><span class="line">    <span class="number">2</span>、我们能够修改的是存/取硬盘的编码方式，编码设置不正确会出现乱码问题。乱码问题分为两种：存乱了，读乱了</span><br><span class="line">        <span class="number">2.1</span> 存乱了：如果用户输入的内容中包含中文和日文字符，如果单纯以shift_JIS存，日文可以正常写入硬		     盘，而由于中文字符在shift_jis中没有找到对应关系而导致存乱了</span><br><span class="line">        <span class="number">2.2</span> 读乱了：如果硬盘中的数据是shift_JIS格式存储的，采GBK格式读入内存就读乱了</span><br><span class="line">        </span><br><span class="line">    总结:</span><br><span class="line">        <span class="number">1.</span> 保证存的时候不乱：在由内存写入硬盘时，必须将编码格式设置为支持所输入字符的编码格式</span><br><span class="line">        <span class="number">2.</span> 保证存的时候不乱：在由硬盘读入内存时，必须采用与写入硬盘时相同的编码格式      </span><br><span class="line"><span class="number">2.</span>字符串encode编码与decode解码的使用:</span><br><span class="line">    <span class="number">1</span>、unicode格式------编码encode--------&gt;其它编码格式</span><br><span class="line">        x=<span class="string">&#x27;上&#x27;</span> <span class="comment"># 在python3在&#x27;上&#x27;被存成unicode</span></span><br><span class="line">        res=x.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        res,<span class="built_in">type</span>(res) <span class="comment"># unicode编码成了utf-8格式,而编码的结果为bytes类型,可以直接当作二进制去使用</span></span><br><span class="line">        ==&gt; (<span class="string">b&#x27;\xe4\xb8\x8a&#x27;</span>, &lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">	2、其它编码格式------解码<span class="title">decode</span>--------&gt;unicode格式</span></span><br><span class="line"><span class="class">        res.decode(&#x27;utf-8&#x27;) </span></span><br><span class="line"><span class="class">        ==&gt; &#x27;上&#x27;</span></span><br><span class="line"><span class="class">        </span></span><br><span class="line"><span class="class">ps:</span></span><br><span class="line">    python3解释器默认读文件的编码格式是utf-<span class="number">8</span></span><br><span class="line">    python2解释器默认读文件的编码格式是<span class="built_in">ascii</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ASCII表的特点"><a href="#ASCII表的特点" class="headerlink" title="ASCII表的特点:"></a>ASCII表的特点:</h3><p>​            1、只有英文字符与数字的一一对应关系<br>​            2、一个英文字符对应1Bytes，1Bytes=8bit，8bit最多包含256个数字，可以对应256个字符，足够表示所有英文字符</p>
+<p><img src="https://pic2.zhimg.com/80/v2-c4a210efb1a57b869288eb7e89bf6fc9_720w.jpg" alt="img"></p>
+<h3 id="GBK表的特点："><a href="#GBK表的特点：" class="headerlink" title="GBK表的特点："></a>GBK表的特点：</h3><p>​        1、只有中文字符、英文字符与数字的一一对应关系<br>        2、一个英文字符对应1Bytes<br>​              一个中文字符对应2Bytes  </p>
+<p>​         补充说明：<br>​               1Bytes=8bit，8bit最多包含256个数字，可以对应256个字符，足够表示所有英文字符<br>​               2Bytes=16bit，16bit最多包含65536个数字，可以对应65536个字符，足够表示所有中文字符</p>
+<h3 id="unicode两大特点："><a href="#unicode两大特点：" class="headerlink" title="unicode两大特点："></a>unicode两大特点：</h3><p>​            1.存在所有语言中的所有字符与数字的一一对应关系,即兼容万国字符</p>
+<p>​            2.与传统的字符编码的二进制数都有对应关系</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/05/15/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="prev" title="并发编程">
+                  <i class="fa fa-chevron-left"></i> 并发编程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/05/16/%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/" rel="next" title="Python常用模块">
+                  Python常用模块 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="JWT认证1.JWT介绍123456789101112131415161718192021222324252627282930313233343536# jwt是什么?	Json web token (JWT),一种前后端的认证方式    # jwt的构成:	-三段式(header,payload,signature)    -头：认证方式,加密方式,公司名字...    	&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JWT认证">
+<meta property="og:url" content="http://example.com/2019/06/22/JWT%E8%AE%A4%E8%AF%81/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="JWT认证1.JWT介绍123456789101112131415161718192021222324252627282930313233343536# jwt是什么?	Json web token (JWT),一种前后端的认证方式    # jwt的构成:	-三段式(header,payload,signature)    -头：认证方式,加密方式,公司名字...    	&amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-06-22T10:20:25.000Z">
+<meta property="article:modified_time" content="2019-06-22T10:20:25.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2019/06/22/JWT%E8%AE%A4%E8%AF%81/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/06/22/JWT%E8%AE%A4%E8%AF%81/","path":"2019/06/22/JWT认证/","title":"JWT认证"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>JWT认证 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JWT%E8%AE%A4%E8%AF%81"><span class="nav-number">1.</span> <span class="nav-text">JWT认证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JWT%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">1.JWT介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-JWT%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">2.JWT快速使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-djangorestframework-jwt"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.djangorestframework-jwt</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1%E7%AD%BE%E5%8F%91"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.1签发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2%E8%AE%A4%E8%AF%81"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">1.2认证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3%E8%87%AA%E5%AE%9A%E5%88%B6%E7%AD%BE%E5%8F%91%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">1.3自定制签发格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-djangorestframework-jwt%E6%A8%A1%E5%9D%97obtain-jwt-token%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">1.3.</span> <span class="nav-text">3.djangorestframework-jwt模块obtain_jwt_token源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#base64%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81"><span class="nav-number">1.3.1.</span> <span class="nav-text">base64编码解码</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/06/22/JWT%E8%AE%A4%E8%AF%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JWT认证
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-06-22 18:20:25" itemprop="dateCreated datePublished" datetime="2019-06-22T18:20:25+08:00">2019-06-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Django%E9%AB%98%E7%BA%A7/" itemprop="url" rel="index"><span itemprop="name">Django高级</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="JWT认证"><a href="#JWT认证" class="headerlink" title="JWT认证"></a>JWT认证</h1><h2 id="1-JWT介绍"><a href="#1-JWT介绍" class="headerlink" title="1.JWT介绍"></a>1.JWT介绍</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># jwt是什么?</span></span><br><span class="line">	Json web token (JWT),一种前后端的认证方式</span><br><span class="line">    </span><br><span class="line"><span class="comment"># jwt的构成:</span></span><br><span class="line">	-三段式(header,payload,signature)</span><br><span class="line">    -头：认证方式,加密方式,公司名字...</span><br><span class="line">    	&#123;</span><br><span class="line">          <span class="string">&#x27;typ&#x27;</span>: <span class="string">&#x27;JWT&#x27;</span>,		<span class="comment"># 声明类型</span></span><br><span class="line">          <span class="string">&#x27;alg&#x27;</span>: <span class="string">&#x27;HS256&#x27;</span>	<span class="comment"># 声明加密算法</span></span><br><span class="line">        &#125;</span><br><span class="line">        使用base64转码:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9   <span class="comment"># jwt第一部分</span></span><br><span class="line">            </span><br><span class="line">    -荷载：用户信息，过期时间，签发时间...</span><br><span class="line">    	&#123;</span><br><span class="line">          <span class="string">&quot;userid&quot;</span>: <span class="string">&quot;2&quot;</span>,</span><br><span class="line">          <span class="string">&quot;name&quot;</span>: <span class="string">&quot;John Doe&quot;</span>,	</span><br><span class="line">          <span class="string">&quot;exp&quot;</span>: <span class="number">1214356</span>		<span class="comment"># jwt过期时间</span></span><br><span class="line">        &#125;</span><br><span class="line">        使用base64转码:eyJzdWIiOiIxMjM...Y3ODkwIiwibmFtZSI6I  <span class="comment"># jwt第二部分</span></span><br><span class="line">            </span><br><span class="line">    -签名</span><br><span class="line">    	将前面的头和荷载通过某种加密方式得到的 串 </span><br><span class="line">        结合一二部分通过header中声明加密方式进行加盐secret组合加密	  <span class="comment"># 构成jwt第三部分</span></span><br><span class="line">       	将这三个部分用<span class="string">&#x27;.&#x27;</span>连接成一个完整字符串,构成最终的jwt	`</span><br><span class="line">    	</span><br><span class="line"><span class="comment"># 注意:</span></span><br><span class="line">	secret是保存在服务器端的，jwt的签发生成也是在服务器端的，secret就是用来进行jwt的签发和jwt的验证，所以，它就是你服务端的私钥，在任何场景都不应该流露出去。一旦客户端得知这个secret, 那就意味着客户端是可以签发jwt了</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment"># (工作原理)签发和校验</span></span><br><span class="line">	签发:</span><br><span class="line">        用户登录成功，构造token的头部(base64编码)，固定的，构造荷载(base64编码)，使用设置好的加密方式对头和荷载加密，得到token，拼到最后，生成一个token串,eg:</span><br><span class="line">  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</span><br><span class="line"></span><br><span class="line">	校验:</span><br><span class="line">        用户携带token,来到后端,把头和荷载再使用同样的加密方式加密,得到签名,比较新签名和旧签名是否一致,如果一致,说明token可以信任,解析出当前用户(荷载)继续往后走</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-JWT快速使用"><a href="#2-JWT快速使用" class="headerlink" title="2.JWT快速使用"></a>2.JWT快速使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 签发和验证</span></span><br><span class="line"><span class="comment"># 使用第三方:</span></span><br><span class="line">	-djangorestframework-jwt			<span class="comment"># 好久不维护，还能用</span></span><br><span class="line">    -djangorestframework-simplejwt		<span class="comment"># 最新的官网:https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html</span></span><br><span class="line">            </span><br><span class="line"><span class="comment"># 安装:</span></span><br><span class="line">	pip3 install djangorestframework-jwt</span><br><span class="line">	pip3 install djangorestframework-simplejwt</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-djangorestframework-jwt"><a href="#1-djangorestframework-jwt" class="headerlink" title="1.djangorestframework-jwt"></a>1.djangorestframework-jwt</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入:</span></span><br><span class="line">	<span class="keyword">from</span> rest_framework_jwt.settings <span class="keyword">import</span> api_settings</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 签发token串(加密):</span></span><br><span class="line">    <span class="comment"># 第三方模块rest_framework_jwt提供的编码方法,传入用户对象返回荷载payload</span></span><br><span class="line">    jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第三方模块rest_framework_jwt提供的编码方法,传入payload返回token串</span></span><br><span class="line">    jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER</span><br><span class="line">    </span><br><span class="line">        eg:</span><br><span class="line">            payload = jwt_payload_handler(user)</span><br><span class="line">            token = jwt_encode_handler(payload)</span><br><span class="line">        </span><br><span class="line"><span class="comment"># 校验token串(反解校验):</span></span><br><span class="line">    <span class="comment"># 第三方模块rest_framework_jwt提供的解码方法,传入token返回荷载payload</span></span><br><span class="line">	jwt_decode_handler = api_settings.JWT_DECODE_HANDLER</span><br><span class="line">    </span><br><span class="line">    	eg:</span><br><span class="line">            payload = jwt_decode_handler(token)</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1签发"><a href="#1-1签发" class="headerlink" title="1.1签发"></a>1.1签发</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 签发:</span></span><br><span class="line">	只需要在路由中加入配置,向这个地址发送post请求，携带用户名密码，就可以签发token(内部使用的是auth的user表)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 路由层配置</span></span><br><span class="line">	<span class="keyword">from</span> rest_framework_jwt.views <span class="keyword">import</span> obtain_jwt_token</span><br><span class="line">	urlpatterns = [</span><br><span class="line">        <span class="comment"># 签发token，登录功能，不需要写了</span></span><br><span class="line">        path(<span class="string">&#x27;login/&#x27;</span>, obtain_jwt_token),</span><br><span class="line">	]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 只需要在前端向xxx/login/地址发送post请求，携带用户名密码，就可以签发token</span></span><br><span class="line">	eg:</span><br><span class="line">        http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>/login/</span><br><span class="line">		&#123;<span class="string">&quot;username&quot;</span>:<span class="string">&quot;lqz&quot;</span>,<span class="string">&quot;password&quot;</span>:<span class="string">&quot;lqz12345&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"><span class="comment"># 签发的串:</span></span><br><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImxxeiIsImV4cCI6MTYyNTcyODkwMywiZW1haWwiOiIifQ.SX3kyZJYXQMeJa3MK8raiZNmfGqyR8S3bg1Dvimf_5k</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2认证"><a href="#1-2认证" class="headerlink" title="1.2认证"></a>1.2认证</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在视图类中配置，认证类，和权限类</span></span><br><span class="line">    <span class="keyword">from</span> rest_framework_jwt.authentication <span class="keyword">import</span> JSONWebTokenAuthentication</span><br><span class="line">    <span class="keyword">from</span> rest_framework.permissions <span class="keyword">import</span> IsAuthenticated</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">BookView</span>(<span class="params">ViewSetMixin,ListAPIView</span>):</span></span><br><span class="line">        authentication_classes = [JSONWebTokenAuthentication,]</span><br><span class="line">        <span class="comment"># 第三方jwt认证需要结合权限IsAuthenticated才可以正常使用</span></span><br><span class="line">        permission_classes = [IsAuthenticated,]</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"><span class="comment"># 前端访需要认证的接口时,需要在请求头中加入,如果不携带或者篡改就会导致认证不通过</span></span><br><span class="line">	请求头中携带参数:</span><br><span class="line">        Authorization：jwt空格token串</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">	Authorization：jwt eyJ0eXAiOiJKV1QiLChbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE2MjU3Mjk3MDAsImVtYWlsIjoiM0BxcS5jb20ifQ.V6X_4wdBvrrRSPOuUf8z5gENB1kJyGimxiLBEjbiQGY</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3自定制签发格式"><a href="#1-3自定制签发格式" class="headerlink" title="1.3自定制签发格式"></a>1.3自定制签发格式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义签发格式:</span></span><br><span class="line">	只需要写一个函数，在配置文件中配置即可</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 创建任一py文件书写函数:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jwt_response_payload_handler</span>(<span class="params">token, user=<span class="literal">None</span>, request=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">&#x27;code&#x27;</span>:<span class="number">100</span>,</span><br><span class="line">            <span class="string">&#x27;msg&#x27;</span>:<span class="string">&#x27;登录成功&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span>:user.username,</span><br><span class="line">            <span class="string">&#x27;token&#x27;</span>: token,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="comment"># settings.py中配置</span></span><br><span class="line">	导入自定义函数并配置到JWT_AUTH相关配置字典中</span><br><span class="line">        JWT_AUTH =&#123;</span><br><span class="line">            <span class="comment"># 设置签发token的过期时间</span></span><br><span class="line">            <span class="string">&#x27;JWT_EXPIRATION_DELTA&#x27;</span>: datetime.timedelta(days=<span class="number">7</span>),</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 如果不自定义,返回的格式是固定只有token字段</span></span><br><span class="line">            <span class="string">&#x27;JWT_RESPONSE_PAYLOAD_HANDLER&#x27;</span>:<span class="string">&#x27;自定义返回格式函数绝对路径&#x27;</span>,</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-djangorestframework-jwt模块obtain-jwt-token源码分析"><a href="#3-djangorestframework-jwt模块obtain-jwt-token源码分析" class="headerlink" title="3.djangorestframework-jwt模块obtain_jwt_token源码分析"></a>3.djangorestframework-jwt模块obtain_jwt_token源码分析</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">ObtainJSONWebToken.as_view()---&gt;ObtainJSONWebToken----&gt;post方法</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post</span>(<span class="params">self, request, *args, **kwargs</span>):</span></span><br><span class="line">        serializer = self.get_serializer(data=request.data)</span><br><span class="line">        <span class="keyword">if</span> serializer.is_valid():  <span class="comment"># 验证用户登录和签发token，都在序列化类的validate方法中完成的</span></span><br><span class="line">            user = serializer.<span class="built_in">object</span>.get(<span class="string">&#x27;user&#x27;</span>) <span class="keyword">or</span> request.user</span><br><span class="line">            token = serializer.<span class="built_in">object</span>.get(<span class="string">&#x27;token&#x27;</span>)</span><br><span class="line">            response_data = jwt_response_payload_handler(token, user, request)</span><br><span class="line">            response = Response(response_data)</span><br><span class="line">            <span class="comment"># 返回了咱们自定制的格式 </span></span><br><span class="line">            <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">               &#123;</span></span><br><span class="line"><span class="string">                	&#x27;code&#x27;:100,</span></span><br><span class="line"><span class="string">                	&#x27;msg&#x27;:&#x27;登录成功&#x27;,</span></span><br><span class="line"><span class="string">                	&#x27;username&#x27;:user.username,</span></span><br><span class="line"><span class="string">                	&#x27;token&#x27;: token,</span></span><br><span class="line"><span class="string">            	&#125;</span></span><br><span class="line"><span class="string">            &#x27;&#x27;&#x27;</span></span><br><span class="line">            <span class="keyword">return</span> response</span><br><span class="line">        <span class="keyword">return</span> Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">validate</span>(<span class="params">self, attrs</span>):</span></span><br><span class="line">        credentials = &#123;</span><br><span class="line">            self.username_field: attrs.get(self.username_field),</span><br><span class="line">            <span class="string">&#x27;password&#x27;</span>: attrs.get(<span class="string">&#x27;password&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>(credentials.values()):</span><br><span class="line">            <span class="comment"># 根据用户名密码去auth的user表校验，是否存在</span></span><br><span class="line">            user = authenticate(**credentials)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> user:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> user.is_active:</span><br><span class="line">                    msg = _(<span class="string">&#x27;User account is disabled.&#x27;</span>)</span><br><span class="line">                    <span class="keyword">raise</span> serializers.ValidationError(msg)</span><br><span class="line">				<span class="comment"># 生成payload</span></span><br><span class="line">                payload = jwt_payload_handler(user)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> &#123;</span><br><span class="line">                    <span class="string">&#x27;token&#x27;</span>: jwt_encode_handler(payload), <span class="comment"># 通过payload生成token</span></span><br><span class="line">                    <span class="string">&#x27;user&#x27;</span>: user</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">               <span class="comment"># 不在抛异常，前端就看到信息了</span></span><br><span class="line">                <span class="keyword">raise</span> serializers.ValidationError(msg)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> serializers.ValidationError(msg)</span><br></pre></td></tr></table></figure>
+
+<h3 id="base64编码解码"><a href="#base64编码解码" class="headerlink" title="base64编码解码"></a>base64编码解码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># base64编码解码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 编码</span></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">dic=&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;lqz&#x27;</span>,<span class="string">&#x27;id&#x27;</span>:<span class="number">1</span>&#125;</span><br><span class="line">user_info_str=json.dumps(dic)</span><br><span class="line"><span class="comment"># res=base64.b64encode(bytes(user_info_str,encoding=&#x27;utf-8&#x27;))</span></span><br><span class="line">res=base64.b64encode(user_info_str.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(res) <span class="comment"># eyJuYW1lIjogImxxeiIsICJpZCI6IDF9</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###  解码</span></span><br><span class="line">res=base64.b64decode(<span class="string">&#x27;TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ=&#x27;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">### 注意：base64长度是4的倍数，如果不足，需要用&#x27;=&#x27;补齐</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/06/15/Drf%E8%AE%A4%E8%AF%81%E6%9D%83%E9%99%90%E5%8F%8A%E9%A2%91%E7%8E%87/" rel="prev" title="Drf过认证权限频率">
+                  <i class="fa fa-chevron-left"></i> Drf过认证权限频率
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/07/10/%E8%AE%A4%E8%AF%81%E6%9D%83%E9%99%90%E9%A2%91%E7%8E%87%E6%BA%90%E7%A0%81/" rel="next" title="Drf认证权限频率源码">
+                  Drf认证权限频率源码 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

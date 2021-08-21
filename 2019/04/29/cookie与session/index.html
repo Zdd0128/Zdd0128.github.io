@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="cookie与session1.cookie,session简介1234567891011121314151617181920212223242526272829HTTP协议四大特性	1.基于请求响应    2.基于TCP、IP作用于应用层之上    3.无连接    4.无状态    	基于HTTP协议的通信无法记录客户端状态(无状态)但是现在很多软件都需要记录用户的状态 为了解决这个问题发明了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cookie与session">
+<meta property="og:url" content="http://example.com/2019/04/29/cookie%E4%B8%8Esession/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="cookie与session1.cookie,session简介1234567891011121314151617181920212223242526272829HTTP协议四大特性	1.基于请求响应    2.基于TCP、IP作用于应用层之上    3.无连接    4.无状态    	基于HTTP协议的通信无法记录客户端状态(无状态)但是现在很多软件都需要记录用户的状态 为了解决这个问题发明了">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-29T10:20:25.000Z">
+<meta property="article:modified_time" content="2019-04-29T10:20:25.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2019/04/29/cookie%E4%B8%8Esession/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/04/29/cookie%E4%B8%8Esession/","path":"2019/04/29/cookie与session/","title":"cookie与session"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>cookie与session | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie%E4%B8%8Esession"><span class="nav-number">1.</span> <span class="nav-text">cookie与session</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-cookie-session%E7%AE%80%E4%BB%8B"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.cookie,session简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie%E6%93%8D%E4%BD%9C"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">cookie操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#session%E6%93%8D%E4%BD%9C"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">session操作</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/29/cookie%E4%B8%8Esession/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cookie与session
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-29 18:20:25" itemprop="dateCreated datePublished" datetime="2019-04-29T18:20:25+08:00">2019-04-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Django%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Django进阶</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="cookie与session"><a href="#cookie与session" class="headerlink" title="cookie与session"></a>cookie与session</h1><h3 id="1-cookie-session简介"><a href="#1-cookie-session简介" class="headerlink" title="1.cookie,session简介"></a>1.cookie,session简介</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">HTTP协议四大特性</span><br><span class="line">	<span class="number">1.</span>基于请求响应</span><br><span class="line">    <span class="number">2.</span>基于TCP、IP作用于应用层之上</span><br><span class="line">    <span class="number">3.</span>无连接</span><br><span class="line">    <span class="number">4.</span>无状态</span><br><span class="line">    	</span><br><span class="line">基于HTTP协议的通信无法记录客户端状态(无状态)</span><br><span class="line">但是现在很多软件都需要记录用户的状态 为了解决这个问题</span><br><span class="line">发明了cookie session等一系列的技术</span><br><span class="line"></span><br><span class="line">cookie</span><br><span class="line">	保存在客户端浏览器上面的键值对数据</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    eg:当用户登录成功之后 浏览器保存用户的关键信息</span></span><br><span class="line"><span class="string">    以后访问的时候浏览器自动发送关键信息从而实现身份识别</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    关键型数据直接保存在浏览器上不安全</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span> </span><br><span class="line">    </span><br><span class="line">session</span><br><span class="line">	保存在服务器上面的键值对数据(数据类型不固定)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    eg:当用户登录成功之后 服务端返回给浏览器一个随机字符串</span></span><br><span class="line"><span class="string">    之后访问都将随机字符串发送给服务端</span></span><br><span class="line"><span class="string">    服务端内部做比对</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># session需要依赖于cookie才可以工作</span></span><br><span class="line">客户端浏览器可以保存服务端发送过来的cookie数据也可以选择拒绝</span><br></pre></td></tr></table></figure>
+
+<h4 id="cookie操作"><a href="#cookie操作" class="headerlink" title="cookie操作"></a>cookie操作</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">视图函数返回的HttpResponse对象</span><br><span class="line"><span class="keyword">return</span> HttpResponse()</span><br><span class="line"><span class="keyword">return</span> render()</span><br><span class="line"><span class="keyword">return</span> redirect()</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">obj = HttpResponse()</span><br><span class="line"><span class="keyword">return</span> obj</span><br><span class="line">obj = render()</span><br><span class="line"><span class="keyword">return</span> obj</span><br><span class="line">obj = redirect()</span><br><span class="line"><span class="keyword">return</span> obj</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置cookie</span></span><br><span class="line">    obj = HttpResponse(<span class="string">&quot;登录成功&quot;</span>)</span><br><span class="line">    obj.set_cookie(key,value)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 加盐(加密)</span></span><br><span class="line">	obj.set_signed_cookie(key,value,salt=<span class="string">&#x27;盐&#x27;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 获取cookie</span></span><br><span class="line">	request.COOKIES.get(key)</span><br><span class="line">    request.get_signed_cookie(key,salt=<span class="string">&#x27;盐&#x27;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 删除cookie</span></span><br><span class="line">	obj.delete_cookie(key)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有效时间</span></span><br><span class="line">    obj.set_cookie(key,value,max_age=<span class="number">3</span>,expires=<span class="number">3</span>)</span><br><span class="line">        max_age=<span class="number">3</span></span><br><span class="line">        expires=<span class="number">3</span></span><br><span class="line">            两者都是设置有效时间 并且都是以秒为单位</span><br><span class="line">            需要注意的是 针对IE浏览器需要使用expires</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">校验用户是否登录才能访问视图函数的装饰器</span></span><br><span class="line"><span class="string">	能够记住用户在没有登陆之前想要访问的页面 登录之后跳转到对应的页面</span></span><br><span class="line"><span class="string">    request.path()				# 仅获取url</span></span><br><span class="line"><span class="string">    request.path.info			# 仅获取url</span></span><br><span class="line"><span class="string">    request.get_full_path		# 获取url及问号后数据</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="session操作"><a href="#session操作" class="headerlink" title="session操作"></a>session操作</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">1.session是存储在服务器端的 django默认情况下是需要借助于django_session表来存储数据 也就意味着如果你想要操作session那么必须先执行数据库迁移命令让django先把django_session表创建出来(no such table:django_session)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2.django默认的session有效时间是14天</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">3.session存储在服务端 可以有很多地方存储</span></span><br><span class="line"><span class="string">	1.表</span></span><br><span class="line"><span class="string">	2.文件</span></span><br><span class="line"><span class="string">	3.缓存</span></span><br><span class="line"><span class="string">	4.其他</span></span><br><span class="line"><span class="string">	...</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置session:</span></span><br><span class="line">	request.session[<span class="string">&#x27;key&#x27;</span>] = value </span><br><span class="line">    </span><br><span class="line">    session设置时发生的事:</span><br><span class="line">        <span class="number">1.</span>django内部自动生成一个随机字符串</span><br><span class="line">        <span class="number">2.</span>django内部会将随机字符串和数据存入django_session表中</span><br><span class="line">        	<span class="number">2.1</span>先在内存中产生操作数据的缓存</span><br><span class="line">            <span class="number">2.2</span>在响应结果django中间件的时候才真正的操作sh<span class="string">u&#x27;ju&#x27;</span>ku</span><br><span class="line">        <span class="number">3.</span>将随机字符串返回给客户端浏览器保存</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment"># 获取session:</span></span><br><span class="line">	request.session.get(<span class="string">&#x27;key&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    session读取时发生的事:</span><br><span class="line">        <span class="number">1.</span>自动从客户端浏览器请求中获取sessionid对应的随机字符串</span><br><span class="line">        <span class="number">2.</span>拿着随机字符串去django_session表中查找数据比对</span><br><span class="line">        <span class="number">3.</span></span><br><span class="line">        	如果比对上了 则将对应的数据取出并以字典的形式封装到request.session中</span><br><span class="line">            如果比对不上 则request.session.get(key)返回的是<span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 清除session:</span></span><br><span class="line">	request.session.delete()  		<span class="comment"># 只删服务端 客户端不删</span></span><br><span class="line"> 	request.session.flush()  		<span class="comment"># 客户端浏览器和服务端都删(推荐使用)</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 设置有效时间</span></span><br><span class="line">    request.session.set_expiry(value)	</span><br><span class="line">    	括号内可以放四种类型参数</span><br><span class="line">        	<span class="number">1.</span>整数   						   多少秒</span><br><span class="line">            <span class="number">2.</span>datatime/timedelt(日期格式)	  到指定日期就失效</span><br><span class="line">            <span class="number">3.0</span> 				  			关闭当前浏览器就失效</span><br><span class="line">            <span class="number">4.</span>不写						   django内部session默认失效时间(<span class="number">14</span>天)</span><br><span class="line">            </span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">django_session表中的数据是取决于浏览器的</span></span><br><span class="line"><span class="string">	同一个计算机上(IP地址)同一个浏览器只会有一条数据生效</span></span><br><span class="line"><span class="string">	(当session过期的时候可能会出现多条数据对应一个浏览器 但是该现象不会持续很久 内部会自动识别过期的数据清除 也可以通过代码清除)</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">	主要是为了节省服务端数据库资源</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/04/24/auth%E6%A8%A1%E5%9D%97/" rel="prev" title="auth模块">
+                  <i class="fa fa-chevron-left"></i> auth模块
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/05/04/Ajax/" rel="next" title="Ajax">
+                  Ajax <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

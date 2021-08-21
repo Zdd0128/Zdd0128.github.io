@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="必知必会十三条12345678910111213141516171.all()		 			查询所有数据2.filter()				带有过滤条件的查询3.get()					直接拿数据对象 但是条件不存在直接报错4.first()				拿queryset里面的第一个数据5.last()				拿quertset里面的最后一个数据6.values()				可以指定获取数据的字段  select n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模型层之必知必会十三条">
+<meta property="og:url" content="http://example.com/2019/04/12/%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E5%8D%81%E4%B8%89%E6%9D%A1/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="必知必会十三条12345678910111213141516171.all()		 			查询所有数据2.filter()				带有过滤条件的查询3.get()					直接拿数据对象 但是条件不存在直接报错4.first()				拿queryset里面的第一个数据5.last()				拿quertset里面的最后一个数据6.values()				可以指定获取数据的字段  select n">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-12T10:20:25.000Z">
+<meta property="article:modified_time" content="2019-04-12T10:20:25.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2019/04/12/%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E5%8D%81%E4%B8%89%E6%9D%A1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/04/12/%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E5%8D%81%E4%B8%89%E6%9D%A1/","path":"2019/04/12/必知必会十三条/","title":"模型层之必知必会十三条"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>模型层之必知必会十三条 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E5%8D%81%E4%B8%89%E6%9D%A1"><span class="nav-number">1.</span> <span class="nav-text">必知必会十三条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter%E5%87%BD%E6%95%B0-%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.</span> <span class="nav-text">filter函数(条件查询)</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/12/%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E5%8D%81%E4%B8%89%E6%9D%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          模型层之必知必会十三条
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-12 18:20:25" itemprop="dateCreated datePublished" datetime="2019-04-12T18:20:25+08:00">2019-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Django%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Django入门</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="必知必会十三条"><a href="#必知必会十三条" class="headerlink" title="必知必会十三条"></a>必知必会十三条</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="built_in">all</span>()		 			查询所有数据</span><br><span class="line"><span class="number">2.</span><span class="built_in">filter</span>()				带有过滤条件的查询</span><br><span class="line"><span class="number">3.</span>get()					直接拿数据对象 但是条件不存在直接报错</span><br><span class="line"><span class="number">4.</span>first()				拿queryset里面的第一个数据</span><br><span class="line"><span class="number">5.</span>last()				拿quertset里面的最后一个数据</span><br><span class="line"><span class="number">6.</span>values()				可以指定获取数据的字段  select name,age <span class="keyword">from</span>... 列表套字典</span><br><span class="line"><span class="number">7.</span>values_list()			列表套元组</span><br><span class="line"><span class="number">8.</span>distinct()			去重 去重一定要是一模一样的数据(主键千万要注意)</span><br><span class="line"><span class="number">9.</span>order_by()			排序 </span><br><span class="line">	res = models.User.objects.order_by(<span class="string">&#x27;age&#x27;</span>)  默认是升序  </span><br><span class="line">    res = models.User.objects.order_by(<span class="string">&#x27;-age&#x27;</span>)   加负号降序</span><br><span class="line"><span class="number">10.</span>reverse() 			反转 前提是数据已经排序过</span><br><span class="line"><span class="number">11.</span>count() 				统计当前数据的个数</span><br><span class="line"><span class="number">12.</span>exclude()			排除在外</span><br><span class="line">	查询<span class="built_in">id</span>不为<span class="number">3</span>的所有图书</span><br><span class="line">		books = BookInfo.objects.exclude(<span class="built_in">id</span> = <span class="number">3</span>)  <span class="comment"># 与filter函数作用相反。 返回QuerySet查询集(可以遍历)</span></span><br><span class="line"><span class="number">13.</span>exists()				返回布尔值 数据本身就自带布尔值 基本用不到</span><br></pre></td></tr></table></figure>
+
+<h3 id="filter函数-条件查询"><a href="#filter函数-条件查询" class="headerlink" title="filter函数(条件查询)"></a>filter函数(条件查询)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">filter</span>函数 (条件查询)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">__gt 大于</span></span><br><span class="line"><span class="string">__gte 大于等于 </span></span><br><span class="line"><span class="string">__lt 小于</span></span><br><span class="line"><span class="string">__lte 小于等于</span></span><br><span class="line"><span class="string">__in 范围查询</span></span><br><span class="line"><span class="string">__date日期查询</span></span><br><span class="line"><span class="string">__isnull 是否为空 True表示为null False表示not null</span></span><br><span class="line"><span class="string">__contains 包含 模糊查询 默认区分大小写</span></span><br><span class="line"><span class="string">__icontains 不区分大小写</span></span><br><span class="line"><span class="string">__endswith以..结尾 __startswith以..开头(__iendswith 不区分大小写)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># filter条件查询(可以通过逗号,连接多个条件)  返回QuerySet查询集(可以遍历)</span></span><br><span class="line"></span><br><span class="line">books = BookInfo.objects.<span class="built_in">filter</span>(title__exact = <span class="string">&#x27;天龙八部&#x27;</span>)  <span class="comment"># __exact 等于。 __exact 可以省略。 (__iexact 不区分大小写)</span></span><br><span class="line"></span><br><span class="line">books = BookInfo.objects.<span class="built_in">filter</span>(title__contains = <span class="string">&#x27;天&#x27;</span>)  <span class="comment"># __contains 包含。模糊查询。 (__icontains 不区分大小写)</span></span><br><span class="line"></span><br><span class="line">books = BookInfo.objects.<span class="built_in">filter</span>(title__endswith = <span class="string">&#x27;部&#x27;</span>)  <span class="comment"># __endswith 以..结尾。 __startswith 以..开头。 (__iendswith 不区分大小写)</span></span><br><span class="line"></span><br><span class="line">books = BookInfo.objects.<span class="built_in">filter</span>(title__isnull = <span class="literal">False</span>)  <span class="comment"># __isnull 是否为空。 True：表示为null。 False表示not null。</span></span><br><span class="line"></span><br><span class="line">books = BookInfo.objects.<span class="built_in">filter</span>(id__in = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>])  <span class="comment"># __in 范围查询。</span></span><br><span class="line">books = BookInfo.objects.<span class="built_in">filter</span>(id__gt = <span class="number">3</span>)  <span class="comment"># __gt 大于。 __lt 小于。 __gte 大于等于。 __lte 小于等于。</span></span><br><span class="line">books = BookInfo.objects.<span class="built_in">filter</span>(pub_date__gt = date(<span class="number">1980</span>,<span class="number">1</span>,<span class="number">1</span>))  <span class="comment"># 日期查询。</span></span><br><span class="line">books = BookInfo.objects.<span class="built_in">filter</span>(pub_date__year = <span class="number">1980</span>)   <span class="comment"># 日期查询。(year、month、day、week_day、hour、minute、second)</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/04/10/%E6%A8%A1%E5%9E%8B%E5%B1%82/" rel="prev" title="Django之模型层">
+                  <i class="fa fa-chevron-left"></i> Django之模型层
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/04/16/forms%E7%BB%84%E4%BB%B6/" rel="next" title="forms组件">
+                  forms组件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

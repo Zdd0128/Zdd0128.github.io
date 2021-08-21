@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Python常用模块使用模块注意:1234#导入带出模块时应该注意以下几点    1 模块导入能不能找到，取决于路径是否在环境变量中    2 如果包内部，推荐使用相对导入，也可以使用绝对导入    3 如果py文件以脚本形式运行，必须使用绝对导入  一 .time与datetime模块在Python中，通常有这几种方式来表示时间：  时间戳(timestamp)：通常来说，时间戳表示的是从197">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python常用模块">
+<meta property="og:url" content="http://example.com/2018/05/16/%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="Python常用模块使用模块注意:1234#导入带出模块时应该注意以下几点    1 模块导入能不能找到，取决于路径是否在环境变量中    2 如果包内部，推荐使用相对导入，也可以使用绝对导入    3 如果py文件以脚本形式运行，必须使用绝对导入  一 .time与datetime模块在Python中，通常有这几种方式来表示时间：  时间戳(timestamp)：通常来说，时间戳表示的是从197">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1036857/201702/1036857-20170215142700722-743334012.png">
+<meta property="og:image" content="c:/Users/左旗伟/Desktop/功能/其他/subprocess模块.jpg">
+<meta property="og:image" content="c:/Users/左旗伟/Desktop/功能/其他/md5密码加密.jpg">
+<meta property="og:image" content="c:/Users/左旗伟/Desktop/功能/日志的使用/定义.png">
+<meta property="og:image" content="c:/Users/左旗伟/Desktop/功能/日志的使用/1.png">
+<meta property="og:image" content="c:/Users/左旗伟/Desktop/功能/日志的使用/2.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/877318/201609/877318-20160911105642628-530508765.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1036857/201702/1036857-20170215162939035-339680318.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1036857/201702/1036857-20170215164644722-1590025858.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1036857/201705/1036857-20170529203214461-666088398.png">
+<meta property="article:published_time" content="2018-05-16T09:27:55.000Z">
+<meta property="article:modified_time" content="2018-05-16T09:27:55.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/1036857/201702/1036857-20170215142700722-743334012.png">
+
+
+<link rel="canonical" href="http://example.com/2018/05/16/%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2018/05/16/%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/","path":"2018/05/16/常用模块/","title":"Python常用模块"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python常用模块 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">Python常用模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97%E6%B3%A8%E6%84%8F"><span class="nav-number">1.0.1.</span> <span class="nav-text">使用模块注意:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-time%E4%B8%8Edatetime%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.2.</span> <span class="nav-text">一 .time与datetime模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-time"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">1.time</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-datetime"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">2.datetime</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-random%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.3.</span> <span class="nav-text">二 random模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-subprocess%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.4.</span> <span class="nav-text">三.subprocess模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B-hashlib%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.5.</span> <span class="nav-text">四.hashlib模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94-logging%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.6.</span> <span class="nav-text">五.logging模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD-%E5%BA%8F%E5%88%97%E5%8C%96%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.7.</span> <span class="nav-text">六.序列化模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%A4%E5%A4%A7%E7%94%A8%E9%80%94"><span class="nav-number">1.0.7.1.</span> <span class="nav-text">序列化两大用途:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-json"><span class="nav-number">1.0.7.2.</span> <span class="nav-text">6.1 json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-pickle"><span class="nav-number">1.0.7.3.</span> <span class="nav-text">6.2 pickle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8C%B4%E5%AD%90%E8%A1%A5%E4%B8%81"><span class="nav-number">1.0.7.4.</span> <span class="nav-text">猴子补丁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83-re%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.8.</span> <span class="nav-text">七.re模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB-shelve%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.9.</span> <span class="nav-text">八. shelve模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D-xml%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.10.</span> <span class="nav-text">九. xml模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81-configparser%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.11.</span> <span class="nav-text">十.configparser模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%80-os%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.12.</span> <span class="nav-text">十一.os模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C-sys%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.13.</span> <span class="nav-text">十二.sys模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%89-shutil%E6%A8%A1%E5%9D%97"><span class="nav-number">1.0.14.</span> <span class="nav-text">十三. shutil模块</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/16/%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python常用模块
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-05-16 17:27:55" itemprop="dateCreated datePublished" datetime="2018-05-16T17:27:55+08:00">2018-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Python常用模块"><a href="#Python常用模块" class="headerlink" title="Python常用模块"></a>Python常用模块</h1><h3 id="使用模块注意"><a href="#使用模块注意" class="headerlink" title="使用模块注意:"></a>使用模块注意:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入带出模块时应该注意以下几点</span></span><br><span class="line">    <span class="number">1</span> 模块导入能不能找到，取决于路径是否在环境变量中</span><br><span class="line">    <span class="number">2</span> 如果包内部，推荐使用相对导入，也可以使用绝对导入</span><br><span class="line">    <span class="number">3</span> 如果py文件以脚本形式运行，必须使用绝对导入</span><br></pre></td></tr></table></figure>
+
+<h3 id="一-time与datetime模块"><a href="#一-time与datetime模块" class="headerlink" title="一 .time与datetime模块"></a>一 .time与datetime模块</h3><p>在Python中，通常有这几种方式来表示时间：</p>
+<ul>
+<li>时间戳(timestamp)：通常来说，时间戳表示的是从1970年1月1日00:00:00开始按秒计算的偏移量。我们运行“type(time.time())”，返回的是float类型。</li>
+<li>格式化的时间字符串(Format String)</li>
+<li>结构化的时间(struct_time)：struct_time元组共有9个元素共九个元素:(年，月，日，时，分，秒，一年中第几周，一年中第几天，夏令时)</li>
+</ul>
+<p>其中计算机认识的时间只能是’时间戳’格式，而程序员可处理的或者说人类能看懂的时间有: ‘格式化的时间字符串’，’结构化的时间’ ，于是有了下图的转换关系</p>
+<p><img src="https://images2015.cnblogs.com/blog/1036857/201702/1036857-20170215142700722-743334012.png" alt="img"></p>
+<h4 id="1-time"><a href="#1-time" class="headerlink" title="1.time"></a>1.time</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">时间分为三种格式</span><br><span class="line">1、时间戳</span><br><span class="line">	print(time.time())</span><br><span class="line"></span><br><span class="line">2、格式化的字符</span><br><span class="line">	print(time.strftime(&#x27;%Y-%m-%d %H:%M:%S %p&#x27;))</span><br><span class="line"></span><br><span class="line">3、结构化的时间对象</span><br><span class="line">	obj = time.localtime()</span><br><span class="line">	print(obj.tm_year)</span><br><span class="line">	print(obj.tm_wday)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-datetime"><a href="#2-datetime" class="headerlink" title="2.datetime"></a>2.datetime</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">时间加减</span><br><span class="line">import datetime</span><br><span class="line"></span><br><span class="line"># print(datetime.datetime.now()) #返回 2016-08-19 12:47:03.941925</span><br><span class="line">#print(datetime.date.fromtimestamp(time.time()) )  # 时间戳直接转成日期格式 2016-08-19</span><br><span class="line"># print(datetime.datetime.now() )</span><br><span class="line"># print(datetime.datetime.now() + datetime.timedelta(3)) #当前时间+3天</span><br><span class="line"># print(datetime.datetime.now() + datetime.timedelta(-3)) #当前时间-3天</span><br><span class="line"># print(datetime.datetime.now() + datetime.timedelta(hours=3)) #当前时间+3小时</span><br><span class="line"># print(datetime.datetime.now() + datetime.timedelta(minutes=30)) #当前时间+30分</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># c_time  = datetime.datetime.now()</span><br><span class="line"># print(c_time.replace(minute=3,hour=2)) #时间替换</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-random模块"><a href="#二-random模块" class="headerlink" title="二 random模块"></a>二 random模块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">1. import random </span><br><span class="line">2. print(random.random())#(0,1)----float    大于0且小于1之间的小数</span><br><span class="line">3. print(random.randint(1,3))  #[1,3]    大于等于1且小于等于3之间的整数</span><br><span class="line">4. print(random.randrange(1,3)) #[1,3)    大于等于1且小于3之间的整数 </span><br><span class="line">5. print(random.choice([1,&#x27;23&#x27;,[4,5]]))#1或者23或者[4,5]</span><br><span class="line">6. print(random.sample([1,&#x27;23&#x27;,[4,5]],2))#列表元素任意2个组合</span><br><span class="line">7. print(random.uniform(1,3))#大于1小于3的小数，如1.927109612082716  </span><br><span class="line">8. item=[1,3,5,7,9]</span><br><span class="line">9. random.shuffle(item) #打乱item的顺序,相当于&quot;洗牌&quot;</span><br><span class="line">10. print(item)</span><br><span class="line"></span><br><span class="line">chr(65)到chr(90)  对应  ASCII表中&#x27;A&#x27;到&#x27;Z&#x27;</span><br><span class="line">chr(97)到chr(122)  对应  ASCII表中&#x27;a&#x27;到&#x27;z&#x27;</span><br><span class="line"></span><br><span class="line">编写随机验证码:</span><br><span class="line">import random</span><br><span class="line">def make_code(size=6):</span><br><span class="line">    res = &#x27;&#x27;</span><br><span class="line">    for i in range(size):</span><br><span class="line">        num = str(random.randint(0, 9))</span><br><span class="line">        alpha = chr(random.randint(65, 90))</span><br><span class="line">        res += random.choice([num, alpha])</span><br><span class="line">    return res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(make_code())</span><br></pre></td></tr></table></figure>
+
+<h3 id="三-subprocess模块"><a href="#三-subprocess模块" class="headerlink" title="三.subprocess模块"></a>三.subprocess模块</h3><p><img src="C:\Users\左旗伟\Desktop\功能\其他\subprocess模块.jpg" alt="subprocess模块"></p>
+<h3 id="四-hashlib模块"><a href="#四-hashlib模块" class="headerlink" title="四.hashlib模块"></a>四.hashlib模块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">交给hash算法一串内容，hash算法会计算出一个值，该值称之为哈希值</span><br><span class="line">哈希值有三大特点:</span><br><span class="line">    特点1、只要采用hash算法一样，并且传入的内容一样，那么hash值一定一样</span><br><span class="line">    特点2、hash值的长度取决于算法，与传入内容的多少无关</span><br><span class="line">    特点3、hash值不可逆推</span><br><span class="line">哈希值两大用途:</span><br><span class="line">    1、文件内容完整性校验 = 特点1 + 特点2</span><br><span class="line">    2、加密 = 特点3</span><br><span class="line">加密:</span><br><span class="line">	import hashlib</span><br><span class="line"></span><br><span class="line">    m = hashlib.md5()</span><br><span class="line"></span><br><span class="line">    m.update(&quot;天王盖地虎&quot;.encode(&#x27;utf-8&#x27;))</span><br><span class="line">    m.update(&quot;egon123&quot;.encode(&#x27;utf-8&#x27;))</span><br><span class="line">    m.update(&quot;小鸡炖蘑菇&quot;.encode(&#x27;utf-8&#x27;))</span><br><span class="line"></span><br><span class="line">    print(m.hexdigest())</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\左旗伟\Desktop\功能\其他\md5密码加密.jpg" alt="md5密码加密"></p>
+<p>python 还有一个 hmac 模块，它内部对我们创建 key 和 内容 进行进一步的处理然后再加密:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import hmac</span><br><span class="line">h1=hmac.new(&#x27;hello&#x27;.encode(&#x27;utf-8&#x27;),digestmod=&#x27;md5&#x27;)</span><br><span class="line">h1.update(&#x27;world&#x27;.encode(&#x27;utf-8&#x27;))</span><br><span class="line"></span><br><span class="line">print(h1.hexdigest())</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#要想保证hmac最终结果一致，必须保证：</span><br><span class="line">#1:hmac.new括号内指定的初始key一样</span><br><span class="line">#2:无论update多少次，校验的内容累加到一起是一样的内容</span><br><span class="line"></span><br><span class="line"># 操作一</span><br><span class="line">import hmac</span><br><span class="line">h1=hmac.new(&#x27;hello&#x27;.encode(&#x27;utf-8&#x27;),digestmod=&#x27;md5&#x27;)</span><br><span class="line">h1.update(&#x27;world&#x27;.encode(&#x27;utf-8&#x27;))</span><br><span class="line"></span><br><span class="line">print(h1.hexdigest()) # 0e2564b7e100f034341ea477c23f283b</span><br><span class="line"></span><br><span class="line"># 操作二</span><br><span class="line">import hmac</span><br><span class="line">h2=hmac.new(&#x27;hello&#x27;.encode(&#x27;utf-8&#x27;),digestmod=&#x27;md5&#x27;)</span><br><span class="line">h2.update(&#x27;w&#x27;.encode(&#x27;utf-8&#x27;))</span><br><span class="line">h2.update(&#x27;orld&#x27;.encode(&#x27;utf-8&#x27;))</span><br><span class="line"></span><br><span class="line">print(h1.hexdigest()) # 0e2564b7e100f034341ea477c23f283b</span><br></pre></td></tr></table></figure>
+
+<h3 id="五-logging模块"><a href="#五-logging模块" class="headerlink" title="五.logging模块"></a>五.logging模块</h3><p>定义:</p>
+<p><img src="C:\Users\左旗伟\Desktop\功能\日志的使用\定义.png" alt="定义"></p>
+<p>调用:</p>
+<p><img src="C:\Users\左旗伟\Desktop\功能\日志的使用\1.png" alt="1"></p>
+<p><img src="C:\Users\左旗伟\Desktop\功能\日志的使用\2.png" alt="2"></p>
+<p>日志配置文件:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">logging配置</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line"># 1、定义三种日志输出格式，日志中可能用到的格式化串如下</span><br><span class="line"># %(name)s Logger的名字</span><br><span class="line"># %(levelno)s 数字形式的日志级别</span><br><span class="line"># %(levelname)s 文本形式的日志级别</span><br><span class="line"># %(pathname)s 调用日志输出函数的模块的完整路径名，可能没有</span><br><span class="line"># %(filename)s 调用日志输出函数的模块的文件名</span><br><span class="line"># %(module)s 调用日志输出函数的模块名</span><br><span class="line"># %(funcName)s 调用日志输出函数的函数名</span><br><span class="line"># %(lineno)d 调用日志输出函数的语句所在的代码行</span><br><span class="line"># %(created)f 当前时间，用UNIX标准的表示时间的浮 点数表示</span><br><span class="line"># %(relativeCreated)d 输出日志信息时的，自Logger创建以 来的毫秒数</span><br><span class="line"># %(asctime)s 字符串形式的当前时间。默认格式是 “2003-07-08 16:49:45,896”。逗号后面的是毫秒</span><br><span class="line"># %(thread)d 线程ID。可能没有</span><br><span class="line"># %(threadName)s 线程名。可能没有</span><br><span class="line"># %(process)d 进程ID。可能没有</span><br><span class="line"># %(message)s用户输出的消息</span><br><span class="line"></span><br><span class="line"># 2、强调：其中的%(name)s为getlogger时指定的名字</span><br><span class="line">standard_format = &#x27;[%(asctime)s][%(threadName)s:%(thread)d][task_id:%(name)s][%(filename)s:%(lineno)d]&#x27; \</span><br><span class="line">                  &#x27;[%(levelname)s][%(message)s]&#x27;</span><br><span class="line"></span><br><span class="line">simple_format = &#x27;[%(levelname)s][%(asctime)s][%(filename)s:%(lineno)d]%(message)s&#x27;</span><br><span class="line"></span><br><span class="line">test_format = &#x27;%(asctime)s] %(message)s&#x27;</span><br><span class="line"></span><br><span class="line"># 3、日志配置字典</span><br><span class="line">LOGGING_DIC = &#123;</span><br><span class="line">    &#x27;version&#x27;: 1,</span><br><span class="line">    &#x27;disable_existing_loggers&#x27;: False,</span><br><span class="line">    &#x27;formatters&#x27;: &#123;</span><br><span class="line">        &#x27;standard&#x27;: &#123;</span><br><span class="line">            &#x27;format&#x27;: standard_format</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x27;simple&#x27;: &#123;</span><br><span class="line">            &#x27;format&#x27;: simple_format</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x27;test&#x27;: &#123;</span><br><span class="line">            &#x27;format&#x27;: test_format</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x27;filters&#x27;: &#123;&#125;,</span><br><span class="line">    &#x27;handlers&#x27;: &#123;</span><br><span class="line">        # 打印到终端的日志</span><br><span class="line">        &#x27;console&#x27;: &#123;</span><br><span class="line">            &#x27;level&#x27;: &#x27;DEBUG&#x27;,</span><br><span class="line">            &#x27;class&#x27;: &#x27;logging.StreamHandler&#x27;,  # 打印到屏幕</span><br><span class="line">            &#x27;formatter&#x27;: &#x27;simple&#x27;</span><br><span class="line">        &#125;,</span><br><span class="line">        # 打印到文件的日志,收集info及以上的日志</span><br><span class="line">        &#x27;default&#x27;: &#123;</span><br><span class="line">            &#x27;level&#x27;: &#x27;DEBUG&#x27;,</span><br><span class="line">            &#x27;class&#x27;: &#x27;logging.handlers.RotatingFileHandler&#x27;,  # 保存到文件,日志轮转</span><br><span class="line">            &#x27;formatter&#x27;: &#x27;standard&#x27;,</span><br><span class="line">            # 可以定制日志文件路径</span><br><span class="line">            # BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # log文件的目录</span><br><span class="line">            # LOG_PATH = os.path.join(BASE_DIR,&#x27;a1.log&#x27;)</span><br><span class="line">            &#x27;filename&#x27;: os.path.join(</span><br><span class="line">                BASE_PATH, &#x27;log&#x27;, &#x27;log1.log&#x27;),  # 日志文件</span><br><span class="line">            &#x27;maxBytes&#x27;: 1024 * 1024 * 5,  # 日志大小 5M</span><br><span class="line">            &#x27;backupCount&#x27;: 5,</span><br><span class="line">            &#x27;encoding&#x27;: &#x27;utf-8&#x27;,  # 日志文件的编码，再也不用担心中文log乱码了</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x27;other&#x27;: &#123;</span><br><span class="line">            &#x27;level&#x27;: &#x27;DEBUG&#x27;,</span><br><span class="line">            &#x27;class&#x27;: &#x27;logging.FileHandler&#x27;,  # 保存到文件</span><br><span class="line">            &#x27;formatter&#x27;: &#x27;test&#x27;,</span><br><span class="line">            &#x27;filename&#x27;: os.path.join(</span><br><span class="line">                BASE_PATH, &#x27;log&#x27;, &#x27;log2.log&#x27;),</span><br><span class="line">            &#x27;encoding&#x27;: &#x27;utf-8&#x27;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x27;loggers&#x27;: &#123;</span><br><span class="line">        # logging.getLogger(__name__)拿到的logger配置</span><br><span class="line">        &#x27;&#x27;: &#123;</span><br><span class="line">            &#x27;handlers&#x27;: [&#x27;default&#x27;, &#x27;console&#x27;],  # 这里把上面定义的两个handler都加上，即log数据既写入文件又打印到屏幕</span><br><span class="line">            &#x27;level&#x27;: &#x27;DEBUG&#x27;,  # loggers(第一层日志级别关限制)---&gt;handlers(第二层日志级别关卡限制)</span><br><span class="line">            &#x27;propagate&#x27;: False,  # 默认为True，向上（更高level的logger）传递，通常设置为False即可，否则会一份日志向上层层传递</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x27;专门的采集&#x27;: &#123;</span><br><span class="line">            &#x27;handlers&#x27;: [&#x27;other&#x27;, ],</span><br><span class="line">            &#x27;level&#x27;: &#x27;DEBUG&#x27;,</span><br><span class="line">            &#x27;propagate&#x27;: False,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="六-序列化模块"><a href="#六-序列化模块" class="headerlink" title="六.序列化模块"></a>六.序列化模块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.什么是序列化?</span><br><span class="line">	我们把对象(变量)从内存中变成可存储或传输的过程称之为序列化，在Python中叫pickling，在其他语言中也被称之为serialization，marshalling，flattening等等，都是一个意思。</span><br><span class="line">2.为什么要序列化?</span><br><span class="line">	1：持久保存状态</span><br><span class="line">	2：跨平台数据交互</span><br></pre></td></tr></table></figure>
+
+<h4 id="序列化两大用途"><a href="#序列化两大用途" class="headerlink" title="序列化两大用途:"></a>序列化两大用途:</h4><p>​                1.存档(pickle)</p>
+<p>​                2.跨平台交互数据（需要使用一种通用的数据格式-&gt;json）</p>
+<h4 id="6-1-json"><a href="#6-1-json" class="headerlink" title="6.1 json"></a>6.1 json</h4><p><img src="https://images2015.cnblogs.com/blog/877318/201609/877318-20160911105642628-530508765.png" alt="img"></p>
+<p><img src="https://images2015.cnblogs.com/blog/1036857/201702/1036857-20170215162939035-339680318.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line"></span><br><span class="line">dic=&#123;&#x27;name&#x27;:&#x27;alvin&#x27;,&#x27;age&#x27;:23,&#x27;sex&#x27;:&#x27;male&#x27;&#125;</span><br><span class="line">print(type(dic))#&lt;class &#x27;dict&#x27;&gt;</span><br><span class="line"></span><br><span class="line">j=json.dumps(dic)</span><br><span class="line">print(type(j))#&lt;class &#x27;str&#x27;&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f=open(&#x27;序列化对象&#x27;,&#x27;w&#x27;)</span><br><span class="line">f.write(j)  #-------------------等价于json.dump(dic,f)</span><br><span class="line">f.close()</span><br><span class="line">#-----------------------------反序列化&lt;br&gt;</span><br><span class="line">import json</span><br><span class="line">f=open(&#x27;序列化对象&#x27;)</span><br><span class="line">data=json.loads(f.read())#  等价于data=json.load(f)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">注意点:</span><br><span class="line">    import json</span><br><span class="line">    #dct=&quot;&#123;&#x27;1&#x27;:111&#125;&quot;#json 不认单引号</span><br><span class="line">    #dct=str(&#123;&quot;1&quot;:111&#125;)#报错,因为生成的数据还是单引号:&#123;&#x27;one&#x27;: 1&#125;</span><br><span class="line"></span><br><span class="line">    dct=&#x27;&#123;&quot;1&quot;:&quot;111&quot;&#125;&#x27;</span><br><span class="line">    print(json.loads(dct))</span><br><span class="line"></span><br><span class="line">    #conclusion:</span><br><span class="line">    #无论数据是怎样创建的，只要满足json格式，就可以json.loads出来,不一定非要dumps的数据才能loads</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line"></span><br><span class="line">1.json 格式的序列化与反序列化方式一</span><br><span class="line">    dic = &#123;&#x27;name&#x27;:&quot;egon&quot;,&quot;age&quot;:18.5,&quot;k1&quot;:True,&#x27;k2&#x27;:None,&#x27;k3&#x27;:(1,2,3)&#125;</span><br><span class="line">    json_str = json.dumps(dic)</span><br><span class="line">    print(json_str,type(json_str))</span><br><span class="line">    with open(&#x27;a.json&#x27;,mode=&#x27;wt&#x27;,encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">        f.write(json_str)</span><br><span class="line"></span><br><span class="line">    with open(&#x27;a.json&#x27;,mode=&#x27;rt&#x27;,encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">        json_str = f.read()</span><br><span class="line">        res = json.loads(json_str)</span><br><span class="line">        print(res,type(res))</span><br><span class="line"></span><br><span class="line">2.json 格式的序列化与反序列化方式二:</span><br><span class="line">    dic = &#123;&#x27;name&#x27;:&quot;egon&quot;,&quot;age&quot;:18.5,&quot;k1&quot;:True,&#x27;k2&#x27;:None,&#x27;k3&#x27;:(1,2,3)&#125;</span><br><span class="line">    with open(&#x27;a.json&#x27;,mode=&#x27;wt&#x27;,encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">        json.dump(dic,f)</span><br><span class="line"></span><br><span class="line">    with open(&#x27;a.json&#x27;,mode=&#x27;rt&#x27;,encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">        res = json.load(f)</span><br><span class="line">        print(res,type(res))</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-pickle"><a href="#6-2-pickle" class="headerlink" title="6.2 pickle"></a>6.2 pickle</h4><p><img src="https://images2015.cnblogs.com/blog/1036857/201702/1036857-20170215164644722-1590025858.png" alt="img"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line">dic=&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;alvin&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:<span class="number">23</span>,<span class="string">&#x27;sex&#x27;</span>:<span class="string">&#x27;male&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(dic))<span class="comment">#&lt;class &#x27;dict&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line">j=pickle.dumps(dic)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(j))<span class="comment">#&lt;class &#x27;bytes&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f=<span class="built_in">open</span>(<span class="string">&#x27;序列化对象_pickle&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)<span class="comment">#注意是w是写入str,wb是写入bytes,j是&#x27;bytes&#x27;</span></span><br><span class="line">f.write(j)  <span class="comment">#-------------------等价于pickle.dump(dic,f)</span></span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line"><span class="comment">#-------------------------反序列化</span></span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">f=<span class="built_in">open</span>(<span class="string">&#x27;序列化对象_pickle&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line"></span><br><span class="line">data=pickle.loads(f.read())<span class="comment">#  等价于data=pickle.load(f)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(data[<span class="string">&#x27;age&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import pickle</span><br><span class="line"></span><br><span class="line">1.json 格式的序列化与反序列化方式一</span><br><span class="line">    dic = &#123;&#x27;name&#x27;:&quot;egon&quot;,&quot;age&quot;:18.5,&quot;k1&quot;:True,&#x27;k2&#x27;:None,&#x27;k3&#x27;:(1,2,3)&#125;</span><br><span class="line">    json_str = pickle.dumps(dic)</span><br><span class="line">    print(json_str,type(json_str))</span><br><span class="line">    with open(&#x27;a.json&#x27;,mode=&#x27;wt&#x27;,encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">        f.write(json_str)</span><br><span class="line"></span><br><span class="line">    with open(&#x27;a.json&#x27;,mode=&#x27;rt&#x27;,encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">        json_str = f.read()</span><br><span class="line">        res = pickle.loads(json_str)</span><br><span class="line">        print(res,type(res))</span><br><span class="line"></span><br><span class="line">2.json 格式的序列化与反序列化方式二:</span><br><span class="line">    dic = &#123;&#x27;name&#x27;:&quot;egon&quot;,&quot;age&quot;:18.5,&quot;k1&quot;:True,&#x27;k2&#x27;:None,&#x27;k3&#x27;:(1,2,3)&#125;</span><br><span class="line">    with open(&#x27;a.json&#x27;,mode=&#x27;wt&#x27;,encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">        pickle.dump(dic,f)</span><br><span class="line"></span><br><span class="line">    with open(&#x27;a.json&#x27;,mode=&#x27;rt&#x27;,encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">        res = pickle.load(f)</span><br><span class="line">        print(res,type(res))</span><br></pre></td></tr></table></figure>
+
+<h4 id="猴子补丁"><a href="#猴子补丁" class="headerlink" title="猴子补丁"></a>猴子补丁</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"># 一.什么是猴子补丁?</span><br><span class="line">      属性在运行时的动态替换，叫做猴子补丁（Monkey Patch）。</span><br><span class="line">      猴子补丁的核心就是用自己的代码替换所用模块的源代码，详细地如下</span><br><span class="line">　　1，这个词原来为Guerrilla Patch，杂牌军、游击队，说明这部分不是原装的，在英文里guerilla发音和gorllia(猩猩)相似，再后来就写了monkey(猴子)。</span><br><span class="line">　　2，还有一种解释是说由于这种方式将原来的代码弄乱了(messing with it)，在英文里叫monkeying about(顽皮的)，所以叫做Monkey Patch。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 二. 猴子补丁的功能(一切皆对象)</span><br><span class="line">　　1.拥有在模块运行时替换的功能, 例如: 一个函数对象赋值给另外一个函数对象(把函数原本的执行的功能给替换了)</span><br><span class="line">class Monkey:</span><br><span class="line">    def hello(self):</span><br><span class="line">        print(&#x27;hello&#x27;)</span><br><span class="line"></span><br><span class="line">    def world(self):</span><br><span class="line">        print(&#x27;world&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def other_func():</span><br><span class="line">    print(&quot;from other_func&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">monkey = Monkey()</span><br><span class="line">monkey.hello = monkey.world</span><br><span class="line">monkey.hello()</span><br><span class="line">monkey.world = other_func</span><br><span class="line">monkey.world()</span><br><span class="line"></span><br><span class="line"># 三.monkey patch的应用场景</span><br><span class="line">如果我们的程序中已经基于json模块编写了大量代码了，发现有一个模块ujson比它性能更高，</span><br><span class="line">但用法一样，我们肯定不会想所有的代码都换成ujson.dumps或者ujson.loads,那我们可能</span><br><span class="line">会想到这么做</span><br><span class="line">import ujson as json，但是这么做的需要每个文件都重新导入一下，维护成本依然很高</span><br><span class="line">此时我们就可以用到猴子补丁了</span><br><span class="line">只需要在入口处加上</span><br><span class="line">, 只需要在入口加上:</span><br><span class="line"></span><br><span class="line">import json</span><br><span class="line">import ujson</span><br><span class="line"></span><br><span class="line">def monkey_patch_json():</span><br><span class="line">    json.__name__ = &#x27;ujson&#x27;</span><br><span class="line">    json.dumps = ujson.dumps</span><br><span class="line">    json.loads = ujson.loads</span><br><span class="line"></span><br><span class="line">monkey_patch_json() # 之所以在入口处加，是因为模块在导入一次后，后续的导入便直接引用第一次的成果</span><br><span class="line"></span><br><span class="line">#其实这种场景也比较多, 比如我们引用团队通用库里的一个模块, 又想丰富模块的功能, 除了继承之外也可以考虑用Monkey</span><br><span class="line">Patch.采用猴子补丁之后，如果发现ujson不符合预期，那也可以快速撤掉补丁。个人感觉Monkey</span><br><span class="line">Patch带了便利的同时也有搞乱源代码的风险!</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">猴子补丁与ujson</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="七-re模块"><a href="#七-re模块" class="headerlink" title="七.re模块"></a>七.re模块</h3><p>正则表达式</p>
+<p>一：什么是正则？</p>
+<p>　<strong>正则就是用一些具有特殊含义的符号组合到一起（称为正则表达式）来描述字符或者字符串的方法。或者说：正则就是用来描述一类事物的规则</strong></p>
+<p><img src="https://images2015.cnblogs.com/blog/1036857/201705/1036857-20170529203214461-666088398.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.: 代表匹配一个字符，该字符可以是除了换行符之外的任意字符</span><br><span class="line">[]: 代表匹配一个字符，该字符可以是指定的字符</span><br><span class="line">*: 左边那一个符号出现0次到无穷次</span><br><span class="line">？:左边那一个符号出现0次到1次</span><br><span class="line">+:左边那一个符号出现1次到无穷次</span><br><span class="line">&#123;n,m&#125;:左边那一个符号出现n次到m次</span><br><span class="line">.*:默认为贪婪匹配,代表匹配尽可能多的字符</span><br><span class="line">.*?:为非贪婪匹配：推荐使用,匹配尽可能少的字符</span><br><span class="line"></span><br><span class="line">总结:</span><br><span class="line">	尽量精简,详细的如下</span><br><span class="line">        尽量使用泛匹配模式.*</span><br><span class="line">        尽量使用非贪婪模式:.*?</span><br><span class="line">        使用括号得到匹配目标:用group(n)去取得结果</span><br><span class="line">        换行符就用re.S:修改模式</span><br></pre></td></tr></table></figure>
+
+<h3 id="八-shelve模块"><a href="#八-shelve模块" class="headerlink" title="八. shelve模块"></a>八. shelve模块</h3><p> shelve模块比pickle模块简单，只有一个open函数，返回类似字典的对象，可读可写;key必须为字符串，而值可以是python所支持的数据类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import shelve</span><br><span class="line"></span><br><span class="line">f=shelve.open(r&#x27;sheve.txt&#x27;)</span><br><span class="line"># f[&#x27;stu1_info&#x27;]=&#123;&#x27;name&#x27;:&#x27;egon&#x27;,&#x27;age&#x27;:18,&#x27;hobby&#x27;:[&#x27;piao&#x27;,&#x27;smoking&#x27;,&#x27;drinking&#x27;]&#125;</span><br><span class="line"># f[&#x27;stu2_info&#x27;]=&#123;&#x27;name&#x27;:&#x27;gangdan&#x27;,&#x27;age&#x27;:53&#125;</span><br><span class="line"># f[&#x27;school_info&#x27;]=&#123;&#x27;website&#x27;:&#x27;http://www.pypy.org&#x27;,&#x27;city&#x27;:&#x27;beijing&#x27;&#125;</span><br><span class="line"></span><br><span class="line">print(f[&#x27;stu1_info&#x27;][&#x27;hobby&#x27;])</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+<h3 id="九-xml模块"><a href="#九-xml模块" class="headerlink" title="九. xml模块"></a>九. xml模块</h3><p>xml是实现不同语言或程序之间进行数据交换的协议，跟json差不多，但json使用起来更简单，不过，古时候，在json还没诞生的黑暗年代，大家只能选择用xml呀，至今很多传统公司如金融行业的很多系统的接口还主要是xml。</p>
+<p>xml的格式如下，就是通过&lt;&gt;节点来区别数据结构的:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;data&gt;</span><br><span class="line">    &lt;country name=&quot;Liechtenstein&quot;&gt;</span><br><span class="line">        &lt;rank updated=&quot;yes&quot;&gt;2&lt;/rank&gt;</span><br><span class="line">        &lt;year&gt;2008&lt;/year&gt;</span><br><span class="line">        &lt;gdppc&gt;141100&lt;/gdppc&gt;</span><br><span class="line">        &lt;neighbor name=&quot;Austria&quot; direction=&quot;E&quot;/&gt;</span><br><span class="line">        &lt;neighbor name=&quot;Switzerland&quot; direction=&quot;W&quot;/&gt;</span><br><span class="line">    &lt;/country&gt;</span><br><span class="line">    &lt;country name=&quot;Singapore&quot;&gt;</span><br><span class="line">        &lt;rank updated=&quot;yes&quot;&gt;5&lt;/rank&gt;</span><br><span class="line">        &lt;year&gt;2011&lt;/year&gt;</span><br><span class="line">        &lt;gdppc&gt;59900&lt;/gdppc&gt;</span><br><span class="line">        &lt;neighbor name=&quot;Malaysia&quot; direction=&quot;N&quot;/&gt;</span><br><span class="line">    &lt;/country&gt;</span><br><span class="line">    &lt;country name=&quot;Panama&quot;&gt;</span><br><span class="line">        &lt;rank updated=&quot;yes&quot;&gt;69&lt;/rank&gt;</span><br><span class="line">        &lt;year&gt;2011&lt;/year&gt;</span><br><span class="line">        &lt;gdppc&gt;13600&lt;/gdppc&gt;</span><br><span class="line">        &lt;neighbor name=&quot;Costa Rica&quot; direction=&quot;W&quot;/&gt;</span><br><span class="line">        &lt;neighbor name=&quot;Colombia&quot; direction=&quot;E&quot;/&gt;</span><br><span class="line">    &lt;/country&gt;</span><br><span class="line">&lt;/data&gt;</span><br><span class="line"></span><br><span class="line">xml数据</span><br></pre></td></tr></table></figure>
+
+<p>xml协议在各个语言里的都 是支持的，在python中可以用以下模块操作xml：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># print(root.iter(&#x27;year&#x27;)) #全文搜索</span><br><span class="line"># print(root.find(&#x27;country&#x27;)) #在root的子节点找，只找一个</span><br><span class="line"># print(root.findall(&#x27;country&#x27;)) #在root的子节点找，找所有</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import xml.etree.ElementTree as ET</span><br><span class="line"> </span><br><span class="line">tree = ET.parse(&quot;xmltest.xml&quot;)</span><br><span class="line">root = tree.getroot()</span><br><span class="line">print(root.tag)</span><br><span class="line"> </span><br><span class="line">#遍历xml文档</span><br><span class="line">for child in root:</span><br><span class="line">    print(&#x27;========&gt;&#x27;,child.tag,child.attrib,child.attrib[&#x27;name&#x27;])</span><br><span class="line">    for i in child:</span><br><span class="line">        print(i.tag,i.attrib,i.text)</span><br><span class="line"> </span><br><span class="line">#只遍历year 节点</span><br><span class="line">for node in root.iter(&#x27;year&#x27;):</span><br><span class="line">    print(node.tag,node.text)</span><br><span class="line">#---------------------------------------</span><br><span class="line"></span><br><span class="line">import xml.etree.ElementTree as ET</span><br><span class="line"> </span><br><span class="line">tree = ET.parse(&quot;xmltest.xml&quot;)</span><br><span class="line">root = tree.getroot()</span><br><span class="line"> </span><br><span class="line">#修改</span><br><span class="line">for node in root.iter(&#x27;year&#x27;):</span><br><span class="line">    new_year=int(node.text)+1</span><br><span class="line">    node.text=str(new_year)</span><br><span class="line">    node.set(&#x27;updated&#x27;,&#x27;yes&#x27;)</span><br><span class="line">    node.set(&#x27;version&#x27;,&#x27;1.0&#x27;)</span><br><span class="line">tree.write(&#x27;test.xml&#x27;)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">#删除node</span><br><span class="line">for country in root.findall(&#x27;country&#x27;):</span><br><span class="line">   rank = int(country.find(&#x27;rank&#x27;).text)</span><br><span class="line">   if rank &gt; 50:</span><br><span class="line">     root.remove(country)</span><br><span class="line"> </span><br><span class="line">tree.write(&#x27;output.xml&#x27;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#在country内添加（append）节点year2</span><br><span class="line">import xml.etree.ElementTree as ET</span><br><span class="line">tree = ET.parse(&quot;a.xml&quot;)</span><br><span class="line">root=tree.getroot()</span><br><span class="line">for country in root.findall(&#x27;country&#x27;):</span><br><span class="line">    for year in country.findall(&#x27;year&#x27;):</span><br><span class="line">        if int(year.text) &gt; 2000:</span><br><span class="line">            year2=ET.Element(&#x27;year2&#x27;)</span><br><span class="line">            year2.text=&#x27;新年&#x27;</span><br><span class="line">            year2.attrib=&#123;&#x27;update&#x27;:&#x27;yes&#x27;&#125;</span><br><span class="line">            country.append(year2) #往country节点下添加子节点</span><br><span class="line"></span><br><span class="line">tree.write(&#x27;a.xml.swap&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>自己创建xml文档：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import xml.etree.ElementTree as ET</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">new_xml = ET.Element(&quot;namelist&quot;)</span><br><span class="line">name = ET.SubElement(new_xml,&quot;name&quot;,attrib=&#123;&quot;enrolled&quot;:&quot;yes&quot;&#125;)</span><br><span class="line">age = ET.SubElement(name,&quot;age&quot;,attrib=&#123;&quot;checked&quot;:&quot;no&quot;&#125;)</span><br><span class="line">sex = ET.SubElement(name,&quot;sex&quot;)</span><br><span class="line">sex.text = &#x27;33&#x27;</span><br><span class="line">name2 = ET.SubElement(new_xml,&quot;name&quot;,attrib=&#123;&quot;enrolled&quot;:&quot;no&quot;&#125;)</span><br><span class="line">age = ET.SubElement(name2,&quot;age&quot;)</span><br><span class="line">age.text = &#x27;19&#x27;</span><br><span class="line"> </span><br><span class="line">et = ET.ElementTree(new_xml) #生成文档对象</span><br><span class="line">et.write(&quot;test.xml&quot;, encoding=&quot;utf-8&quot;,xml_declaration=True)</span><br><span class="line"> </span><br><span class="line">ET.dump(new_xml) #打印生成的格式</span><br></pre></td></tr></table></figure>
+
+<h3 id="十-configparser模块"><a href="#十-configparser模块" class="headerlink" title="十.configparser模块"></a>十.configparser模块</h3><p><strong>配置文件如下：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 注释1</span><br><span class="line">; 注释2</span><br><span class="line"></span><br><span class="line">[section1]</span><br><span class="line">k1 = v1</span><br><span class="line">k2:v2</span><br><span class="line">user=egon</span><br><span class="line">age=18</span><br><span class="line">is_admin=true</span><br><span class="line">salary=31</span><br><span class="line">[section2]</span><br><span class="line">k1 = v1</span><br></pre></td></tr></table></figure>
+
+<p><strong>读取</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import configparser</span><br><span class="line"></span><br><span class="line">config=configparser.ConfigParser()</span><br><span class="line">config.read(&#x27;a.cfg&#x27;)</span><br><span class="line"></span><br><span class="line">#查看所有的标题</span><br><span class="line">res=config.sections() #[&#x27;section1&#x27;, &#x27;section2&#x27;]</span><br><span class="line">print(res)</span><br><span class="line"></span><br><span class="line">#查看标题section1下所有key=value的key</span><br><span class="line">options=config.options(&#x27;section1&#x27;)</span><br><span class="line">print(options) #[&#x27;k1&#x27;, &#x27;k2&#x27;, &#x27;user&#x27;, &#x27;age&#x27;, &#x27;is_admin&#x27;, &#x27;salary&#x27;]</span><br><span class="line"></span><br><span class="line">#查看标题section1下所有key=value的(key,value)格式</span><br><span class="line">item_list=config.items(&#x27;section1&#x27;)</span><br><span class="line">print(item_list) #[(&#x27;k1&#x27;, &#x27;v1&#x27;), (&#x27;k2&#x27;, &#x27;v2&#x27;), (&#x27;user&#x27;, &#x27;egon&#x27;), (&#x27;age&#x27;, &#x27;18&#x27;), (&#x27;is_admin&#x27;, &#x27;true&#x27;), (&#x27;salary&#x27;, &#x27;31&#x27;)]</span><br><span class="line"></span><br><span class="line">#查看标题section1下user的值=&gt;字符串格式</span><br><span class="line">val=config.get(&#x27;section1&#x27;,&#x27;user&#x27;)</span><br><span class="line">print(val) #egon</span><br><span class="line"></span><br><span class="line">#查看标题section1下age的值=&gt;整数格式</span><br><span class="line">val1=config.getint(&#x27;section1&#x27;,&#x27;age&#x27;)</span><br><span class="line">print(val1) #18</span><br><span class="line"></span><br><span class="line">#查看标题section1下is_admin的值=&gt;布尔值格式</span><br><span class="line">val2=config.getboolean(&#x27;section1&#x27;,&#x27;is_admin&#x27;)</span><br><span class="line">print(val2) #True</span><br><span class="line"></span><br><span class="line">#查看标题section1下salary的值=&gt;浮点型格式</span><br><span class="line">val3=config.getfloat(&#x27;section1&#x27;,&#x27;salary&#x27;)</span><br><span class="line">print(val3) #31.0</span><br></pre></td></tr></table></figure>
+
+<p><strong>改写</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import configparser</span><br><span class="line"></span><br><span class="line">config=configparser.ConfigParser()</span><br><span class="line">config.read(&#x27;a.cfg&#x27;,encoding=&#x27;utf-8&#x27;)</span><br><span class="line"></span><br><span class="line">#删除整个标题section2</span><br><span class="line">config.remove_section(&#x27;section2&#x27;)</span><br><span class="line"></span><br><span class="line">#删除标题section1下的某个k1和k2</span><br><span class="line">config.remove_option(&#x27;section1&#x27;,&#x27;k1&#x27;)</span><br><span class="line">config.remove_option(&#x27;section1&#x27;,&#x27;k2&#x27;)</span><br><span class="line"></span><br><span class="line">#判断是否存在某个标题</span><br><span class="line">print(config.has_section(&#x27;section1&#x27;))</span><br><span class="line"></span><br><span class="line">#判断标题section1下是否有user</span><br><span class="line">print(config.has_option(&#x27;section1&#x27;,&#x27;&#x27;))</span><br><span class="line"></span><br><span class="line">#添加一个标题</span><br><span class="line">config.add_section(&#x27;egon&#x27;)</span><br><span class="line"></span><br><span class="line">#在标题egon下添加name=egon,age=18的配置</span><br><span class="line">config.set(&#x27;egon&#x27;,&#x27;name&#x27;,&#x27;egon&#x27;)</span><br><span class="line">config.set(&#x27;egon&#x27;,&#x27;age&#x27;,18) #报错,必须是字符串</span><br><span class="line"></span><br><span class="line">#最后将修改的内容写入文件,完成最终的修改</span><br><span class="line">config.write(open(&#x27;a.cfg&#x27;,&#x27;w&#x27;))</span><br></pre></td></tr></table></figure>
+
+<h3 id="十一-os模块"><a href="#十一-os模块" class="headerlink" title="十一.os模块"></a>十一.os模块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">os.getcwd() 获取当前工作目录，即当前python脚本工作的目录路径</span><br><span class="line">os.chdir(&quot;dirname&quot;)  改变当前脚本工作目录；相当于shell下cd</span><br><span class="line">os.curdir  返回当前目录: (&#x27;.&#x27;)</span><br><span class="line">os.pardir  获取当前目录的父目录字符串名：(&#x27;..&#x27;)</span><br><span class="line">os.makedirs(&#x27;dirname1/dirname2&#x27;)    可生成多层递归目录</span><br><span class="line">os.removedirs(&#x27;dirname1&#x27;)    若目录为空，则删除，并递归到上一级目录，如若也为空，则删除，依此类推</span><br><span class="line">os.mkdir(&#x27;dirname&#x27;)    生成单级目录；相当于shell中mkdir dirname</span><br><span class="line">os.rmdir(&#x27;dirname&#x27;)    删除单级空目录，若目录不为空则无法删除，报错；相当于shell中rmdir dirname</span><br><span class="line">os.listdir(&#x27;dirname&#x27;)    列出指定目录下的所有文件和子目录，包括隐藏文件，并以列表方式打印</span><br><span class="line">os.remove()  删除一个文件</span><br><span class="line">os.rename(&quot;oldname&quot;,&quot;newname&quot;)  重命名文件/目录</span><br><span class="line">os.stat(&#x27;path/filename&#x27;)  获取文件/目录信息</span><br><span class="line">os.sep    输出操作系统特定的路径分隔符，win下为&quot;\\&quot;,Linux下为&quot;/&quot;</span><br><span class="line">os.linesep    输出当前平台使用的行终止符，win下为&quot;\t\n&quot;,Linux下为&quot;\n&quot;</span><br><span class="line">os.pathsep    输出用于分割文件路径的字符串 win下为;,Linux下为:</span><br><span class="line">os.name    输出字符串指示当前使用平台。win-&gt;&#x27;nt&#x27;; Linux-&gt;&#x27;posix&#x27;</span><br><span class="line">os.system(&quot;bash command&quot;)  运行shell命令，直接显示</span><br><span class="line">os.environ  获取系统环境变量</span><br><span class="line">os.path.abspath(path)  返回path规范化的绝对路径</span><br><span class="line">os.path.split(path)  将path分割成目录和文件名二元组返回</span><br><span class="line">os.path.dirname(path)  返回path的目录。其实就是os.path.split(path)的第一个元素</span><br><span class="line">os.path.basename(path)  返回path最后的文件名。如何path以／或\结尾，那么就会返回空值。即os.path.split(path)的第二个元素</span><br><span class="line">os.path.exists(path)  如果path存在，返回True；如果path不存在，返回False</span><br><span class="line">os.path.isabs(path)  如果path是绝对路径，返回True</span><br><span class="line">os.path.isfile(path)  如果path是一个存在的文件，返回True。否则返回False</span><br><span class="line">os.path.isdir(path)  如果path是一个存在的目录，则返回True。否则返回False</span><br><span class="line">os.path.join(path1[, path2[, ...]])  将多个路径组合后返回，第一个绝对路径之前的参数将被忽略</span><br><span class="line">os.path.getatime(path)  返回path所指向的文件或者目录的最后存取时间</span><br><span class="line">os.path.getmtime(path)  返回path所指向的文件或者目录的最后修改时间</span><br><span class="line">os.path.getsize(path) 返回path的大小</span><br></pre></td></tr></table></figure>
+
+<h3 id="十二-sys模块"><a href="#十二-sys模块" class="headerlink" title="十二.sys模块"></a>十二.sys模块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 sys.argv           命令行参数List，第一个元素是程序本身路径</span><br><span class="line">2 sys.exit(n)        退出程序，正常退出时exit(0)</span><br><span class="line">3 sys.version        获取Python解释程序的版本信息</span><br><span class="line">4 sys.maxint         最大的Int值</span><br><span class="line">5 sys.path           返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值</span><br><span class="line">6 sys.platform       返回操作系统平台名称</span><br></pre></td></tr></table></figure>
+
+<h3 id="十三-shutil模块"><a href="#十三-shutil模块" class="headerlink" title="十三. shutil模块"></a>十三. shutil模块</h3><p>高级的 文件、文件夹、压缩包 处理模块</p>
+<p><strong>shutil.copyfileobj(fsrc, fdst[, length])</strong><br>将文件内容拷贝到另一个文件中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 import shutil</span><br><span class="line">2  </span><br><span class="line">3 shutil.copyfileobj(open(&#x27;old.xml&#x27;,&#x27;r&#x27;), open(&#x27;new.xml&#x27;, &#x27;w&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p><strong>shutil.copyfile(src, dst)</strong><br>拷贝文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 shutil.copyfile(&#x27;f1.log&#x27;, &#x27;f2.log&#x27;) #目标文件无需存在</span><br></pre></td></tr></table></figure>
+
+<p><strong>shutil.copymode(src, dst)</strong><br>仅拷贝权限。内容、组、用户均不变</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 shutil.copymode(&#x27;f1.log&#x27;, &#x27;f2.log&#x27;) #目标文件必须存在</span><br></pre></td></tr></table></figure>
+
+<p><strong>shutil.copystat(src, dst)</strong><br>仅拷贝状态的信息，包括：mode bits, atime, mtime, flags</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 shutil.copystat(&#x27;f1.log&#x27;, &#x27;f2.log&#x27;) #目标文件必须存在</span><br></pre></td></tr></table></figure>
+
+<p><strong>shutil.copy(src, dst)</strong><br>拷贝文件和权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 import shutil</span><br><span class="line">2  </span><br><span class="line">3 shutil.copy(&#x27;f1.log&#x27;, &#x27;f2.log&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>shutil.copy2(src, dst)</strong><br>拷贝文件和状态信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 import shutil</span><br><span class="line">2  </span><br><span class="line">3 shutil.copy2(&#x27;f1.log&#x27;, &#x27;f2.log&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>shutil.ignore_patterns(*patterns)</strong><br><strong>shutil.copytree(src, dst, symlinks=False, ignore=None)</strong><br>递归的去拷贝文件夹</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 import shutil</span><br><span class="line">2  </span><br><span class="line">3 shutil.copytree(&#x27;folder1&#x27;, &#x27;folder2&#x27;, ignore=shutil.ignore_patterns(&#x27;*.pyc&#x27;, &#x27;tmp*&#x27;)) #目标目录不能存在，注意对folder2目录父级目录要有可写权限，ignore的意思是排除 </span><br></pre></td></tr></table></figure>
+
+<p><strong>shutil.rmtree(path[, ignore_errors[, onerror]])</strong><br>递归的去删除文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 import shutil</span><br><span class="line">2  </span><br><span class="line">3 shutil.rmtree(&#x27;folder1&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>shutil.move(src, dst)</strong><br>递归的去移动文件，它类似mv命令，其实就是重命名。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 import shutil</span><br><span class="line">2  </span><br><span class="line">3 shutil.move(&#x27;folder1&#x27;, &#x27;folder3&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>shutil.make_archive(base_name, format,…)</strong></p>
+<p>创建压缩包并返回文件路径，例如：zip、tar</p>
+<p>创建压缩包并返回文件路径，例如：zip、tar</p>
+<ul>
+<li>base_name： 压缩包的文件名，也可以是压缩包的路径。只是文件名时，则保存至当前目录，否则保存至指定路径，<br>如 data_bak            =&gt;保存至当前路径<br>如：/tmp/data_bak =&gt;保存至/tmp/</li>
+<li>format：    压缩包种类，“zip”, “tar”, “bztar”，“gztar”</li>
+<li>root_dir：    要压缩的文件夹路径（默认当前目录）</li>
+<li>owner：    用户，默认当前用户</li>
+<li>group：    组，默认当前组</li>
+<li>logger：    用于记录日志，通常是logging.Logger对象</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1 #将 /data 下的文件打包放置当前程序目录</span><br><span class="line">2 import shutil</span><br><span class="line">3 ret = shutil.make_archive(&quot;data_bak&quot;, &#x27;gztar&#x27;, root_dir=&#x27;/data&#x27;)</span><br><span class="line">4   </span><br><span class="line">5   </span><br><span class="line">6 #将 /data下的文件打包放置 /tmp/目录</span><br><span class="line">7 import shutil</span><br><span class="line">8 ret = shutil.make_archive(&quot;/tmp/data_bak&quot;, &#x27;gztar&#x27;, root_dir=&#x27;/data&#x27;) </span><br></pre></td></tr></table></figure>
+
+<p>shutil 对压缩包的处理是调用 ZipFile 和 TarFile 两个模块来进行的，详细：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 压缩</span></span><br><span class="line">z = zipfile.ZipFile(<span class="string">&#x27;laxi.zip&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">z.write(<span class="string">&#x27;a.log&#x27;</span>)</span><br><span class="line">z.write(<span class="string">&#x27;data.data&#x27;</span>)</span><br><span class="line">z.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">z = zipfile.ZipFile(<span class="string">&#x27;laxi.zip&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">z.extractall(path=<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">z.close()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import tarfile</span><br><span class="line"></span><br><span class="line"># 压缩</span><br><span class="line">&gt;&gt;&gt; t=tarfile.open(&#x27;/tmp/egon.tar&#x27;,&#x27;w&#x27;)</span><br><span class="line">&gt;&gt;&gt; t.add(&#x27;/test1/a.py&#x27;,arcname=&#x27;a.bak&#x27;)</span><br><span class="line">&gt;&gt;&gt; t.add(&#x27;/test1/b.py&#x27;,arcname=&#x27;b.bak&#x27;)</span><br><span class="line">&gt;&gt;&gt; t.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 解压</span><br><span class="line">&gt;&gt;&gt; t=tarfile.open(&#x27;/tmp/egon.tar&#x27;,&#x27;r&#x27;)</span><br><span class="line">&gt;&gt;&gt; t.extractall(&#x27;/egon&#x27;)</span><br><span class="line">&gt;&gt;&gt; t.close()</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/05/15/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" rel="prev" title="字符编码">
+                  <i class="fa fa-chevron-left"></i> 字符编码
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/05/18/%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92/" rel="next" title="Python迭代器生成器函数递归">
+                  Python迭代器生成器函数递归 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

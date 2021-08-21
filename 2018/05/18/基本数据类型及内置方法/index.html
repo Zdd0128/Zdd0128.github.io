@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="基本数据类型及内置方法引子​         数据类型是用来记录事物状态的，而事物的状态是不断变化的(如:一个人年龄的增长（操作int类型） ，单个人名的修改（操作str类型），学生列表中增加学生（操作list类型）等)，这意味着我们在开发程序时需要频繁对数据进行操作，为了提升我们的开发效率， python针对这些常用的操作，为每一种数据类型内置了一系列方法 一. 数字类型int与float123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基本数据类型及内置方法">
+<meta property="og:url" content="http://example.com/2018/05/18/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="左大大的博客">
+<meta property="og:description" content="基本数据类型及内置方法引子​         数据类型是用来记录事物状态的，而事物的状态是不断变化的(如:一个人年龄的增长（操作int类型） ，单个人名的修改（操作str类型），学生列表中增加学生（操作list类型）等)，这意味着我们在开发程序时需要频繁对数据进行操作，为了提升我们的开发效率， python针对这些常用的操作，为每一种数据类型内置了一系列方法 一. 数字类型int与float123">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-de70fc0b51f69ade62df5cc235acd493_720w.jpg">
+<meta property="article:published_time" content="2018-05-18T09:27:55.000Z">
+<meta property="article:modified_time" content="2018-05-18T09:27:55.000Z">
+<meta property="article:author" content="左大大">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-de70fc0b51f69ade62df5cc235acd493_720w.jpg">
+
+
+<link rel="canonical" href="http://example.com/2018/05/18/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2018/05/18/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/","path":"2018/05/18/基本数据类型及内置方法/","title":"基本数据类型及内置方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基本数据类型及内置方法 | 左大大的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">左大大的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">基本数据类型及内置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.0.1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8Bint%E4%B8%8Efloat"><span class="nav-number">1.0.2.</span> <span class="nav-text">一. 数字类型int与float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.0.3.</span> <span class="nav-text">二.字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E5%88%97%E8%A1%A8"><span class="nav-number">1.0.4.</span> <span class="nav-text">三.列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B-%E5%85%83%E7%BB%84"><span class="nav-number">1.0.5.</span> <span class="nav-text">四.元组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94-%E5%AD%97%E5%85%B8"><span class="nav-number">1.0.6.</span> <span class="nav-text">五.字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD-%E9%9B%86%E5%90%88"><span class="nav-number">1.0.7.</span> <span class="nav-text">六.集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83-%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B%E4%B8%8E%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.0.8.</span> <span class="nav-text">七.可变类型与不可变类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%80%BB%E7%BB%93"><span class="nav-number">1.0.9.</span> <span class="nav-text">八.数据类型总结</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="左大大"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">左大大</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/18/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="左大大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左大大的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基本数据类型及内置方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-05-18 17:27:55" itemprop="dateCreated datePublished" datetime="2018-05-18T17:27:55+08:00">2018-05-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="基本数据类型及内置方法"><a href="#基本数据类型及内置方法" class="headerlink" title="基本数据类型及内置方法"></a>基本数据类型及内置方法</h1><h3 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h3><p>​         数据类型是用来记录事物状态的，而事物的状态是不断变化的(如:一个人年龄的增长（操作int类型） ，单个人名的修改（操作str类型），学生列表中增加学生（操作list类型）等)，这意味着我们在开发程序时需要频繁对数据进行操作，为了提升我们的开发效率， python针对这些常用的操作，为每一种数据类型内置了一系列方法</p>
+<h3 id="一-数字类型int与float"><a href="#一-数字类型int与float" class="headerlink" title="一. 数字类型int与float"></a>一. 数字类型int与float</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、定义：</span><br><span class="line">    <span class="number">1.1</span> 整型<span class="built_in">int</span>的定义</span><br><span class="line">        age=<span class="number">10</span>  <span class="comment"># 本质age = int(10)</span></span><br><span class="line"></span><br><span class="line">    <span class="number">1.2</span> 浮点型<span class="built_in">float</span>的定义</span><br><span class="line">        salary=<span class="number">3000.3</span>  <span class="comment"># 本质salary=float(3000.3)</span></span><br><span class="line"></span><br><span class="line">    注意：名字+括号的意思就是调用某个功能，比如:</span><br><span class="line">        <span class="built_in">print</span>(...)调用打印功能</span><br><span class="line">        <span class="built_in">int</span>(...)调用创建整型数据的功能</span><br><span class="line">        <span class="built_in">float</span>(...)调用创建浮点型数据的功能</span><br><span class="line"><span class="number">2.</span>类型转换:</span><br><span class="line">    <span class="number">1.</span><span class="built_in">int</span>可以将由纯整数构成的字符串直接转换成整型，若包含其他任意非整数符号，则会报错</span><br><span class="line">        s = <span class="string">&#x27;123&#x27;</span></span><br><span class="line">        res = <span class="built_in">int</span>(s)</span><br><span class="line">        <span class="built_in">print</span>(res,<span class="built_in">type</span>(res))</span><br><span class="line">        ==&gt; (<span class="number">123</span>, &lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">int</span>&#x27;&gt;)</span></span><br><span class="line"><span class="class">    2.进制转换</span></span><br><span class="line"><span class="class">    	1.十进制转其他进制:</span></span><br><span class="line">            <span class="built_in">bin</span>(<span class="number">3</span>)  <span class="comment"># 转换成二进制</span></span><br><span class="line">            ==&gt; <span class="string">&#x27;0b11&#x27;</span></span><br><span class="line">            <span class="built_in">oct</span>(<span class="number">9</span>)  <span class="comment"># 转换成八进制</span></span><br><span class="line">            ==&gt; <span class="string">&#x27;0o11&#x27;</span></span><br><span class="line">            <span class="built_in">hex</span>(<span class="number">17</span>) <span class="comment"># 转换成十六进制</span></span><br><span class="line">            ==&gt; <span class="string">&#x27;0x11&#x27;</span></span><br><span class="line">        <span class="number">2.</span>其他进制转十进制</span><br><span class="line">            <span class="built_in">int</span>(<span class="string">&#x27;0b11&#x27;</span>,<span class="number">2</span>)</span><br><span class="line">            ==&gt;  <span class="number">3</span></span><br><span class="line">            <span class="built_in">int</span>(<span class="string">&#x27;0o11&#x27;</span>,<span class="number">8</span>)</span><br><span class="line">            ==&gt;  <span class="number">9</span></span><br><span class="line">            <span class="built_in">int</span>(<span class="string">&#x27;0x11&#x27;</span>,<span class="number">16</span>)</span><br><span class="line">            ==&gt;  <span class="number">17</span></span><br><span class="line">         <span class="number">3.1</span><span class="number">.3</span> <span class="built_in">float</span>同样可以用来做数据类型的转换</span><br><span class="line">            s = <span class="string">&#x27;12.3&#x27;</span></span><br><span class="line">            res=<span class="built_in">float</span>(s)</span><br><span class="line">            res,<span class="built_in">type</span>(res)</span><br><span class="line">            ==&gt;  (<span class="number">12.3</span>, &lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">float</span>&#x27;&gt;)</span></span><br><span class="line"><span class="class">            </span></span><br><span class="line"><span class="class">3.使用</span></span><br><span class="line"><span class="class">	数字类型主要就是用来做数学运算与比较运算，因此数字类型除了与运算符结合使用之外，并无需要掌握的内置方法</span></span><br><span class="line"><span class="class">    </span></span><br><span class="line"><span class="class">总结：</span></span><br><span class="line"><span class="class">	存一个值，不可变类型</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="二-字符串"><a href="#二-字符串" class="headerlink" title="二.字符串"></a>二.字符串</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>定义:</span><br><span class="line">    在单引号<span class="keyword">or</span>双引号<span class="keyword">or</span>三引号内包含一串字符</span><br><span class="line">        name1 = <span class="string">&#x27;jason&#x27;</span>  <span class="comment"># 本质:name = str(&#x27;任意形式内容&#x27;)</span></span><br><span class="line">        name2 = <span class="string">&quot;lili&quot;</span>  <span class="comment"># 本质:name = str(&quot;任意形式内容&quot;)</span></span><br><span class="line">        name3 = <span class="string">&quot;&quot;&quot;ricky&quot;&quot;&quot;</span>  <span class="comment"># 本质:name = str(&quot;&quot;&quot;任意形式内容&quot;&quot;&quot;)    </span></span><br><span class="line"><span class="number">2.</span>类型转换:</span><br><span class="line">    <span class="built_in">str</span>()可以将任意数据类型转换成字符串类型，例如:</span><br><span class="line">        <span class="built_in">type</span>(<span class="built_in">str</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])) <span class="comment"># list-&gt;str</span></span><br><span class="line">        ==&gt;  &lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">        <span class="title">type</span>(<span class="params"><span class="built_in">str</span>(<span class="params">&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;jason&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">18</span>&#125;</span>)</span>) # <span class="title">dict</span>-&gt;<span class="built_in">str</span></span></span><br><span class="line"><span class="class">        ==&gt;  &lt;<span class="keyword">class</span> &#x27;<span class="built_in">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">        <span class="built_in">type</span>(<span class="built_in">str</span>((1,2,3)))  # <span class="built_in">tuple</span>-&gt;<span class="built_in">str</span></span></span><br><span class="line"><span class="class">        ==&gt; &lt;<span class="keyword">class</span> &#x27;<span class="built_in">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">        <span class="built_in">type</span>(<span class="built_in">str</span>(&#123;1,2,3,4&#125;)) # <span class="built_in">set</span>-&gt;<span class="built_in">str</span></span></span><br><span class="line"><span class="class">        ==&gt; &lt;<span class="keyword">class</span> &#x27;<span class="built_in">str</span>&#x27;&gt;   </span></span><br><span class="line"><span class="class">3.使用:</span></span><br><span class="line">    <span class="number">1.</span>优先掌握:</span><br><span class="line">        str1 = <span class="string">&#x27;hello python!&#x27;</span>      </span><br><span class="line">        <span class="number">1.</span>按索引取值(正向取，反向取)：</span><br><span class="line">			<span class="number">1.1</span> 正向取(从左往右)</span><br><span class="line">				str1[<span class="number">6</span>]</span><br><span class="line">				==&gt; p</span><br><span class="line">            <span class="number">1.2</span> 反向取(负号表示从右往左)：</span><br><span class="line">                str1[-<span class="number">4</span>]</span><br><span class="line">                ==&gt; h</span><br><span class="line">            <span class="number">1.3</span> 对于<span class="built_in">str</span>来说，只能按照索引取值，不能改</span><br><span class="line">            	str1[<span class="number">0</span>]=<span class="string">&#x27;H&#x27;</span> <span class="comment"># 报错TypeError</span></span><br><span class="line">        <span class="number">2.</span>切片：</span><br><span class="line">        	切片(顾头不顾尾，步长)</span><br><span class="line">            <span class="number">2.1</span> 顾头不顾尾：取出索引为<span class="number">0</span>到<span class="number">8</span>的所有字符</span><br><span class="line">                str1[<span class="number">0</span>:<span class="number">9</span>]  </span><br><span class="line">                ==&gt; hello pyt</span><br><span class="line">            <span class="number">2.2</span> 步长：<span class="number">0</span>:<span class="number">9</span>:<span class="number">2</span>,第三个参数<span class="number">2</span>代表步长，会从<span class="number">0</span>开始，每次累加一个<span class="number">2</span>即可，所以会取出索引<span class="number">0</span>、<span class="number">2</span>、<span class="number">4</span>、<span class="number">6</span>、<span class="number">8</span>的字符</span><br><span class="line">                str1[<span class="number">0</span>:<span class="number">9</span>:<span class="number">2</span>]  </span><br><span class="line">                ==&gt; hlopt </span><br><span class="line">            <span class="number">2.3</span> 反向切片</span><br><span class="line">                str1[::-<span class="number">1</span>]  <span class="comment"># -1表示从右往左依次取值</span></span><br><span class="line">                ==&gt;!nohtyp olleh</span><br><span class="line">         <span class="number">3.</span>长度<span class="built_in">len</span></span><br><span class="line">            <span class="number">1.1</span> 获取字符串的长度，即字符的个数，但凡存在于引号内的都算作字符)</span><br><span class="line">            	<span class="built_in">len</span>(str1) <span class="comment"># 空格也算字符</span></span><br><span class="line">            	==&gt; <span class="number">13</span></span><br><span class="line">         <span class="number">4.</span>成员运算 <span class="keyword">in</span> 和 <span class="keyword">not</span> <span class="keyword">in</span></span><br><span class="line">        	<span class="number">4.1</span> <span class="built_in">int</span>:判断是否在</span><br><span class="line">            <span class="number">4.2</span> <span class="keyword">not</span> <span class="keyword">in</span>:判断是否不在</span><br><span class="line">		 <span class="number">5.5</span>strip移除字符串首尾指定的字符(默认移除空格)</span><br><span class="line">            <span class="number">5.1</span> 括号内不指定字符，默认移除首尾空白字符(空格、\n、\t)</span><br><span class="line">                str1 = <span class="string">&#x27;  life is short!  &#x27;</span></span><br><span class="line">                str1.strip()  </span><br><span class="line">                ==&gt; life <span class="keyword">is</span> short!</span><br><span class="line">            <span class="number">5.2</span> 括号内指定字符，移除首尾指定的字符</span><br><span class="line">            	str2 = <span class="string">&#x27;**tony**&#x27;</span>  </span><br><span class="line">            	str2.strip(<span class="string">&#x27;*&#x27;</span>)  </span><br><span class="line">            	==&gt; tony</span><br><span class="line">         <span class="number">6.</span>切分split</span><br><span class="line">            <span class="number">6.1</span>括号内不指定字符，默认以空格作为切分符号</span><br><span class="line">                str3=<span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">                str3.split()</span><br><span class="line">                ==&gt; [<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world&#x27;</span>]</span><br><span class="line">            <span class="number">6.2</span>括号内指定分隔字符，则按照括号内指定的字符切割字符串</span><br><span class="line">                str4 = <span class="string">&#x27;127.0.0.1&#x27;</span></span><br><span class="line">                str4.split(<span class="string">&#x27;.&#x27;</span>)  </span><br><span class="line">                ==&gt; [<span class="string">&#x27;127&#x27;</span>, <span class="string">&#x27;0&#x27;</span>, <span class="string">&#x27;0&#x27;</span>, <span class="string">&#x27;1&#x27;</span>]  <span class="comment"># 注意:split切割得到的结果是列表数据类型</span></span><br><span class="line">                </span><br><span class="line">	<span class="number">2.</span>需要掌握：</span><br><span class="line">    	<span class="number">1.</span>strip, lstrip, rstrip</span><br><span class="line">         	str1 = <span class="string">&#x27;**tony***&#x27;</span></span><br><span class="line">        	str1.strip(<span class="string">&#x27;*&#x27;</span>)   <span class="comment"># 移除左右两边的指定字符</span></span><br><span class="line">            str1.lstrip(<span class="string">&#x27;*&#x27;</span>)  <span class="comment"># 只移除左边的指定字符</span></span><br><span class="line">            str1.lstrip(<span class="string">&#x27;*&#x27;</span>)  <span class="comment"># 只移除左边的指定字符</span></span><br><span class="line">        <span class="number">2.</span>lower(),upper()</span><br><span class="line">        	<span class="number">2.1</span> lower用来小写字符串中的所有字符</span><br><span class="line">			<span class="number">2.2</span> upper用来大写字符串中的所有字符</span><br><span class="line">        <span class="number">3.</span> startswith,endswith</span><br><span class="line">        	<span class="number">3.1</span> startswith用来判断字符串中首写字符</span><br><span class="line">			<span class="number">3.2</span> endswith用来判断字符串中末尾的字符</span><br><span class="line">        <span class="number">4.</span> 格式化输出之<span class="built_in">format</span></span><br><span class="line">        	<span class="built_in">format</span>是一种不依赖位置的传值方式</span><br><span class="line">            <span class="built_in">format</span>用来自定义字符串中的字符，用花括号占位</span><br><span class="line">            <span class="built_in">format</span>括号内在传参数时完全可以打乱顺序，但仍然能指名道姓地为指定的参数传值，name=‘tony’就			 是传给&#123;name&#125;,例：</span><br><span class="line">                str4 = <span class="string">&#x27;my name is &#123;name&#125;, my age is &#123;age&#125;!&#x27;</span>.<span class="built_in">format</span>(age=<span class="number">18</span>,name=<span class="string">&#x27;tony&#x27;</span>)</span><br><span class="line">                str4  </span><br><span class="line">                ==&gt;<span class="string">&#x27;my name is tony, my age is 18!&#x27;</span></span><br><span class="line"></span><br><span class="line">                str4 = <span class="string">&#x27;my name is &#123;name&#125;&#123;name&#125;, my age is &#123;name&#125;!&#x27;</span>.<span class="built_in">format</span>(name=<span class="string">&#x27;tony&#x27;</span>, 				age=<span class="number">18</span>)</span><br><span class="line">                str4  </span><br><span class="line">                <span class="string">&#x27;my name is tonytony, my age is tony!&#x27;</span></span><br><span class="line">          <span class="number">5.</span>split,rsplit  </span><br><span class="line">        		<span class="number">5.1</span>split将长字符串切割，切割位置取决于括号内字符，默认空格，从左往右，可指定切割次数</span><br><span class="line">				<span class="number">5.2</span>rsplit将长字符串切割，切割位置取决于括号内字符，默认空格，从右往左，可指定切割次数</span><br><span class="line">					split会按照从左到右的顺序对字符串进行切分，可以指定切割次数</span><br><span class="line">                        str5=<span class="string">&#x27;C:/a/b/c/d.txt&#x27;</span></span><br><span class="line">                        str5.split(<span class="string">&#x27;/&#x27;</span>,<span class="number">1</span>)</span><br><span class="line">                        ==&gt; [<span class="string">&#x27;C:&#x27;</span>, <span class="string">&#x27;a/b/c/d.txt&#x27;</span>] </span><br><span class="line"></span><br><span class="line">          <span class="number">6.j</span>oin</span><br><span class="line">        	  从可迭代对象中取出多个字符串，然后按照指定的分隔符进行拼接,拼接的结果为字符串</span><br><span class="line">          <span class="number">7.</span>replace</span><br><span class="line">        	  用来替换字符串中的不想要内容，需重新赋值定义，可指定个数</span><br><span class="line">          <span class="number">8.</span>isdigit</span><br><span class="line">        	  判断字符串是否是纯数字组成</span><br><span class="line">          <span class="number">9.</span><span class="keyword">is</span>系列</span><br><span class="line">        	  <span class="number">9.1</span> isalnum()  <span class="comment"># 字符串中既可以包含数字也可以包含字母</span></span><br><span class="line">        	  <span class="number">9.2</span> isalpha()  <span class="comment"># 字符串中只包含字母</span></span><br><span class="line">              <span class="number">9.3</span> isspace()  <span class="comment"># 字符串是否全是空格</span></span><br><span class="line">           	  <span class="number">9.4</span> istitle()  <span class="comment"># 字符串中的单词首字母是否都是大写</span></span><br><span class="line">          <span class="number">10.</span>其他</span><br><span class="line">              captalize		<span class="comment"># 首字母大写</span></span><br><span class="line">              swapcase		<span class="comment"># 大小写翻转</span></span><br><span class="line">              title			<span class="comment"># 每个单词的首字母大写</span></span><br><span class="line">              isalpha() 	<span class="comment"># 字符串中只包含字母</span></span><br><span class="line">              isalnum() 	<span class="comment"># 字符串中既可以包含数字也可以包含字母</span></span><br><span class="line">              isspace()  	<span class="comment"># 字符串是否全是空格</span></span><br><span class="line">              <span class="built_in">isinstance</span>() 	<span class="comment"># 函数来判断一个对象是否是一个已知的类型</span></span><br><span class="line">              count()		<span class="comment"># 统计字符串在大字符串中出现的次数</span></span><br><span class="line"></span><br><span class="line">总结：</span><br><span class="line">	存一个值，有序，不可变类型</span><br></pre></td></tr></table></figure>
+
+<h3 id="三-列表"><a href="#三-列表" class="headerlink" title="三.列表"></a>三.列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>定义：</span><br><span class="line">	定义：在[]内,用逗号分隔开多个任意数据类型的值</span><br><span class="line"><span class="number">2.</span>类型转换：</span><br><span class="line">	但凡能被<span class="keyword">for</span>循环遍历的数据类型都可以传给<span class="built_in">list</span>()转换成列表类型，<span class="built_in">list</span>()会跟<span class="keyword">for</span>循环一样遍历出数据类型中	  包含的每一个元素然后放到列表中</span><br><span class="line">        <span class="built_in">list</span>(<span class="string">&#x27;wdad&#x27;</span>) <span class="comment"># 结果：[&#x27;w&#x27;, &#x27;d&#x27;, &#x27;a&#x27;, &#x27;d&#x27;] </span></span><br><span class="line">        <span class="built_in">list</span>(&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;jason&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">18</span>&#125;) <span class="comment">#结果：[&#x27;name&#x27;, &#x27;age&#x27;]</span></span><br><span class="line">        <span class="built_in">list</span>((<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)) <span class="comment"># 结果：[1, 2, 3] </span></span><br><span class="line">        <span class="built_in">list</span>(&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;) <span class="comment"># 结果：[1, 2, 3, 4]</span></span><br><span class="line"><span class="number">3.</span>使用：</span><br><span class="line">	<span class="number">1.</span>优先掌握：</span><br><span class="line">        <span class="number">1.</span> 按索引存取值(正向存取+反向存取)：即可存也可以取  </span><br><span class="line">    		<span class="number">1.1</span> 正向取(从左往右)</span><br><span class="line">            <span class="number">1.2</span> 反向取(负号表示从右往左)</span><br><span class="line">            <span class="number">1.3</span> <span class="built_in">list</span>既可以按照索引取值，又可以按照索引修改指定位置的值，但如果索引不存在则报错</span><br><span class="line">    	<span class="number">2.</span>切片(顾头不顾尾，步长)</span><br><span class="line">        	<span class="number">2.1</span> 顾头不顾尾</span><br><span class="line">            <span class="number">2.2</span> 步长</span><br><span class="line">        <span class="number">3.</span>长度</span><br><span class="line">        	<span class="built_in">len</span>(列表)</span><br><span class="line">        <span class="number">4.</span>成员运算<span class="keyword">in</span>和<span class="keyword">not</span> <span class="keyword">in</span></span><br><span class="line">        <span class="number">5.</span>添加</span><br><span class="line">        	<span class="number">5.1</span> append()列表尾部追加元素</span><br><span class="line">            <span class="number">5.2</span> insert用来向列表内添加新的值，根据列表索引添加新值，新值会被加到指定索引位置</span><br><span class="line">        	<span class="number">5.3</span> extend用来将被添加到新列表中所有元素拆分开来一一加入新的列表</span><br><span class="line">        <span class="number">6.</span>删除</span><br><span class="line">        	<span class="number">6.1</span> <span class="keyword">del</span>用来删除列表里索引对应的值，是单纯的删除，没有返回值</span><br><span class="line">            <span class="number">6.2</span> pop()默认删除列表最后一个元素，并将删除的值返回，括号内可以通过加索引值来指定删除元素</span><br><span class="line">        	<span class="number">6.3</span> remove()括号内指名道姓表示要删除哪个元素，没有返回值</span><br><span class="line">            <span class="number">6.4</span> clear用来清空列表中所有元素</span><br><span class="line">        <span class="number">7.</span>排序 </span><br><span class="line">        	<span class="number">7.1</span> reverse用来将列表倒置，顺序颠倒过来</span><br><span class="line">            <span class="number">7.2</span> sort用来将列表中元素排序，默认从小到大排，括号里跟reverse=<span class="literal">True</span>实现从大到小排序</span><br><span class="line">        <span class="number">8.</span>查找</span><br><span class="line">        	<span class="number">8.1</span> index用来根据值查找值对应列表中的索引，值后面可指定索引范围来查找</span><br><span class="line">        	<span class="number">8.2</span> count用来查询列表中某个值出现的次数</span><br><span class="line">        <span class="number">9.</span>复制 	</span><br><span class="line">			copy用来将列表复制一份，可定义给其他列表(浅拷贝)</span><br><span class="line"> </span><br><span class="line">总结：</span><br><span class="line">	存多个值，有序，可变类型</span><br></pre></td></tr></table></figure>
+
+<h3 id="四-元组"><a href="#四-元组" class="headerlink" title="四.元组"></a>四.元组</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>作用：</span><br><span class="line">	元组与列表类似，也是可以存多个任意类型的元素，不同之处在于元组的元素不能修改，即元组相当于不可变的列表，用于记录多个固定不允许修改的值，单纯用于取</span><br><span class="line"><span class="number">2.</span>定义：</span><br><span class="line">	在()内用逗号分隔开多个任意类型的值</span><br><span class="line">    强调：如果元组内只有一个值，则必须加一个逗号，否则()就只是包含的意思而非定义元组</span><br><span class="line"><span class="number">3.</span>类型转换：</span><br><span class="line">	但凡能被<span class="keyword">for</span>循环的遍历的数据类型都可以传给<span class="built_in">tuple</span>()转换成元组类型</span><br><span class="line">    	 <span class="built_in">tuple</span>(<span class="string">&#x27;wdad&#x27;</span>) <span class="comment"># 结果：(&#x27;w&#x27;, &#x27;d&#x27;, &#x27;a&#x27;, &#x27;d&#x27;) </span></span><br><span class="line">         <span class="built_in">tuple</span>(&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;jason&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">18</span>&#125;) <span class="comment"># 结果：(&#x27;name&#x27;, &#x27;age&#x27;)</span></span><br><span class="line">         <span class="built_in">tuple</span>(&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;) <span class="comment"># 结果：(1, 2, 3, 4)</span></span><br><span class="line"><span class="number">4.</span>使用：</span><br><span class="line">	<span class="number">4.1</span> 按索引取值(正向取+反向取)：只能取，不能改否则报错！  </span><br><span class="line">    <span class="number">4.2</span> 切片(顾头不顾尾，步长)</span><br><span class="line">    <span class="number">4.3</span> 长度：<span class="built_in">len</span>(元组)</span><br><span class="line">    <span class="number">4.4</span> 成员运算 <span class="keyword">in</span> 和 <span class="keyword">not</span> <span class="keyword">in</span></span><br><span class="line">    <span class="number">4.5</span> <span class="number">5</span>、循环</span><br><span class="line">    </span><br><span class="line">总结：</span><br><span class="line">	存多个值，有序，不可变</span><br></pre></td></tr></table></figure>
+
+<h3 id="五-字典"><a href="#五-字典" class="headerlink" title="五.字典"></a>五.字典</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">1.定义：</span><br><span class="line">	在&#123;&#125;内用逗号分隔开多元素，每一个元素都是key:value的形式，其中value可以是任意类型，而key则必须是不可变类型，通常key应该是str类型，因为str类型会对value有描述性的功能</span><br><span class="line">2.类型转换：</span><br><span class="line">	转换一：</span><br><span class="line">        info=dict([[&#x27;name&#x27;,&#x27;tony&#x27;],(&#x27;age&#x27;,18)])</span><br><span class="line">        print(info)</span><br><span class="line">        ==&gt; &#123;&#x27;age&#x27;: 18, &#x27;name&#x27;: &#x27;tony&#x27;&#125;</span><br><span class="line">	转换二：</span><br><span class="line">		fromkeys会从元组中取出每个值当做key，然后与None组成key:value放到字典中</span><br><span class="line">            &#123;&#125;.fromkeys((&#x27;name&#x27;,&#x27;age&#x27;,&#x27;sex&#x27;),None)  </span><br><span class="line">            ==&gt;&#123;&#x27;age&#x27;: None, &#x27;sex&#x27;: None, &#x27;name&#x27;: None&#125;</span><br><span class="line">3.使用：</span><br><span class="line">	3.1 keys():字典类型和keys连用，</span><br><span class="line">	3.2 values():字典类型和values连用，是只遍历value值的意思</span><br><span class="line">	3.3 items():字典类型和items连用，是遍历key和value值的意思，即遍历键值对，用元组盛放返回</span><br><span class="line">	3.4 get是用来根据key值获取其对应的value值，有返回值，key不存在返回None，字典取值推荐使用此方法</span><br><span class="line">	3.5 pop是用来删除字典指定key对应的键值，返回值是被删除的键值</span><br><span class="line">	3.6 popitem是用来随机删除字典内的一组键值对，并将删除的键值对放入元组内返回</span><br><span class="line">	3.7 update是用新字典更新旧字典，有则修改，无则添加</span><br><span class="line">	3.8 fromkeys是用来快速生成一个新的字典，可以自定义key对应的value值</span><br><span class="line">	3.9.setdefault是用来获取字典的信息，若key不存在，就加上括号内的键值对项目,存在则字典保持不变</span><br><span class="line">	</span><br><span class="line">总结:</span><br><span class="line">	存多个值,无序,可变</span><br></pre></td></tr></table></figure>
+
+<h3 id="六-集合"><a href="#六-集合" class="headerlink" title="六.集合"></a>六.集合</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>作用：</span><br><span class="line">	集合、<span class="built_in">list</span>、<span class="built_in">tuple</span>、<span class="built_in">dict</span>一样都可以存放多个值，但是集合主要用于：去重、关系运算</span><br><span class="line"><span class="number">2.</span>定义</span><br><span class="line">	在&#123;&#125;内用逗号分隔开多个元素，集合具备以下三个特点：</span><br><span class="line">         <span class="number">1</span>：每个元素必须是不可变类型</span><br><span class="line">         <span class="number">2</span>：集合内没有重复的元素</span><br><span class="line">         <span class="number">3</span>：集合内元素无序</span><br><span class="line">     s = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;  <span class="comment"># 本质 s = set(&#123;1,2,3,4&#125;)</span></span><br><span class="line">     d = &#123;&#125; <span class="comment"># 默认是空字典 </span></span><br><span class="line">	 s = <span class="built_in">set</span>() <span class="comment"># 这才是定义空集合</span></span><br><span class="line"><span class="number">3.</span>类型转：</span><br><span class="line">	但凡能被<span class="keyword">for</span>循环的遍历的数据类型（强调：遍历出的每一个值都必须为不可变类型）都可以传给<span class="built_in">set</span>()转换成集合类型</span><br><span class="line">        s = <span class="built_in">set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">        s1 = <span class="built_in">set</span>((<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">        s2 = <span class="built_in">set</span>(&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;jason&#x27;</span>,&#125;)</span><br><span class="line">        s3 = <span class="built_in">set</span>(<span class="string">&#x27;egon&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(s,s1,s2,s3)</span><br><span class="line">        ==&gt; &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125; &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125; &#123;<span class="string">&#x27;name&#x27;</span>&#125; &#123;<span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;n&#x27;</span>&#125;		</span><br><span class="line"><span class="number">4.</span>使用:</span><br><span class="line">    <span class="number">4.1</span>关系运算：</span><br><span class="line">    	<span class="number">1.</span>合集/并集(|)：所有的</span><br><span class="line">        <span class="number">2.</span>交集(&amp;)：共有的</span><br><span class="line">        <span class="number">3.</span>差集(-)：各自独有的</span><br><span class="line">        <span class="number">4.</span>对称差集(^) ：两者独有的</span><br><span class="line">        <span class="number">5.</span>值是否相等(==)</span><br><span class="line">        <span class="number">6.</span>父集：一个集合是否包含另外一个集合</span><br><span class="line">        	<span class="number">6.1</span>包含则返回<span class="literal">True</span></span><br><span class="line">            <span class="number">6.2</span>不存在包含关系，则返回<span class="literal">False</span></span><br><span class="line">    	<span class="number">7.</span>子集</span><br><span class="line">     <span class="number">4.2</span>去重：</span><br><span class="line">    	集合去重复有局限性</span><br><span class="line">            <span class="number">1.</span> 只能针对不可变类型</span><br><span class="line">            <span class="number">2.</span> 集合本身是无序的，去重之后无法保留原来的顺序</span><br><span class="line">            </span><br><span class="line">总结:</span><br><span class="line">    存多个值,无序,<span class="built_in">set</span>集合可变,<span class="built_in">frozenset</span>不可变集合</span><br></pre></td></tr></table></figure>
+
+<h3 id="七-可变类型与不可变类型"><a href="#七-可变类型与不可变类型" class="headerlink" title="七.可变类型与不可变类型"></a>七.可变类型与不可变类型</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.可变类型：</span><br><span class="line">	值发生改变时，内存地址不变，即id不变，证明在改变原值</span><br><span class="line">2.不可变类型：</span><br><span class="line">	值发生改变时，内存地址也发生改变，即id也变，证明是没有在改变原值，是产生了新的值</span><br></pre></td></tr></table></figure>
+
+<h3 id="八-数据类型总结"><a href="#八-数据类型总结" class="headerlink" title="八.数据类型总结"></a>八.数据类型总结</h3><p><img src="https://pic4.zhimg.com/80/v2-de70fc0b51f69ade62df5cc235acd493_720w.jpg" alt="img"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/05/18/%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92/" rel="prev" title="Python迭代器生成器函数递归">
+                  <i class="fa fa-chevron-left"></i> Python迭代器生成器函数递归
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/05/19/%E5%B0%81%E8%A3%85,%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/" rel="next" title="编程语言与Python介绍">
+                  编程语言与Python介绍 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">左大大</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
